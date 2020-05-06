@@ -35,7 +35,9 @@ class AutoresModel{
     public function showBooks(){
         //Abro conexión
         $db = $this->createConection();
-        $sentencia=$db->prepare("SELECT * FROM libros");
+        $sentencia=$db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor");
+        //$sentencia=$db->prepare("SELECT * FROM libros");
+
         $sentencia->execute();
         $libros= $sentencia->fetchAll(PDO::FETCH_OBJ);
         

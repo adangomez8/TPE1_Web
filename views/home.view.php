@@ -76,15 +76,17 @@ class HomeView{
         echo $this->encabezado();
     
         echo '<div class="container">';
-        echo '<div class = "row">';
         echo '<table class = "table table-striped table-dark">';
-        echo '<td class= "col-xs-7 col-md-7"><h2>Lista de libros</h2></td>';
-        echo '<td class= "col-xs-5 col-md-5"><h2>Ver más</h2></td>';
+        echo '<div class = "row">';
+        echo '<td ><h2>Lista de libros</h2></td>';
+        echo '<td><h2>Autor</h2></td>';
+        echo '<td><h2>Ver más</h2></td>';
        
         foreach($books as $book){
         echo '<tr>';
-        echo '<td>'.$book->nombre.'</td>';
-        echo '<td> <a class="btn btn-outline-success" href="infoLibros/'.$book->id_autor_fk.'"><i class="fab fa-readme"></i></a></td>';
+        echo '<td >'.$book->Nombre.'</td>';
+        echo '<td>'.$book->Autor.'</td>';
+        echo '<td> <a class="btn btn-outline-success" href="infoLibros/'.$book->id_libro.'"><i class="fab fa-readme"></i></a></td>';
         echo '</tr>';
            
         }
