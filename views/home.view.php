@@ -55,10 +55,12 @@ class HomeView{
 
         echo'<table class="table table-striped table-dark">';
         echo '<td><h2>Lista de autores</td>';
+        echo '<td>Ver libros del autor</td>';
         
         foreach($autores as $autor){
             echo '<tr>';
-            echo '<td> <a href="librosAutor/'.$autor->id_autor.'">'. $autor->nombre .'</a></td>';
+            echo '<td>'. $autor->nombre .'</td>';
+            echo '<td> <a href="librosAutor/'.$autor->id_autor.'"><i class="fas fa-book"></i><i class="fas fa-book"></i><i class="fas fa-book"></i></i></a></td>';
             echo '</tr>';
         }
         echo'</table>';
@@ -76,15 +78,17 @@ class HomeView{
         echo $this->encabezado();
     
         echo '<div class="container">';
-        echo '<div class = "row">';
         echo '<table class = "table table-striped table-dark">';
-        echo '<td class= "col-xs-7 col-md-7"><h2>Lista de libros</h2></td>';
-        echo '<td class= "col-xs-5 col-md-5"><h2>Ver más</h2></td>';
+        echo '<div class = "row">';
+        echo '<td ><h2>Lista de libros</h2></td>';
+        echo '<td><h2>Autor</h2></td>';
+        echo '<td><h2>Ver más</h2></td>';
        
         foreach($books as $book){
         echo '<tr>';
-        echo '<td>'.$book->nombre.'</td>';
-        echo '<td> <a class="btn btn-outline-success" href="infoLibros/'.$book->id_autor_fk.'"><i class="fab fa-readme"></i></a></td>';
+        echo '<td >'.$book->Nombre.'</td>';
+        echo '<td>'.$book->Autor.'</td>';
+        echo '<td> <a class="btn btn-outline-success" href="infoLibros/'.$book->id_libro.'"><i class="fab fa-readme"></i></a></td>';
         echo '</tr>';
            
         }
@@ -106,8 +110,8 @@ class HomeView{
         
         echo '<div class = "row">';
         echo '<table class = "table table-striped table-dark">';
-        echo '<td class= "col-xs-7 col-md-7"><h2>Lista de libros del autor</h2></td>';
-        echo '<td class= "col-xs-5 col-md-5"><h2>Ver más</h2></td>';
+        echo '<td><h2>Lista de libros del autor</h2></td>';
+        echo '<td><h2>Ver más</h2></td>';
 
         
         foreach ($libros as $libro){
@@ -132,7 +136,6 @@ class HomeView{
     
         echo '<div class="container">';
 
-        //                                                      *****************PREGUNTAR********************
         
         echo '<h2>'. $libro->Nombre .'</h2>';
         echo '<li Género>'. $libro->Genero .'</li>';

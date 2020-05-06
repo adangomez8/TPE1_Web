@@ -25,7 +25,8 @@ class AutoresModel{
     public function showAuthor($nombre){
         //Abro conexión
         $db = $this->createConection();
-        $sentencia=$db->prepare("SELECT * FROM autores WHERE nombre = ?");
+        $sentencia=$db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_autor_fk = ?");
+        //$sentencia=$db->prepare("SELECT * FROM autores WHERE autores.nombre = ?");
         $sentencia->execute([$nombre]);
         $autor= $sentencia->fetch(PDO::FETCH_OBJ);
         
@@ -35,28 +36,19 @@ class AutoresModel{
     public function showBooks(){
         //Abro conexión
         $db = $this->createConection();
-        $sentencia=$db->prepare("SELECT * FROM libros");
+        $sentencia=$db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor");      
         $sentencia->execute();
         $libros= $sentencia->fetchAll(PDO::FETCH_OBJ);
         
         return $libros;
     }
 
-    /* public function showBooksOfAuthor($idlibro){
-        //Abro conexión
-        $db = $this->createConection();
-        $sentencia = $db->prepare("SELECT * FROM libros WHERE id_autor_fk = ?"); // prepara la consulta
-        $sentencia->execute([$idlibro]); // ejecuta
-        $libro = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
-
-        return $libro;
-    }*/
-//Cambiar idlibro
-    public function detailsOfBook($idlibro){
+   
+    public function detailsOfBook($idAutor){
         //Abro conexión
         $db = $this->createConection();
         $sentencia = $db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.genero AS Genero, libros.anio AS Anio, libros.imagen AS Foto, libros.id_autor_fk,  libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_autor_fk = ?"); // prepara la consulta
-        $sentencia->execute([$idlibro]); // ejecuta
+        $sentencia->execute([$idAutor]); // ejecuta
         $detail = $sentencia->fetchAll(PDO::FETCH_OBJ); // obtiene la respuesta
 
         //var_dump($sentencia->errorInfo()); die();
