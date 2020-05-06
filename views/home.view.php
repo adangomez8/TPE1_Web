@@ -109,17 +109,16 @@ class HomeView{
         echo '<td class= "col-xs-7 col-md-7"><h2>Lista de libros del autor</h2></td>';
         echo '<td class= "col-xs-5 col-md-5"><h2>Ver más</h2></td>';
 
-        //                                                      *****************PREGUNTAR********************
-
-        for ($i=0; $i<=array([$libros->id_autor_fk]); $i++){
+        
+        foreach ($libros as $libro){
         echo '<tr>';
-        echo '<td><b>'.$libros->nombre.'</b></td>';
-        echo '<td><a class="btn btn-outline-success" href="infoLibros/'.$libros->id_autor_fk.'"><i class="fab fa-readme"></i></a></</td>';
+        echo '<td><b>'.$libro->Nombre.'</b></td>';
+        echo '<td><a class="btn btn-outline-success" href="infoLibros/'.$libro->id_libro.'"><i class="fab fa-readme"></i></a></</td>';
         echo '</tr>';
         
         }   
+        echo '</table>';
         echo '</div>';
-        echo '</ul>';
         echo '  
         </div>          
          </body>
@@ -134,12 +133,11 @@ class HomeView{
         echo '<div class="container">';
 
         //                                                      *****************PREGUNTAR********************
-
-
-        echo '<h2>'. $libro->nombre .'</h2>';
-        echo '<li Género>'. $libro->genero .'</li>';
+        
+        echo '<h2>'. $libro->Nombre .'</h2>';
+        echo '<li Género>'. $libro->Genero .'</li>';
         echo '<li Sinopsis>'. $libro->sinopsis .'</li>';
-        echo '<li Año de origen>'. $libro->anio .'</li>';
+        echo '<li Año de origen>'. $libro->Anio .'</li>';
 
         echo '  
         </div>          

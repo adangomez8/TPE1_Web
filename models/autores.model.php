@@ -42,7 +42,7 @@ class AutoresModel{
         return $libros;
     }
 
-    public function showBooksOfAuthor($idlibro){
+    /* public function showBooksOfAuthor($idlibro){
         //Abro conexión
         $db = $this->createConection();
         $sentencia = $db->prepare("SELECT * FROM libros WHERE id_autor_fk = ?"); // prepara la consulta
@@ -50,23 +50,27 @@ class AutoresModel{
         $libro = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
 
         return $libro;
-    }
-
+    }*/
+//Cambiar idlibro
     public function detailsOfBook($idlibro){
         //Abro conexión
         $db = $this->createConection();
-        $sentencia = $db->prepare("SELECT libros.nombre AS Nombre del libro, autores.nombre AS Autor, libros.genero AS Género, libros.anio AS Año, libros.imagen AS Foto del autor, FROM autores INNER JOIN libros ON autores.id_autor=libros.id_autor_fk WHERE id_autor_fk = ?"); // prepara la consulta
+        $sentencia = $db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.genero AS Genero, libros.anio AS Anio, libros.imagen AS Foto, libros.id_autor_fk,  libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_autor_fk = ?"); // prepara la consulta
         $sentencia->execute([$idlibro]); // ejecuta
-        $detail = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
+        $detail = $sentencia->fetchAll(PDO::FETCH_OBJ); // obtiene la respuesta
 
+        //var_dump($sentencia->errorInfo()); die();
         return $detail;
     }
 
     public function infoOfBook($idlibro){
           //Abro conexión
           $db = $this->createConection();
-          $sentencia = $db->prepare("SELECT * FROM libros WHERE id_libro = ?"); // prepara la consulta
+          $sentencia = $db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.genero AS Genero, libros.anio AS Anio, libros.imagen AS Foto, libros.id_autor_fk, libros.sinopsis  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_libro = ?"); // prepara la consulta         
           $sentencia->execute([$idlibro]); // ejecuta
           $libro = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
+
+          //var_dump($sentencia->errorInfo()); die();
+          return $libro;
     }
 }
