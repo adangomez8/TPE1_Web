@@ -1,0 +1,42 @@
+<?php
+    require_once 'controllers/public.controller.php';
+
+    // definimos la base url de forma dinamica
+    define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+
+    // define una acción por defecto
+    if (empty($_GET['action'])) {
+        $_GET['action'] = 'home';
+    } 
+
+    // toma la acción que viene del usuario y parsea los parámetros
+    $accion = $_GET['action']; 
+    $parametros = explode('/', $accion);
+    //var_dump($parametros); die; // like console.log();
+
+    // decide que camino tomar según TABLA DE RUTEO
+    switch ($parametros[0]) {
+        case 'home':
+            $controller = new PublicController();
+            $controller->showHome();
+        break;   
+
+        case 'librosAutor':
+            $controller = new PublicController();
+            $controller->showBooksAuthor($parametros[1]);
+        break; 
+        
+        case 'mostrarLibros':
+            $controller = new PublicController();
+            $controller->showAllBooks();
+        break; 
+
+        case 'infoLibros':
+            $controller = new PublicController();
+            $controller->infoBooks($parametros[1]);
+        break; 
+
+        default: 
+            echo "404 not found";
+        break;
+    }
