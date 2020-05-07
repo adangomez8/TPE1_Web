@@ -60,7 +60,7 @@ class HomeView{
         foreach($autores as $autor){
             echo '<tr>';
             echo '<td>'. $autor->nombre .'</td>';
-            echo '<td> <a href="librosAutor/'.$autor->id_autor.'"><i class="fas fa-book"></i><i class="fas fa-book"></i><i class="fas fa-book"></i></i></a></td>';
+            echo '<td> <a href="librosAutor/'.$autor->id_autor.'"><i class="fab fa-readme btn btn-primary" ></i></a></td>';
             echo '</tr>';
         }
         echo'</table>';
