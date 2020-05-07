@@ -105,12 +105,13 @@ class HomeView{
     public function showListBooksOfAuthor($libros){
 
         echo $this->encabezado();
-    
+        $autor= $libros[0]->Autor;
+
         echo '<div class="container">';
         
         echo '<div class = "row">';
         echo '<table class = "table table-striped table-dark">';
-        echo '<td><h2>Lista de libros del autor</h2></td>';
+        echo "<td><h2>Lista de libros de '{$autor}'</h2></td>";
         echo '<td><h2>Ver más</h2></td>';
 
         
