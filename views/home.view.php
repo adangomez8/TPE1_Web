@@ -11,25 +11,12 @@ class HomeView{
     }
 
     public function showListAuthor($autores){
-
-        echo $this->encabezado();
-    
-        echo '<div class="container">';
-
-        echo'<table class="table table-striped table-dark tabLisAutores">';
-        echo '<td class= "titTabla"><h2>Lista de autores</h2></td>';
-        echo '<td class= "titTabla"><h2>Ver libros del autor</h2></td>';
-        
-        foreach($autores as $autor){
-            echo '<tr>';
-            echo '<td class="autores"><b>'. $autor->nombre .'</b></td>';
-            echo '<td> <a href="librosAutor/'.$autor->id_autor.'"><i class="fab fa-readme btn btn-primary" ></i></a></td>';
-            echo '</tr>';
-        }
-        echo'</table>';
-        echo '</div>';
-    
-        include('templates/footer.tpl');
+        $this->encabezado();
+        $smarty= new Smarty();
+        $smarty->assign('lista',"Lista de autores");
+        $smarty->assign('ver',"Ver libros del autor");
+        $smarty->assign('autores', $autores);
+        $smarty->display('showListAuthor.tpl');
     }
 
     public function showListBooks($books){
