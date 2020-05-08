@@ -36,7 +36,9 @@
             $controller->infoBooks($parametros[1]);
         break; 
 
-        default: 
-            echo "404 not found";
+        default:  
+            $controller = new PublicController();
+            $controller->showError("");
         break;
+
     }

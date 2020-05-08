@@ -61,4 +61,15 @@ class HomeView{
         $smarty->assign('libro', $libro);
         $smarty->display('showInfoOfBook.tpl');
     }
+
+    public function showError($msg) {
+
+        $smarty = new Smarty();
+
+        $smarty->assign('base_url', BASE_URL);
+        $smarty->assign('msg', $msg);
+        $smarty->assign('titulo', "Libros");
+        $smarty->display('showError.tpl');
+    }
+
 }

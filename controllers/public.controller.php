@@ -44,5 +44,11 @@ class PublicController{
         //Actualizo la vista
         $this->view->showInfoOfBook($libro);
     }
+    
+    public function showError($error) {
+        $this->view->showError($error); 
+    }
+
+
 
 }
