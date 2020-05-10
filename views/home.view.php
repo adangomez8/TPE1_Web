@@ -51,4 +51,11 @@ class HomeView{
         $smarty->display('showError.tpl');
     }
 
+    public function fomr($id){
+        $this->encabezado();
+        $smarty= new Smarty ();
+        $smarty->assign('id', $id);
+        $smarty->display('showForm.tpl');
+    }
+
 }

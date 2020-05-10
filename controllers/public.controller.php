@@ -49,6 +49,13 @@ class PublicController{
         $this->view->showError($error); 
     }
 
+    public function showForm(){
+        //Pido a la base de datos los id de los autores
+        $id= $this->model->getId();
+
+        //mando el id al view para crear el fomrulario
+        $this->view->fomr($id);
+    }
 
 
 }

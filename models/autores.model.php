@@ -63,4 +63,18 @@ class AutoresModel{
 
         return $details;
     }
+
+    public function getId(){
+        //Abro conexión
+        $db= $this->createConection();
+        //Pido id a la base de datos
+        $sentencia = $db->prepare("SELECT autores.nombre, autores.id_autor FROM autores");
+        //ejecuto sentencia
+        $sentencia->execute();
+        $id= $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+        //var_dump($id);die;
+
+        return $id;
+    }
 }

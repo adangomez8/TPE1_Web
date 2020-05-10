@@ -34,7 +34,10 @@
         case 'infoLibros':
             $controller = new PublicController();
             $controller->infoBooks($parametros[1]);
-        break; 
+        break;
+        case 'admin':
+            $controller = new PublicController();
+            $controller->showForm();
 
         default:  
             $controller = new PublicController();
