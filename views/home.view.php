@@ -29,29 +29,10 @@ class HomeView{
     }
 
     public function showListBooksOfAuthor($libros){
-
         echo $this->encabezado();
-        $autor= $libros[0]->Autor;
-
-        echo '<div class="container">';
-        
-        echo '<div class = "row">';
-        echo '<table class = "table table-striped table-dark">';
-        echo '<td class= "titTabla"><h2>Lista de libros de '.$autor.'</h2></td>';
-        echo '<td class= "titTabla"><h2>Ver más</h2></td>';
-
-        
-        foreach ($libros as $libro){
-        echo '<tr>';
-        echo '<td><b>'.$libro->Nombre.'</b></td>';
-        echo '<td><a class="btn btn-outline-success" href="infoLibros/'.$libro->id_libro.'"><i class="fab fa-readme"></i></a></</td>';
-        echo '</tr>';
-        
-        }   
-        echo '</table>';
-        echo '</div>';
-        
-        include('templates/footer.tpl');
+        $smarty= new Smarty();
+        $smarty->assign('libros', $libros);
+        $smarty->display('showListBookOfAuthor.tpl');
     }
 
     public function showInfoOfBook($libro){
@@ -63,9 +44,7 @@ class HomeView{
     }
 
     public function showError($msg) {
-
         $smarty = new Smarty();
-
         $smarty->assign('base_url', BASE_URL);
         $smarty->assign('msg', $msg);
         $smarty->assign('titulo', "Libros");
