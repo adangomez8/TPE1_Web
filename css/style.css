@@ -47,7 +47,18 @@ footer{
     background-color: white;
 }
 .admin{
+    text-align: center;
     background-color: white;
+}
+.divagrbook{
+    margin-left: 270px;
+    margin-right: 15px;
+}
+
+.pareditbook, .paragrbook{
+    background-color: teal;
+    font-size: 22px;
+    color: white;
 }
 .formAgregar{
     background-color: teal;
