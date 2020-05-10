@@ -58,7 +58,16 @@ class PublicController{
     }
 
     public function showOption(){
+        //Envío al view
         $this->view->option();
+    }
+
+    public function editDB(){
+        //Pido los libros de nuevo a la base de datos
+        $libros= $this->model->showBooks();
+
+        //Mando al view los libros
+        $this->view->showEdit($libros);
     }
 
 

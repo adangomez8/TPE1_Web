@@ -43,6 +43,10 @@
             $controller = new PublicController();
             $controller->showForm();
         break;
+        case 'editDB':
+            $controller = new PublicController();
+            $controller->editDB();
+        break;
         default:  
             $controller = new PublicController();
             $controller->showError("");

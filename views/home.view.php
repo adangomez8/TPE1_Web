@@ -65,4 +65,11 @@ class HomeView{
         $smarty->display('admin.tpl');
     }
 
+    public function showEdit($libros){
+        $this->encabezado();
+        $smarty= new Smarty();
+        $smarty->assign('info', $libros);
+        $smarty->display('editDB.tpl');
+    }
+
 }
