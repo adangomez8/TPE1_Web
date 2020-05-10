@@ -1,4 +1,4 @@
-<h1>Agregar libro<h1>
+<h1>Agregar libro</h1>
 
 <form action='addBook' method="POST">
   <div class="form-group">

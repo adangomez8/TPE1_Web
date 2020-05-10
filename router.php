@@ -37,8 +37,12 @@
         break;
         case 'admin':
             $controller = new PublicController();
+            $controller->showOption();
+        break;
+        case 'nuevoLibro':
+            $controller = new PublicController();
             $controller->showForm();
-
+        break;
         default:  
             $controller = new PublicController();
             $controller->showError("");

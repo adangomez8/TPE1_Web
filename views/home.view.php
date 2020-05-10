@@ -58,4 +58,11 @@ class HomeView{
         $smarty->display('showForm.tpl');
     }
 
+    public function option(){
+        $this->encabezado();
+        $smarty= new Smarty();
+        $smarty->assign('base_url', BASE_URL);
+        $smarty->display('admin.tpl');
+    }
+
 }

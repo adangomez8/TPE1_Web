@@ -57,5 +57,9 @@ class PublicController{
         $this->view->fomr($id);
     }
 
+    public function showOption(){
+        $this->view->option();
+    }
+
 
 }
