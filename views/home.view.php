@@ -20,7 +20,7 @@ class HomeView{
     }
 
     public function showListBooks($books){
-        echo $this->encabezado();
+        $this->encabezado();
         $smarty= new Smarty();
         $smarty->assign('lista',"Lista de libros");
         $smarty->assign('ver',"Ver más");
@@ -29,21 +29,21 @@ class HomeView{
     }
 
     public function showListBooksOfAuthor($libros){
-        echo $this->encabezado();
+        $this->encabezado();
         $smarty= new Smarty();
         $smarty->assign('libros', $libros);
         $smarty->display('showListBookOfAuthor.tpl');
     }
 
     public function showInfoOfBook($libro){
-        echo $this->encabezado();
+        $this->encabezado();
         $smarty= new Smarty();
         $smarty->assign('titFotLib',"Foto del libro");
         $smarty->assign('libro', $libro);
         $smarty->display('showInfoOfBook.tpl');
     }
 
-    public function showError($msg) {
+    public function showError($msg) {   
         $smarty = new Smarty();
         $smarty->assign('base_url', BASE_URL);
         $smarty->assign('msg', $msg);
