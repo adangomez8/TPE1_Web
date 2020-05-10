@@ -31,18 +31,18 @@ class PublicController{
 
     public function showBooksAuthor($idAutor){
         //Pido los libros del autor al MODELO
-        $detail = $this->model->detailsOfBook($idAutor);
+        $books = $this->model->booksOfAutho($idAutor);
 
         //Actualizo la vista
-        $this->view->showListBooksOfAuthor($detail);
+        $this->view->showListBooksOfAuthor($books);
     }
 
     public function infoBooks($idlibro){
         //Pido un libros al MODELO
-        $libro = $this->model->infoOfBook($idlibro);
+        $details = $this->model->infoOfBook($idlibro);
 
         //Actualizo la vista
-        $this->view->showInfoOfBook($libro);
+        $this->view->showInfoOfBook($details);
     }
     
     public function showError($error) {

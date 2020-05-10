@@ -8,7 +8,7 @@ class AutoresModel{
         $password = '';
         $database = 'db_libreria';
         $pdo = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $userName , $password);
-    
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }
     
@@ -43,15 +43,18 @@ class AutoresModel{
     }
 
    
-    public function detailsOfBook($idAutor){
+    public function booksOfAutho($idAutor){
         //Abro conexión
         $db = $this->createConection();
-        $sentencia = $db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.genero AS Genero, libros.anio AS Anio, libros.imagen AS Foto, libros.id_autor_fk,  libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_autor_fk = ?"); // prepara la consulta
+        $sentencia = $db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, autores.id_autor AS IdAutor,
+        libros.id_autor_fk,  libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_autor_fk = ?"); // prepara la consulta
         $sentencia->execute([$idAutor]); // ejecuta
-        $detail = $sentencia->fetchAll(PDO::FETCH_OBJ); // obtiene la respuesta
+        $books = $sentencia->fetchAll(PDO::FETCH_OBJ); // obtiene la respuesta
 
         //var_dump($sentencia->errorInfo()); die();
-        return $detail;
+        //var_dump($idAutor);
+        //die();
+        return $books;
     }
 
     public function infoOfBook($idlibro){
@@ -59,9 +62,9 @@ class AutoresModel{
         $db = $this->createConection();
         $sentencia = $db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.genero AS Genero, libros.anio AS Anio, libros.imagen AS Foto, libros.id_autor_fk,  libros.id_libro, libros.sinopsis  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_libro = ?"); // prepara la consulta
         $sentencia->execute([$idlibro]); // ejecuta
-        $libro = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
+        $details = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
 
         //var_dump($sentencia->errorInfo()); die();
-        return $libro;
+        return $details;
     }
 }
