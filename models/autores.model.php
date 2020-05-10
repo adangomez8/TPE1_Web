@@ -51,9 +51,6 @@ class AutoresModel{
         $sentencia->execute([$idAutor]); // ejecuta
         $books = $sentencia->fetchAll(PDO::FETCH_OBJ); // obtiene la respuesta
 
-        //var_dump($sentencia->errorInfo()); die();
-        //var_dump($idAutor);
-        //die();
         return $books;
     }
 
@@ -64,7 +61,6 @@ class AutoresModel{
         $sentencia->execute([$idlibro]); // ejecuta
         $details = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
 
-        //var_dump($sentencia->errorInfo()); die();
         return $details;
     }
 }
