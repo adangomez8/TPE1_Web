@@ -46,7 +46,9 @@ footer{
 .divError{
     background-color: white;
 }
-
+.admin{
+    background-color: white;
+}
 .formAgregar{
     background-color: teal;
 }
