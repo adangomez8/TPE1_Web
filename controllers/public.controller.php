@@ -88,4 +88,12 @@ class PublicController{
         }
     }
 
+    public function deleteBook($idlibro){
+        //Pido el libro que se quiere borrar a la base de datos
+        $libroBorrado= $this->model->deleteBook($idlibro);
+
+        //Mando al view los libros
+        $this->view-> bookdeleted($libroBorrado);
+    }
+
 }

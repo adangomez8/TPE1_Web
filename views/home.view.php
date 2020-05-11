@@ -73,4 +73,10 @@ class HomeView{
 
     }
 
+    public function bookdeleted(){
+        $this->encabezado();
+        $smarty= new Smarty();
+        $smarty->assign('base_url', BASE_URL);
+        $smarty->display('bookdeleted.tpl');
+    }
 }

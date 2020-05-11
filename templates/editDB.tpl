@@ -10,7 +10,7 @@
             <tr>
                 <td >{$libro->Nombre}</td>
                 <td>{$libro->Autor}</td>
-                <td> <a class="btn btn-outline-danger" href="infoLibros/{$libro->id_libro}"><i class="fas fa-exclamation-circle"></i></a></td>
+                <td> <a class="btn btn-outline-danger" href="borrarLib/{$libro->id_libro}"><i class="fas fa-exclamation-circle"></i></a></td>
                 <td> <a class="btn btn-warning" href="infoLibros/{$libro->id_libro}"><i class="fas fa-edit"></i></a></td>
             </tr>
             {/foreach}

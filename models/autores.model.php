@@ -84,4 +84,15 @@ class AutoresModel{
         $sentencia= $db->prepare("INSERT INTO libros(nombre, genero, sinopsis, anio, imagen, id_autor) VALUE(?, ?, ?, ?, ?, ?)");
         $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $imagen, $autor]);//Ejecuta
     }
+
+    public function deleteBook($idlibro){
+        //Abro conexión
+        $db= $this->createConection();
+        //Pido id a la base de datos
+        $sentencia = $db->prepare("DELETE FROM libros WHERE id_libro = ?");
+        //ejecuto sentencia
+        $sentencia->execute([$idlibro]);
+
+        //var_dump($id);die;
+    }
 }

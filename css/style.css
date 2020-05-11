@@ -63,3 +63,11 @@ footer{
 .formAgregar{
     background-color: teal;
 }
+
+.divBorrLib{
+    text-align: center;
+    background-color: mediumspringgreen;
+}
+.btnVolverBorr:hover{
+    background-color: rgba(243, 0, 0, 0.74);
+}

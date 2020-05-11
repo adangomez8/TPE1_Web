@@ -51,6 +51,10 @@
             $controller = new PublicController();
             $controller->addBook();
         break;
+        case 'borrarLib':
+            $controller = new PublicController();
+            $controller->deleteBook($parametros[1]);
+        break;
         default:  
             $controller = new PublicController();
             $controller->showError("");
