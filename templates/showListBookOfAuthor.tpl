@@ -10,7 +10,7 @@
                         <td><b>{$libro->Nombre}</b></td>
                         <td><a class="btn btn-outline-success" href="infoLibros/{$libro->id_libro}"><i class="fab fa-readme"></i></a></</td>
                     </tr>
-                {{/foreach}}   
+                {/foreach}
         </table>
     </div>
         

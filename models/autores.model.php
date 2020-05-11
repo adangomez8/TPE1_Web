@@ -73,8 +73,15 @@ class AutoresModel{
         $sentencia->execute();
         $id= $sentencia->fetchAll(PDO::FETCH_OBJ);
 
-        //var_dump($id);die;
-
         return $id;
+    }
+
+    public function newBook($nombre, $genero, $sinopsis, $anio, $imagen, $autor){
+        //Abro conexión
+        $db= $this->createConection();
+
+        //Mando datos a la base de datos
+        $sentencia= $db->prepare("INSERT INTO libros(nombre, genero, sinopsis, anio, imagen, id_autor) VALUE(?, ?, ?, ?, ?, ?)");
+        $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $imagen, $autor]);//Ejecuta
     }
 }

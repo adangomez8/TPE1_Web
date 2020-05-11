@@ -47,6 +47,10 @@
             $controller = new PublicController();
             $controller->editDB();
         break;
+        case 'addBook':
+            $controller = new PublicController();
+            $controller->addBook();
+        break;
         default:  
             $controller = new PublicController();
             $controller->showError("");

@@ -70,6 +70,7 @@ class HomeView{
         $smarty= new Smarty();
         $smarty->assign('info', $libros);
         $smarty->display('editDB.tpl');
+
     }
 
 }

@@ -70,5 +70,22 @@ class PublicController{
         $this->view->showEdit($libros);
     }
 
+    public function addBook(){
+        //Tomo datos del formulario
+        $nombre= $_POST['nombreLibro'];
+        $genero= $_POST['genero'];
+        $sinopsis=$_POST['sinopsis'];
+        $anio= $_POST['anio'];
+        $imagen= $_POST['imagen'];
+        $autor= $_POST['autor'];
+        //var_dump($autor);die;
+
+        if (!empty($nombre)&& !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($imagen) && !empty($autor)){
+        $this->model->newBook($nombre, $genero, $sinopsis, $anio, $imagen, $autor);
+        }
+        else {
+        $this->view->showError("Faltan campos por completar");
+        }
+    }
 
 }

@@ -2,7 +2,7 @@
   <div class= "container formAgregar">
   <h1>Agregar libro</h1>
 
-  <form action='addBook' method="POST">
+<form action='addBook' method="POST">
     <div class="form-group">
       <label for="exampleInputEmail1">Nombre del libro</label>
       <input type="text" name="nombreLibro" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -25,14 +25,11 @@
     </div>
       <div class="form-group">
       <label for="exampleFormControlSelect1">Seleccione autor</label>
-      <select class="form-control" id="exampleFormControlSelect1">
+      <select class="form-control" name="autor" id="exampleFormControlSelect1">
           <option select>Seleccionar autor</option>
         {foreach $id item=autores}
           <option>{$autores->nombre}</option>
       </div>
         {/foreach}
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
-
-{include 'footer.tpl'}
+    <input type="submit" value="Guardar" class="btn btn-primary">
+</form>
