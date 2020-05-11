@@ -10,6 +10,13 @@ class HomeView{
         $smarty->display('nav.tpl');
     }
 
+    private function encabezadoUser() {
+        $smarty = new Smarty();
+        $smarty->assign('base_url', BASE_URL);
+        $smarty->assign('titulo', "Libros");
+        $smarty->display('navUser.tpl');
+    }
+
     public function showListAuthor($autores){
         $this->encabezado();
         $smarty= new Smarty();
@@ -78,5 +85,21 @@ class HomeView{
         $smarty= new Smarty();
         $smarty->assign('base_url', BASE_URL);
         $smarty->display('bookdeleted.tpl');
+    }
+    
+    public function showListAuthorForUser($autores){
+        $this->encabezadoUser();
+        $smarty= new Smarty();
+        $smarty->assign('lista',"Lista de autores");
+        $smarty->assign('ver',"Ver libros del autor");
+        $smarty->assign('autores', $autores);
+        $smarty->display('showListAuthorForUser.tpl');
+    }
+    
+    public function showListBooksOfAuthorUser($libros){
+        $this->encabezadoUser();
+        $smarty= new Smarty();
+        $smarty->assign('libros', $libros);
+        $smarty->display('showListBookOfAuthorForUser.tpl');
     }
 }

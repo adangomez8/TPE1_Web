@@ -20,17 +20,14 @@
             $controller = new PublicController();
             $controller->showHome();
         break;   
-
         case 'librosAutor':
             $controller = new PublicController();
             $controller->showBooksAuthor($parametros[1]);
         break; 
-        
         case 'mostrarLibros':
             $controller = new PublicController();
             $controller->showAllBooks();
         break; 
-
         case 'infoLibros':
             $controller = new PublicController();
             $controller->infoBooks($parametros[1]);
@@ -54,6 +51,14 @@
         case 'borrarLib':
             $controller = new PublicController();
             $controller->deleteBook($parametros[1]);
+        break;
+        case 'usuario':
+            $controller = new PublicController();
+            $controller->showUserHome();
+        break;
+        case 'librosAutorUser':
+            $controller = new PublicController();
+            $controller->showBooksAuthorUser($parametros[1]);
         break;
         default:  
             $controller = new PublicController();

@@ -35,12 +35,12 @@ nav{
 }
 
 footer{
-        background-color: rgb(177, 174, 174);
-        position: static;
-        bottom: 0;
-        width: 100%;
-        height: 40px;
-        color: white;
+    background-color: rgb(177, 174, 174);
+    position: static;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    color: white;
 }
 
 .divError{
@@ -70,4 +70,11 @@ footer{
 }
 .btnVolverBorr:hover{
     background-color: rgba(243, 0, 0, 0.74);
+}
+.headerUsuario{
+    text-align: center;
+    background-color: cadetblue;
+}
+.btnLeido:hover{
+    background-color: blue;
 }

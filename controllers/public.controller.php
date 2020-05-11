@@ -31,7 +31,7 @@ class PublicController{
 
     public function showBooksAuthor($idAutor){
         //Pido los libros del autor al MODELO
-        $books = $this->model->booksOfAutho($idAutor);
+        $books = $this->model->booksOfAuthor($idAutor);
 
         //Actualizo la vista
         $this->view->showListBooksOfAuthor($books);
@@ -96,4 +96,18 @@ class PublicController{
         $this->view-> bookdeleted($libroBorrado);
     }
 
+    public function showUserHome(){
+        //Pido los autores al MODELO
+        $autores = $this->model->showAuthorsForUser();
+        //Actualizo la vista
+        $this->view->showListAuthorForUser($autores);
+    }
+
+    public function showBooksAuthorUser($idAutor){
+        //Pido los libros del autor al MODELO
+        $books = $this->model->booksOfAuthor($idAutor);
+
+        //Actualizo la vista
+        $this->view->showListBooksOfAuthorUser($books);
+    }
 }
