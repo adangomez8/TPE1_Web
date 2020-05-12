@@ -102,4 +102,11 @@ class HomeView{
         $smarty->assign('libros', $libros);
         $smarty->display('showListBookOfAuthorForUser.tpl');
     }
+
+    public function addedBook(){
+        $this->encabezado();
+        $smarty= new Smarty ();
+        $smarty->assign('base_url', BASE_URL);
+        $smarty->display('addedBook.tpl');
+    }
 }

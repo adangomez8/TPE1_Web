@@ -28,7 +28,7 @@
       <select class="form-control" name="autor" id="exampleFormControlSelect1">
           <option select>Seleccionar autor</option>
         {foreach $id item=autores}
-          <option>{$autores->nombre}</option>
+          <option value={$autores->id_autor}>{$autores->nombre}</option>
       </div>
         {/foreach}
     <input type="submit" value="Guardar" class="btn btn-primary">

@@ -80,7 +80,7 @@ class AutoresModel{
         $db= $this->createConection();
 
         //Mando datos a la base de datos
-        $sentencia= $db->prepare("INSERT INTO libros(nombre, genero, sinopsis, anio, imagen, id_autor) VALUE(?, ?, ?, ?, ?, ?)");
+        $sentencia= $db->prepare("INSERT INTO libros(nombre, genero, sinopsis, anio, imagen, id_autor_fk) VALUE(?, ?, ?, ?, ?, ?)");
         $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $imagen, $autor]);//Ejecuta
     }
 

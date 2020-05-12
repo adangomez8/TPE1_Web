@@ -78,10 +78,10 @@ class PublicController{
         $anio= $_POST['anio'];
         $imagen= $_POST['imagen'];
         $autor= $_POST['autor'];
-        //var_dump($autor);die;
 
         if (!empty($nombre)&& !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($imagen) && !empty($autor)){
         $this->model->newBook($nombre, $genero, $sinopsis, $anio, $imagen, $autor);
+        $this->view->addedBook();
         }
         else {
         $this->view->showError("Faltan campos por completar");
