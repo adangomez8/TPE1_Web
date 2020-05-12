@@ -63,7 +63,11 @@ footer{
 .formAgregar{
     background-color: teal;
 }
-
+.btnGuardarNuevoLib{
+    text-align: end;
+    margin-top: 5px;
+    background-color: rgb(192, 178, 178);
+}
 .divBorrLib{
     text-align: center;
     background-color: mediumspringgreen;

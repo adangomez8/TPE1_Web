@@ -31,5 +31,5 @@
           <option value={$autores->id_autor}>{$autores->nombre}</option>
       </div>
         {/foreach}
-    <input type="submit" value="Guardar" class="btn btn-primary">
+    <input type="submit" value="Guardar" class="btn btn-primary btnGuardarNuevoLib">
 </form>
