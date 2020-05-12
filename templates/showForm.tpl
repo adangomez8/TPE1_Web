@@ -1,5 +1,4 @@
-  <!--No me toma el css-->
-  <div class= "container formAgregar">
+ <div class= "container formAgregar">
   <h1>Agregar libro</h1>
 
 <form action='addBook' method="POST">
