@@ -1,7 +1,7 @@
 <h1>El libro ha sido agregado con éxito </h1>
 
-<button>Volver a zona de administración <a href="{$base_url}admin"></button>
+<button><a href="{$base_url}admin">Volver a zona de administración</a></button>
 
-<button> Volver a inicio <a href="{$base_url}home"></button>
+<button><a href="{$base_url}home">Volver a inicio</a></button>
 
 {include 'footer.tpl'}
