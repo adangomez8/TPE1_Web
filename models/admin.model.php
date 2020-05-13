@@ -34,6 +34,17 @@ class AdminModel{
         return $id;
     }
 
+    public function getAuthorBook(){
+        //Abro conexión
+        $db= $this->createConection();
+        //Realizo el pedido a la base de datos
+        $sentencia= $db->prepare("SELECT autores.id_autor, libros.nombre FROM autores JOIN libros");
+        $sentencia->execute();
+        $libro= $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+        return $libro;
+    }
+
     public function newBook($nombre, $genero, $sinopsis, $anio, $imagen, $autor){
         //Abro conexión
         $db= $this->createConection();

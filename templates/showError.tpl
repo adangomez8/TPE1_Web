@@ -10,7 +10,7 @@
             <title>{$titulo}</title>
         </head>
         <body>
-            {include 'nav.tpl'}
+            {include 'navUser.tpl'}
 
                 <div class= "container text-center divError">
                     <h2>Lo siento! Esta página no está disponible <i class="far fa-sad-tear"></i></h2>

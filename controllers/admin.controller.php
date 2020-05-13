@@ -67,12 +67,24 @@ class AdminController{
         $imagen= $_POST['imagen'];
         $autor= $_POST['autor'];
 
+
+        //Compruebo que no se suba dos veces el mismo libro
+        $libro= $this->model->getAuthorBook();
+        foreach($libro as $libros){
+            if (($nombre == $libros->nombre) && ($autor == $libros->id_autor)){
+                $this->view->showError("Error, el libro ingresado ya existe");
+                die();
+            }
+        }
+
+        //Me aseguro de que todos los campos estén completados para enviar los datos al formulario
         if (!empty($nombre)&& !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($imagen) && !empty($autor)){
         $this->model->newBook($nombre, $genero, $sinopsis, $anio, $imagen, $autor);
         $this->view->addedBook();
         }
         else {
         $this->view->showError("Faltan campos por completar");
+        die();
         }
     }
 

@@ -1,3 +1,4 @@
+{include 'navUser.tpl'}
 {include 'headerUser.tpl'}
 <div class="container">
     

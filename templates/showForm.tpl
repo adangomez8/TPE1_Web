@@ -1,4 +1,6 @@
- <div class= "container formAgregar">
+ {include 'navAdmin.tpl'}
+ 
+<div class= "container formAgregar">
   <h1>Agregar libro</h1>
 
 <form action='addBook' method="POST">

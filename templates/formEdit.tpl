@@ -1,3 +1,5 @@
+ {include 'navAdmin.tpl'}
+
 <div class= "container formAgregar">
   <h1>Editar libro</h1>
 
