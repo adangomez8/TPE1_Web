@@ -1,3 +1,5 @@
+{include 'navAdmin.tpl'}
+
 <div class= "container admin">
   <h1>Zona de administración</h1>
 

@@ -3,68 +3,48 @@
 
 class AdminView{
 
-    private function encabezado() {
-        $smarty = new Smarty();
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->assign('titulo', "Libros");
-        $smarty->display('navAdmin.tpl');
+    private $smarty;
+
+    public function __construct(){
+        $this->smarty = new Smarty();
+        $this->smarty->assign('base_url', BASE_URL);
+        $this->smarty->assign('titulo', "Libros");
     }
 
-    public function showError($msg) {   
-        $smarty = new Smarty();
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->assign('msg', $msg);
-        $smarty->assign('titulo', "Libros");
-        $smarty->display('showError.tpl');
+    public function showError($msg) {
+        $this->smarty->assign('msg', $msg);
+        $this->smarty->display('showError.tpl');
     }
 
     public function showFormLoginAdmin() {
-        $this->encabezado();
-        $smarty = new Smarty();
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->display('formLoginAdmin.tpl');
+        $this->smarty->display('formLoginAdmin.tpl');
     }
 
     public function fomrAdd($id){
-        $this->encabezado();
-        $smarty= new Smarty ();
-        $smarty->assign('id', $id);
-        $smarty->display('showForm.tpl');
+        $this->smarty->assign('id', $id);
+        $this->smarty->display('showForm.tpl');
     }
 
     public function option(){
-        $this->encabezado();
-        $smarty= new Smarty();
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->display('admin.tpl');
+        $this->smarty->display('admin.tpl');
     }
 
     public function showEdit($libros){
-        $this->encabezado();
-        $smarty= new Smarty();
-        $smarty->assign('info', $libros);
-        $smarty->display('editDB.tpl');
+        $this->smarty->assign('info', $libros);
+        $this->smarty->display('editDB.tpl');
 
     }
 
     public function bookdeleted(){
-        $this->encabezado();
-        $smarty= new Smarty();
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->display('bookdeleted.tpl');
+        $this->smarty->display('bookdeleted.tpl');
     }
     
     public function addedBook(){
-        $this->encabezado();
-        $smarty= new Smarty ();
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->display('addedBook.tpl');
+        $this->smarty->display('addedBook.tpl');
     }
     
     public function formEdit($libro){
-        $this->encabezado();
-        $smarty= new Smarty ();
-        $smarty->assign('id', $libro);
-        $smarty->display('formEdit.tpl');
+        $this->smarty->assign('id', $libro);
+        $this->smarty->display('formEdit.tpl');
     }
 }
