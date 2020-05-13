@@ -18,6 +18,13 @@ class AdminView{
         $smarty->display('showError.tpl');
     }
 
+    public function showFormLoginAdmin() {
+        $this->encabezado();
+        $smarty = new Smarty();
+        $smarty->assign('base_url', BASE_URL);
+        $smarty->display('formLoginAdmin.tpl');
+    }
+
     public function fomrAdd($id){
         $this->encabezado();
         $smarty= new Smarty ();

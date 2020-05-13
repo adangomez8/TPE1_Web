@@ -17,6 +17,13 @@ class UserView{
         $smarty->assign('titulo', "Libros");
         $smarty->display('showError.tpl');
     }
+
+    public function showFormLoginUser() {
+        $this->encabezadoUser();
+        $smarty = new Smarty();
+        $smarty->assign('base_url', BASE_URL);
+        $smarty->display('formLoginUser.tpl');
+    }
     
     public function showListAuthorForUser($autores){
         $this->encabezadoUser();

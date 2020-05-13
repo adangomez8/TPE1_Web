@@ -34,6 +34,14 @@
             $controller = new PublicController();
             $controller->infoBooks($parametros[1]);
         break;
+        case "loginAdmin": 
+            $controller = new AdminController();
+            $controller->showLoginAdmin();
+        break;
+        case "verifyAdmin": 
+            $controller = new AdminController();
+            $controller->verifyAdmin();
+        break;
         case 'admin':
             $controller = new AdminController();
             $controller->showOption();
@@ -61,6 +69,14 @@
         case 'modificarLibro':
             $controller = new AdminController();
             $controller->modifyBook($parametros[1]);
+        break;
+        case "loginUser": 
+            $controller = new AuthController();
+            $controller->showLogin();
+        break;
+        case "verifyUser": 
+            $controller = new AuthController();
+            $controller->verify();
         break;
         case 'usuario':
             $controller = new UserController();

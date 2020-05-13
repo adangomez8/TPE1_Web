@@ -16,6 +16,19 @@ class UserController{
     public function showError($error) {
         $this->view->showError($error); 
     }
+
+    public function showLoginUser() {
+        $this->view->showFormLoginUser();
+    }
+    
+    public function verifyUser() {
+        $usermail = $_POST['mail'];
+        $password = $_POST['password'];
+
+        echo "$usermail $password";
+       
+    }
+
     
     public function showUserHome(){
         //Pido los autores al MODELO

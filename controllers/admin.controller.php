@@ -17,6 +17,18 @@ class AdminController{
         $this->view->showError($error); 
     }
 
+    public function showLoginAdmin() {
+        $this->view->showFormLoginAdmin();
+    }
+ 
+    public function verifyAdmin() {
+        $usermail = $_POST['mail'];
+        $password = $_POST['password'];
+
+        echo "$usermail $password";
+        
+    }
+
     public function modifyBook($idlibro){
         //Pido el libro para editar al MODELO
         $libro = $this->model->getBookForEdit($idlibro);
