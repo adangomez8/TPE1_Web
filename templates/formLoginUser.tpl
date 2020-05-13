@@ -1,3 +1,5 @@
+{include 'navUser.tpl'}
+
 <form method="POST" action="verifyUser" class="col-md-4 offset-md-4 mt-4">
 
         <div class="form-group">

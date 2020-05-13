@@ -1,3 +1,5 @@
+{include 'navPublic.tpl'}
+
 <div class="container">
     <table class="table table-striped table-dark tabLisAutores">
         <td class= "titTabla"><h2>{$lista}</h2></td>

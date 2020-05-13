@@ -1,3 +1,5 @@
+{include 'navPublic.tpl'}
+
 <div class=" container infoLibro">
     <h2>{$libro->Nombre}</h2>
         <li><b>Género: </b>{$libro->Genero}</li>
