@@ -60,6 +60,14 @@
             $controller = new PublicController();
             $controller->showBooksAuthorUser($parametros[1]);
         break;
+        case 'modificarLibro':
+            $controller = new PublicController();
+            $controller->modifyBook($parametros[1]);
+        break;
+        case 'guardarCambios':
+            $controller = new PublicController();
+            $controller->saveChanges($parametros[1]);
+        break;
         default:  
             $controller = new PublicController();
             $controller->showError("");

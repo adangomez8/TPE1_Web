@@ -109,4 +109,11 @@ class HomeView{
         $smarty->assign('base_url', BASE_URL);
         $smarty->display('addedBook.tpl');
     }
+    
+    public function formEdit($libro){
+        $this->encabezado();
+        $smarty= new Smarty ();
+        $smarty->assign('id', $libro);
+        $smarty->display('formEdit.tpl');
+    }
 }

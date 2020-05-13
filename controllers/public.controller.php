@@ -110,4 +110,29 @@ class PublicController{
         //Actualizo la vista
         $this->view->showListBooksOfAuthorUser($books);
     }
+
+    public function modifyBook($idlibro){
+        //Pido el libro para editar al MODELO
+        $libro = $this->model->getBookForEdit($idlibro);
+
+        //Actualizo la vista
+        $this->view->formEdit($libro);
+    }
+    
+    public function saveChanges($libro){
+        $nombre= $_POST['nombreLibro'];
+        $genero= $_POST['genero'];
+        $sinopsis=$_POST['sinopsis'];
+        $anio= $_POST['anio'];
+        $imagen= $_POST['imagen'];
+        $autor= $_POST['autor'];
+
+        if (!empty($nombre)&& !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($imagen) && !empty($autor)){
+            $this->model->updateBook($libro, $nombre, $genero, $sinopsis, $anio, $imagen, $autor);
+            
+        }
+        else {
+        $this->view->showError("Faltan campos por completar");
+        }
+    }
 }

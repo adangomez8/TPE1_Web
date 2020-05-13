@@ -104,4 +104,20 @@ class AutoresModel{
         
         return $autores;
     }
+    
+    public function getBookForEdit($idlibro){
+        //Abro conexión
+        $db = $this->createConection();
+        $sentencia = $db->prepare("SELECT autores.nombre, autores.id_autor FROM autores JOIN libros WHERE id_libro = ?");
+        //ejecuto sentencia
+        $sentencia->execute([$idlibro]);
+    }
+
+    public function updateBook($libro, $nombre, $genero, $sinopsis, $anio, $imagen, $autor){
+        //Abro conexión
+        $db = $this->createConection();
+        $sentencia = $db->prepare("UPDATE libros SET nombre = $nombre, genero = $genero, sinopsis = $sinopsis,  anio = $anio, imagen = $imagen, 
+        id_autor_fk = $autor WHERE libro.id_libro = ?");
+        $sentencia->execute([$libro]);
+    }
 }
