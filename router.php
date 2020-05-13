@@ -1,5 +1,7 @@
 <?php
     require_once 'controllers/public.controller.php';
+    require_once 'controllers/admin.controller.php';
+    require_once 'controllers/user.controller.php';
 
     // definimos la base url de forma dinamica
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -33,41 +35,46 @@
             $controller->infoBooks($parametros[1]);
         break;
         case 'admin':
-            $controller = new PublicController();
+            $controller = new AdminController();
             $controller->showOption();
         break;
         case 'nuevoLibro':
-            $controller = new PublicController();
-            $controller->showForm();
+            $controller = new AdminController();
+            $controller->showFormForAgg();
         break;
         case 'editDB':
-            $controller = new PublicController();
+            $controller = new AdminController();
             $controller->editDB();
         break;
         case 'addBook':
-            $controller = new PublicController();
+            $controller = new AdminController();
             $controller->addBook();
         break;
         case 'borrarLib':
-            $controller = new PublicController();
+            $controller = new AdminController();
             $controller->deleteBook($parametros[1]);
         break;
+        case 'guardarCambios':
+            $controller = new AdminController();
+            $controller->saveChanges($parametros[1]);
+        break;
+        case 'modificarLibro':
+            $controller = new AdminController();
+            $controller->modifyBook($parametros[1]);
+        break;
         case 'usuario':
-            $controller = new PublicController();
+            $controller = new UserController();
             $controller->showUserHome();
         break;
         case 'librosAutorUser':
-            $controller = new PublicController();
+            $controller = new UserController();
             $controller->showBooksAuthorUser($parametros[1]);
         break;
-        case 'modificarLibro':
-            $controller = new PublicController();
-            $controller->modifyBook($parametros[1]);
+        case "leido":
+            $controller = new UserController();
+            $controller->readBook();
         break;
-        case 'guardarCambios':
-            $controller = new PublicController();
-            $controller->saveChanges($parametros[1]);
-        break;
+
         default:  
             $controller = new PublicController();
             $controller->showError("");

@@ -1,6 +1,6 @@
 <?php
 
-class AutoresModel{
+class PublicModel{
 
     Private function createConection(){
         $host = 'localhost';
@@ -61,63 +61,5 @@ class AutoresModel{
         $details = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
 
         return $details;
-    }
-
-    public function getId(){
-        //Abro conexión
-        $db= $this->createConection();
-        //Pido id a la base de datos
-        $sentencia = $db->prepare("SELECT autores.nombre, autores.id_autor FROM autores");
-        //ejecuto sentencia
-        $sentencia->execute();
-        $id= $sentencia->fetchAll(PDO::FETCH_OBJ);
-
-        return $id;
-    }
-
-    public function newBook($nombre, $genero, $sinopsis, $anio, $imagen, $autor){
-        //Abro conexión
-        $db= $this->createConection();
-
-        //Mando datos a la base de datos
-        $sentencia= $db->prepare("INSERT INTO libros(nombre, genero, sinopsis, anio, imagen, id_autor_fk) VALUE(?, ?, ?, ?, ?, ?)");
-        $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $imagen, $autor]);//Ejecuta
-    }
-
-    public function deleteBook($idlibro){
-        //Abro conexión
-        $db= $this->createConection();
-        //Pido id a la base de datos
-        $sentencia = $db->prepare("DELETE FROM libros WHERE id_libro = ?");
-        //ejecuto sentencia
-        $sentencia->execute([$idlibro]);
-
-        //var_dump($id);die;
-    }
-    
-    public function showAuthorsForUser(){
-        //Abro conexión
-        $db = $this->createConection();
-        $sentencia=$db->prepare("SELECT * FROM autores");
-        $sentencia->execute();
-        $autores= $sentencia->fetchAll(PDO::FETCH_OBJ);
-        
-        return $autores;
-    }
-    
-    public function getBookForEdit($idlibro){
-        //Abro conexión
-        $db = $this->createConection();
-        $sentencia = $db->prepare("SELECT autores.nombre, autores.id_autor FROM autores JOIN libros WHERE id_libro = ?");
-        //ejecuto sentencia
-        $sentencia->execute([$idlibro]);
-    }
-
-    public function updateBook($libro, $nombre, $genero, $sinopsis, $anio, $imagen, $autor){
-        //Abro conexión
-        $db = $this->createConection();
-        $sentencia = $db->prepare("UPDATE libros SET nombre = $nombre, genero = $genero, sinopsis = $sinopsis,  anio = $anio, imagen = $imagen, 
-        id_autor_fk = $autor WHERE libro.id_libro = ?");
-        $sentencia->execute([$libro]);
     }
 }

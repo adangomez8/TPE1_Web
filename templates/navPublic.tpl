@@ -7,7 +7,7 @@
             <script src="https://kit.fontawesome.com/dbc9074876.js" crossorigin="anonymous"></script>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
             <link rel="shortcut icon" href="img/icono.jpg" type="image/x-icon">
-            <link rel="stylesheet" href="css/styleUser.css">
+            <link rel="stylesheet" href="css/stylePublic.css">
             <title>{$titulo}</title>
         </head>
         <body>
@@ -19,6 +19,17 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="mostrarLibros">Todos nuestros libros<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin"><i class="fas fa-users-cog"></i> Administración</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="usuario"><i class="fas fa-user"></i> Soy usuario</a>
+                </li>
                 </ul>
             </div>
             </nav>
+
+         
