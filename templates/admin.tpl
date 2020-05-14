@@ -30,7 +30,7 @@
 
 
         <div class= "col-md-6">
-            <p class= "pareditbook">Eliminar un autor</p>
+            <p class= "pareditauth">Eliminar un autor</p>
             <picture>
               <a href="{$base_url}deleteAuthor"><img src="img/eliminarAutor.jpg" alt="Descripción de la imagen" ></a> 
             </picture>

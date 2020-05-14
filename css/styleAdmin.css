@@ -42,7 +42,7 @@ footer{
     text-align: center;
     background-color: white;
 }
-.pareditbook, .paragrbook, .paragrauth{
+.pareditbook, .paragrbook, .paragrauth, .pareditauth{
     background-color: teal;
     font-size: 22px;
     color: white;
