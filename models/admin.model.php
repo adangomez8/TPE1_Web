@@ -15,7 +15,7 @@ class AdminModel{
     public function showBooks(){
         //Abro conexión
         $db = $this->createConection();
-        $sentencia=$db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor");      
+        $sentencia=$db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor ORDER BY libros.nombre ASC");      
         $sentencia->execute();
         $libros= $sentencia->fetchAll(PDO::FETCH_OBJ);
         
@@ -68,7 +68,7 @@ class AdminModel{
     public function getBookForEdit($idlibro){
         //Abro conexión
         $db = $this->createConection();
-        $sentencia = $db->prepare("SELECT autores.nombre, autores.id_autor FROM autores JOIN libros WHERE id_libro = ?");
+        $sentencia = $db->prepare("SELECT autores.nombre, autores.id_autor FROM autores JOIN libros WHERE id_libro = ? ORDER BY nombre ASC");
         //ejecuto sentencia
         $sentencia->execute([$idlibro]);
     }
