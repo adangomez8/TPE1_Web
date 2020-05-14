@@ -11,10 +11,11 @@
                         <tr class= "{if $libro->leido}leido{/if}">
                             <td><b>{$libro->Nombre}</b></td>
                             <td><a class="btn btn-outline-success" href="infoLibros/{$libro->id_libro}"><i class="fab fa-readme"></i></a></</td>
-                            {if !$libro->leido}   
-                                <td><input type="checkbox" name="libroLeido/{$libro->id_idLibro}"/></td  >
+                            {if !$libro->leido}
+                                <td><a class="btn btn-outline-info" href="leido/{$libro->id_libro}"><i class="fas fa-glasses"></i></a></td>
+                                <!--<td><input type="checkbox" name="libroLeido/{$libro->id_idLibro}"/></td  >-->
                             {else}
-                            <td><b>Libro leido</b></td>
+                            <td><b><i class="btn btn-outline-light fas fa-check-square"></i></b></td>
                             {/if}
                             
                         </tr>

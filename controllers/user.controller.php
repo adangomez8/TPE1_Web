@@ -45,14 +45,11 @@ class UserController{
         $this->view->showListBooksOfAuthorUser($books);
     }
 
-    public function readBook(){
-        foreach ($_POST as $index => $lemento) {
-            $vars = explode('_', $index);
+    public function readBook($idLibro){
+        //Pido el libro que se quiere borrar a la base de datos
+        $idLibro= $this->model->read($idLibro);
 
-            // $vars[0] = 'finalizar', $var[1] = 23
-            $idLibro = $vars[1];
-            $this->model->read($idLibro);
+        //Mando al view los libros
+        echo"Se marcó como leido";
         }
-
-    }
 }

@@ -88,7 +88,7 @@
         break;
         case "leido":
             $controller = new UserController();
-            $controller->readBook();
+            $controller->readBook($parametros[1]);
         break;
 
         default:  
