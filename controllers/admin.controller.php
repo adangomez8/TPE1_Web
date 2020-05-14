@@ -147,9 +147,15 @@ class AdminController{
     }
 
     public function deleteAuthor($idautor){
-        //Pido auntor para borrar
-        $this->model->authorDelete($idautor);
+        //Antes de eliminar, compruebo que no haya libros a su nombre
+        $libros= $this->model->checkBook($idautor);
 
-        $this->view->succesDelete();
+        if (!empty($libros)){
+            $this->view->showError("Error, existen libros asociados a este autor");
+        }
+        else {
+            $this->model->authorDelete($idautor); //Pido auntor para borrar
+            $this->view->succesDelete();
+        }
     }
 }

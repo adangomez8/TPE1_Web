@@ -100,6 +100,17 @@ class AdminModel{
         $sentencia->execute([$nombre, $foto]);//Ejecuta
     }
 
+    public function checkBook($idautor){
+        //Abro conexión
+        $db = $this->createConection();
+
+        $sentencia= $db->prepare("SELECT autores.nombre, libros.nombre FROM autores JOIN libros WHERE id_autor_fk=?");
+        $sentencia->execute([$idautor]);
+        $libro= $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+        return $libro;
+    }
+
     public function authorDelete($idautor){
         //Abro conexión
         $db = $this->createConection();
