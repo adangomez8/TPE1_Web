@@ -56,4 +56,13 @@ class AdminView{
         $this->smarty->assign('autor', $nombre);
         $this->smarty->display('newAuthor.tpl');
     }
+
+    public function formAuthorDelete($autores){
+        $this->smarty->assign('autores', $autores);
+        $this->smarty->display('fomrDelAuthor.tpl');
+    }
+
+    public function succesDelete(){
+        $this->smarty->display('deleteAuthorSucces.tpl');
+    }
 }

@@ -137,4 +137,19 @@ class AdminController{
             $this->view->showError("Faltan campos por completar para crear nuevo autor");
         }
     }
+
+    public function formdeleteAuthor(){
+        //Pido los autores a la base de datos
+        $autores= $this->model->getAuthors();
+
+        //Mando al view los autores
+        $this->view->formAuthorDelete($autores);
+    }
+
+    public function deleteAuthor($idautor){
+        //Pido auntor para borrar
+        $this->model->authorDelete($idautor);
+
+        $this->view->succesDelete();
+    }
 }

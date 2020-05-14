@@ -61,8 +61,6 @@ class AdminModel{
         $sentencia = $db->prepare("DELETE FROM libros WHERE id_libro = ?");
         //ejecuto sentencia
         $sentencia->execute([$idlibro]);
-
-        //var_dump($id);die;
     }
 
     public function getBookForEdit($idlibro){
@@ -86,7 +84,7 @@ class AdminModel{
         $db = $this->createConection();
 
         //Pido a base de datos los autores
-        $sentencia= $db->prepare("SELECT autores.nombre FROM autores");
+        $sentencia= $db->prepare("SELECT autores.nombre, autores.id_autor FROM autores");
         $sentencia->execute(); //Ejecuto
         $autores= $sentencia->fetchAll(PDO::FETCH_OBJ);
 
@@ -100,5 +98,14 @@ class AdminModel{
         //Mando datos a la base de datos
         $sentencia= $db->prepare("INSERT INTO autores(nombre, foto) VALUE(?,?)");
         $sentencia->execute([$nombre, $foto]);//Ejecuta
+    }
+
+    public function authorDelete($idautor){
+        //Abro conexión
+        $db = $this->createConection();
+
+        $sentencia = $db->prepare("DELETE FROM autores WHERE id_autor = ?");
+        //ejecuto sentencia
+        $sentencia->execute([$idautor]);
     }
 }

@@ -70,6 +70,14 @@
             $controller = new AdminController();
             $controller->newAuthor();
         break;
+        case 'deleteAuthor':
+            $controller = new AdminController();
+            $controller->formdeleteAuthor();
+        break;
+        case 'borrarAutor':
+            $controller = new AdminController ();
+            $controller->deleteAuthor($parametros[1]);
+        break;
         case 'guardarCambios':
             $controller = new AdminController();
             $controller->saveChanges($parametros[1]);
