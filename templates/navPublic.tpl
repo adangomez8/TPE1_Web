@@ -23,10 +23,10 @@
                     <a class="nav-link" href="mostrarLibros">Todos nuestros libros<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="admin"><i class="fas fa-users-cog"></i> Administración</a>
+                    <a class="nav-link btn btn-outline-primary" href="usuario"><i class="fas fa-user"></i> Soy usuario</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="usuario"><i class="fas fa-user"></i> Soy usuario</a>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-danger" href="admin"><i class="fas fa-users-cog"></i> Administración</a>
                 </li>
                 </ul>
             </div>
