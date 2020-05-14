@@ -80,4 +80,25 @@ class AdminModel{
         id_autor_fk = $autor WHERE libro.id_libro = ?");
         $sentencia->execute([$libro]);
     }
+
+    public function getAuthors(){
+        //Abro conexión
+        $db = $this->createConection();
+
+        //Pido a base de datos los autores
+        $sentencia= $db->prepare("SELECT autores.nombre FROM autores");
+        $sentencia->execute(); //Ejecuto
+        $autores= $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+        return $autores;
+    }
+
+    public function createAuthor($nombre, $foto){
+        //Abro conexión
+        $db = $this->createConection();
+
+        //Mando datos a la base de datos
+        $sentencia= $db->prepare("INSERT INTO autores(nombre, foto) VALUE(?,?)");
+        $sentencia->execute([$nombre, $foto]);//Ejecuta
+    }
 }

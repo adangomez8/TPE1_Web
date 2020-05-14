@@ -47,4 +47,13 @@ class AdminView{
         $this->smarty->assign('id', $libro);
         $this->smarty->display('formEdit.tpl');
     }
+
+    public function authorForm(){
+        $this->smarty->display('formAuthor.tpl');
+    }
+
+    public function addedAuthor($nombre){
+        $this->smarty->assign('autor', $nombre);
+        $this->smarty->display('newAuthor.tpl');
+    }
 }

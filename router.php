@@ -62,6 +62,14 @@
             $controller = new AdminController();
             $controller->deleteBook($parametros[1]);
         break;
+        case 'addAuthor':
+            $controller = new AdminController();
+            $controller->formAuthor();
+        break;
+        case 'newAuthor':
+            $controller = new AdminController();
+            $controller->newAuthor();
+        break;
         case 'guardarCambios':
             $controller = new AdminController();
             $controller->saveChanges($parametros[1]);

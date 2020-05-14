@@ -20,7 +20,16 @@
         <a href="{$base_url}editDB"><img src="img/eddit.png" alt="Descripción de la imagen" ></a> 
       </picture>
     </div>
+
+        <div class= "col-xs-3">
+      <p class= "pareditbook">Agregar un nuevo autor</p>
+      <picture>
+        <a href="{$base_url}addAuthor"><img src="img/autor.jpg" alt="Descripción de la imagen" ></a> 
+      </picture>
+    </div>
   </div>
 </div>
+
+
 
 {include 'footer.tpl'}

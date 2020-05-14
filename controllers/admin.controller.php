@@ -111,4 +111,30 @@ class AdminController{
         $this->view->showError("Faltan campos por completar");
         }
     }
+
+    public function formAuthor(){
+        $this->view->authorForm();
+    }
+
+    public function newAuthor(){
+        $nombre= $_POST['nombre'];
+        $foto= $_POST['foto'];
+
+        //Compruebo que no se suban autores existentes
+        $autores= $this->model->getAuthors();
+        foreach ($autores as $autor){
+            if ($autor->nombre == $nombre){
+                $this->view->showError("El autor ya existe");
+                die();
+            }
+        }
+
+        if (!empty($nombre)&& !empty($foto)){
+            $this->model->createAuthor($nombre, $foto);
+            $this->view->addedAuthor($nombre);
+        }
+        else {
+            $this->view->showError("Faltan campos por completar para crear nuevo autor");
+        }
+    }
 }
