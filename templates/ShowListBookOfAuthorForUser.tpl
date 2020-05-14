@@ -13,16 +13,12 @@
                             <td><a class="btn btn-outline-success" href="infoLibros/{$libro->id_libro}"><i class="fab fa-readme"></i></a></</td>
                             {if !$libro->leido}
                                 <td><a class="btn btn-outline-info" href="leido/{$libro->id_libro}"><i class="fas fa-glasses"></i></a></td>
-                                <!--<td><input type="checkbox" name="libroLeido/{$libro->id_idLibro}"/></td  >-->
                             {else}
                             <td><b><i class="btn btn-outline-light fas fa-check-square"></i></b></td>
                             {/if}
                             
                         </tr>
                     {/foreach}
-        <td></td>
-        <td></td>
-        <td><input type="submit" class="btn btn-danger mt-2 btnLeido" value="Marcar como leidos"></td>
         </form>
         </table>
         
