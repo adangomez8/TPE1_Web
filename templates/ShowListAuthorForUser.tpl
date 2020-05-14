@@ -9,7 +9,7 @@
             {foreach $autores item=autor}
                 <tr>
                     <td class="autores"><b>{$autor->nombre}</b></td>
-                    <td> <a href="librosAutorUser/{$autor->id_autor}"><i class="fab fa-readme btn btn-primary" ></i></a></td>
+                    <td> <a href="librosAutorUser/{$autor->id_autor}"><i class="fab fa-readme btn btn-light" ></i></a></td>
                 </tr>
             {/foreach}
     </table>
