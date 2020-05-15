@@ -37,8 +37,12 @@ class PublicController{
         //Pido los libros del autor al MODELO
         $books = $this->model->booksOfAuthor($idAutor);
 
-        //Actualizo la vista
-        $this->view->showListBooksOfAuthor($books);
+        if (!empty($books)){
+            $this->view->showListBooksOfAuthor($books); //Actualizo la vista
+        }
+        else {
+            $this->view->showError("Aún no hay libros de este autor para mostrar");
+        }
     }
 
     public function infoBooks($idlibro){
