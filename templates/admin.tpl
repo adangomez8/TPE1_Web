@@ -24,7 +24,7 @@
         <div class= "col-md-6">
             <p class= "paragrauth">Agregar un nuevo autor</p>
             <picture>
-                <a href="{$base_url}nuevoAutor"><img src="img/autor.jpg" alt="Descripción de la imagen" ></a> 
+                <a href="{$base_url}agregarAutor"><img src="img/autor.jpg" alt="Descripción de la imagen" ></a> 
             </picture>
         </div>
 

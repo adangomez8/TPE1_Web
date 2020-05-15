@@ -113,10 +113,6 @@ class AdminController{
     }
 
     public function addAuthor(){
-        $this->view->FormAddauthor();
-    }
-
-    public function showFormForAggAuthor(){
         $nombre= $_POST['nombre'];
         $foto= $_POST['foto'];
 
@@ -138,6 +134,18 @@ class AdminController{
         }
     }
 
+    public function showFormForAggAuthor(){
+        $this->view->FormAddauthor();
+    }
+
+    public function modifyAuthor(){
+        //Pido los autores a la base de datos
+        $autores= $this->model->getAuthors();
+
+        //Mando al view los autores
+        $this->view->showEditAuthor($autores);
+    }
+
     public function deleteAuthor($idautor){
         //Antes de eliminar, compruebo que no haya libros a su nombre
         $libros= $this->model->checkBook($idautor);
@@ -152,14 +160,6 @@ class AdminController{
     }
 
     public function editAuthor(){
-        //Pido los autores a la base de datos
-        $autores= $this->model->getAuthors();
-
-        //Mando al view los autores
-        $this->view->showEditAuthor($autores);
-    }
-
-    public function modifyAuthor(){
         //Pido los autores a la base de datos
         $autores= $this->model->getAuthors();
 

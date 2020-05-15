@@ -70,17 +70,17 @@
             $controller = new AdminController();
             $controller->saveChangesBook($parametros[1]);
         break;
-        case 'agregarAutor':
+        case 'nuevoAutor':
             $controller = new AdminController();
-            $controller->showFormForAggAuthor();
+            $controller->addAuthor();
         break;
         case 'editAutor':
             $controller = new AdminController();
             $controller->editAuthor();
         break;
-        case 'nuevoAutor':
+        case 'agregarAutor':
             $controller = new AdminController();
-            $controller->addAuthor();
+            $controller->showFormForAggAuthor();
         break;
         case 'borrarAutor':
             $controller = new AdminController ();
