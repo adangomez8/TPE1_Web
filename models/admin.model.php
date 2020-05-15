@@ -119,4 +119,23 @@ class AdminModel{
         //ejecuto sentencia
         $sentencia->execute([$idautor]);
     }
+
+    public function getAuthor($id_autor){
+        //Abro conexión
+        $db = $this->createConection();
+
+        $sentencia= $db->prepare("SELECT autores.nombre, autores.id_autor FROM autores WHERE id_autor=?");
+        $sentencia->execute([$id_autor]);
+        $autor= $sentencia->fetch(PDO::FETCH_OBJ);
+
+        return $autor;
+    }
+
+    public function updateAuthor($id_autor, $nombre, $foto){
+        //Abro conexión
+        $db = $this->createConection();
+
+        $sentencia= $db->prepare("UPDATE autores SET nombre=?, foto=? WHERE autores.id_autor=?");
+        $sentencia->execute([$nombre, $foto, $id_autor]);
+    }
 }

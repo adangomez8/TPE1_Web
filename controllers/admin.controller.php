@@ -138,12 +138,12 @@ class AdminController{
         $this->view->FormAddauthor();
     }
 
-    public function modifyAuthor(){
+    public function modifyAuthor($id_autor){
         //Pido los autores a la base de datos
-        $autores= $this->model->getAuthors();
+        $autores= $this->model->getAuthor($id_autor);
 
         //Mando al view los autores
-        $this->view->showEditAuthor($autores);
+        $this->view->formEditAuthor($autores);
     }
 
     public function deleteAuthor($idautor){
@@ -165,6 +165,21 @@ class AdminController{
 
         //Mando al view los autores
         $this->view->showEditAuthor($autores);
+    }
+
+    public function changeAuthor($id_autor){
+        //Tomo datos nuevos del formulario
+        $nombre= $_POST['nombre'];
+        $foto= $_POST['foto'];
+
+        if(!empty($nombre)&& !empty($foto)){
+            $this->model->updateAuthor($id_autor, $nombre, $foto);
+            $this->view->shoeSuccesChane($nombre);
+        }
+        else{
+            $this->view->showError("Error, complete ambos campos para modificar el autor");
+        }
+
     }
 
 }

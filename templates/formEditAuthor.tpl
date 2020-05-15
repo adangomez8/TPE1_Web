@@ -5,7 +5,7 @@
 <div class= "container formAgregar">
   <h1 class="titAgreAut"><b>AGREGAR AUTOR</b></h1>
 
-  <form action="cambioAutor" method="POST">
+  <form action="cambioAutor/{$id->id_autor}" method="POST">
 
     <div class="form-group">
       <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre del autor">

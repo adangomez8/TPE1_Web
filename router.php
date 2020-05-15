@@ -89,7 +89,10 @@
         case 'modificarAutor':
             $controller = new AdminController();
             $controller->modifyAuthor($parametros[1]);
-            //AGREGAR FUNCION
+        break;
+        case 'cambioAutor':
+            $controller = new AdminController();
+            $controller->changeAuthor($parametros[1]);
         break;
         //case 'guardarCambiosAut':
             //$controller = new AdminController();
