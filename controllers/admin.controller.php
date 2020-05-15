@@ -73,10 +73,11 @@ class AdminController{
 
     public function modifyBook($idlibro){
         //Pido el libro para editar al MODELO
+        $autores= $this->model->getAuthors();
         $libro = $this->model->getBookForEdit($idlibro);
 
         //Actualizo la vista
-        $this->view->formEditBook($libro);
+        $this->view->formEditBook($libro, $autores);
     }
 
     public function deleteBook($idlibro){
@@ -95,7 +96,7 @@ class AdminController{
         $this->view->showEditBooks($libros);
     }
 
-    public function saveChangesBook($libro){
+    public function saveChangesBook($id_libro){
         $nombre= $_POST['nombreLibro'];
         $genero= $_POST['genero'];
         $sinopsis=$_POST['sinopsis'];
@@ -103,9 +104,10 @@ class AdminController{
         $imagen= $_POST['imagen'];
         $autor= $_POST['autor'];
 
+
         if (!empty($nombre)&& !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($imagen) && !empty($autor)){
-            $this->model->updateBook($libro, $nombre, $genero, $sinopsis, $anio, $imagen, $autor);
-            
+            $this->model->updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $imagen, $autor);
+            $this->view->succesEditBook($nombre);
         }
         else {
         $this->view->showError("Faltan campos por completar");

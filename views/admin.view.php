@@ -43,8 +43,9 @@ class AdminView{
         $this->smarty->display('addedBook.tpl');
     }
     
-    public function formEditBook($libro){
+    public function formEditBook($libro, $autores){
         $this->smarty->assign('id', $libro);
+        $this->smarty->assign('autor', $autores);
         $this->smarty->display('formEditBook.tpl');
     }
     
@@ -74,5 +75,10 @@ class AdminView{
     public function shoeSuccesChane($nombre){
         $this->smarty->assign('autor', $nombre);
         $this->smarty->display('succesEditAuthor.tpl');
+    }
+
+    public function succesEditBook($nombre){
+        $this->smarty->assign('libro', $nombre);
+        $this->smarty->display('succesEditBook.tpl');
     }
 }

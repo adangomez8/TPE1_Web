@@ -1,9 +1,9 @@
  {include 'navAdmin.tpl'}
 
 <div class= "container formAgregar">
-  <h1>Editar libro</h1>
+  <h1>Editar libro {$id->nombre}</h1>
 
-<form action='guardarCambios' method="POST">
+<form action='guardarCambiosLib/{$id->id_libro}' method="POST">
     <div class="form-group">
       <label for="exampleInputEmail1">Nombre del libro</label>
       <input type="text" name="nombreLibro" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -28,7 +28,7 @@
       <label for="exampleFormControlSelect1">Seleccione autor</label>
       <select class="form-control" name="autor" id="exampleFormControlSelect1">
           <option select>Seleccionar autor</option>
-        {foreach $id item=autores}
+        {foreach $autor item=autores}
           <option value={$autores->id_autor}>{$autores->nombre}</option>
       </div>
         {/foreach}

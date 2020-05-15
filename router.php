@@ -94,11 +94,6 @@
             $controller = new AdminController();
             $controller->changeAuthor($parametros[1]);
         break;
-        //case 'guardarCambiosAut':
-            //$controller = new AdminController();
-            //$controller->saveChangesAuthor($parametros[1]);
-            //AGREGAR FUNCION
-        //break;
         case "loginUser": 
             $controller = new UserController();
             $controller->showLoginUser();
