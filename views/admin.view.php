@@ -20,18 +20,18 @@ class AdminView{
         $this->smarty->display('formLoginAdmin.tpl');
     }
 
-    public function fomrAdd($id){
-        $this->smarty->assign('id', $id);
-        $this->smarty->display('showForm.tpl');
-    }
-
-    public function option(){
+    public function optionAdmin(){
         $this->smarty->display('admin.tpl');
     }
 
-    public function showEdit($libros){
+    public function formAddBook($id){
+        $this->smarty->assign('id', $id);
+        $this->smarty->display('showFormBook.tpl');
+    }
+
+    public function showEditBooks($libros){
         $this->smarty->assign('info', $libros);
-        $this->smarty->display('editDB.tpl');
+        $this->smarty->display('editBooks.tpl');
 
     }
 
@@ -43,26 +43,32 @@ class AdminView{
         $this->smarty->display('addedBook.tpl');
     }
     
-    public function formEdit($libro){
+    public function formEditBook($libro){
         $this->smarty->assign('id', $libro);
-        $this->smarty->display('formEdit.tpl');
+        $this->smarty->display('formEditBook.tpl');
+    }
+    
+    public function formAddauthor(){
+        $this->smarty->display('showFormAuthor.tpl');
+    }
+    
+    public function showEditAuthor($autores){
+        $this->smarty->assign('autores', $autores);
+        $this->smarty->display('editAuthors.tpl');
     }
 
-    public function authorForm(){
-        $this->smarty->display('formAuthor.tpl');
-    }
+    public function authordeleted(){
+        $this->smarty->display('authordeleted.tpl');
+    }    
 
     public function addedAuthor($nombre){
         $this->smarty->assign('autor', $nombre);
         $this->smarty->display('newAuthor.tpl');
     }
 
-    public function formAuthorDelete($autores){
-        $this->smarty->assign('autores', $autores);
-        $this->smarty->display('fomrDelAuthor.tpl');
+    public function formEditAuthor($libro){
+        $this->smarty->assign('id', $libro);
+        $this->smarty->display('formEdit.tpl');
     }
 
-    public function succesDelete(){
-        $this->smarty->display('deleteAuthorSucces.tpl');
-    }
 }

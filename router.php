@@ -44,17 +44,17 @@
         break;
         case 'admin':
             $controller = new AdminController();
-            $controller->showOption();
+            $controller->showOptionAdmin();
         break;
         case 'nuevoLibro':
             $controller = new AdminController();
-            $controller->showFormForAgg();
+            $controller->showFormForAggBook();
         break;
-        case 'editDB':
+        case 'editLibros':
             $controller = new AdminController();
-            $controller->editDB();
+            $controller->editBooks();
         break;
-        case 'addBook':
+        case 'agregarLibro':
             $controller = new AdminController();
             $controller->addBook();
         break;
@@ -62,29 +62,39 @@
             $controller = new AdminController();
             $controller->deleteBook($parametros[1]);
         break;
-        case 'addAuthor':
+        case 'modificarLibro':
             $controller = new AdminController();
-            $controller->formAuthor();
+            $controller->modifyBook($parametros[1]);
         break;
-        case 'newAuthor':
+        case 'guardarCambiosLib':
             $controller = new AdminController();
-            $controller->newAuthor();
+            $controller->saveChangesBook($parametros[1]);
         break;
-        case 'deleteAuthor':
+        case 'agregarAutor':
             $controller = new AdminController();
-            $controller->formdeleteAuthor();
+            $controller->showFormForAggAuthor();
+        break;
+        case 'editAutor':
+            $controller = new AdminController();
+            $controller->editAuthor();
+        break;
+        case 'nuevoAutor':
+            $controller = new AdminController();
+            $controller->addAuthor();
         break;
         case 'borrarAutor':
             $controller = new AdminController ();
             $controller->deleteAuthor($parametros[1]);
         break;
-        case 'guardarCambios':
+        case 'modificarAutor':
             $controller = new AdminController();
-            $controller->saveChanges($parametros[1]);
+            $controller->modifyAuthor($parametros[1]);
+            //AGREGAR FUNCION
         break;
-        case 'modificarLibro':
+        case 'guardarCambiosAut':
             $controller = new AdminController();
-            $controller->modifyBook($parametros[1]);
+            $controller->saveChangesAuthor($parametros[1]);
+            //AGREGAR FUNCION
         break;
         case "loginUser": 
             $controller = new AuthController();

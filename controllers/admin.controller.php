@@ -20,42 +20,17 @@ class AdminController{
     public function showLoginAdmin() {
         $this->view->showFormLoginAdmin();
     }
+
+    public function showOptionAdmin(){
+        //Envío al view
+        $this->view->optionAdmin();
+    }
  
     public function verifyAdmin() {
         $usermail = $_POST['mail'];
         $password = $_POST['password'];
 
         echo "$usermail $password";
-        
-    }
-
-    public function modifyBook($idlibro){
-        //Pido el libro para editar al MODELO
-        $libro = $this->model->getBookForEdit($idlibro);
-
-        //Actualizo la vista
-        $this->view->formEdit($libro);
-    }
-
-    public function showFormForAgg(){
-        //Pido a la base de datos los id de los autores
-        $id= $this->model->getId();
-
-        //mando el id al view para crear el fomrulario
-        $this->view->fomrAdd($id);
-    }
-
-    public function showOption(){
-        //Envío al view
-        $this->view->option();
-    }
-
-    public function editDB(){
-        //Pido los libros de nuevo a la base de datos
-        $libros= $this->model->showBooks();
-
-        //Mando al view los libros
-        $this->view->showEdit($libros);
     }
 
     public function addBook(){
@@ -88,6 +63,22 @@ class AdminController{
         }
     }
 
+    public function showFormForAggBook(){
+        //Pido a la base de datos los id de los autores
+        $id= $this->model->getId();
+
+        //mando el id al view para crear el fomrulario
+        $this->view->formAddBook($id);
+    }
+
+    public function modifyBook($idlibro){
+        //Pido el libro para editar al MODELO
+        $libro = $this->model->getBookForEdit($idlibro);
+
+        //Actualizo la vista
+        $this->view->formEditBook($libro);
+    }
+
     public function deleteBook($idlibro){
         //Pido el libro que se quiere borrar a la base de datos
         $libroBorrado= $this->model->deleteBook($idlibro);
@@ -95,7 +86,16 @@ class AdminController{
         //Mando al view los libros
         $this->view-> bookdeleted($libroBorrado);
     }
-    public function saveChanges($libro){
+
+    public function editBooks(){
+        //Pido los libros de nuevo a la base de datos
+        $libros= $this->model->showBooks();
+
+        //Mando al view los libros
+        $this->view->showEditBooks($libros);
+    }
+
+    public function saveChangesBook($libro){
         $nombre= $_POST['nombreLibro'];
         $genero= $_POST['genero'];
         $sinopsis=$_POST['sinopsis'];
@@ -112,11 +112,11 @@ class AdminController{
         }
     }
 
-    public function formAuthor(){
-        $this->view->authorForm();
+    public function addAuthor(){
+        $this->view->FormAddauthor();
     }
 
-    public function newAuthor(){
+    public function showFormForAggAuthor(){
         $nombre= $_POST['nombre'];
         $foto= $_POST['foto'];
 
@@ -138,14 +138,6 @@ class AdminController{
         }
     }
 
-    public function formdeleteAuthor(){
-        //Pido los autores a la base de datos
-        $autores= $this->model->getAuthors();
-
-        //Mando al view los autores
-        $this->view->formAuthorDelete($autores);
-    }
-
     public function deleteAuthor($idautor){
         //Antes de eliminar, compruebo que no haya libros a su nombre
         $libros= $this->model->checkBook($idautor);
@@ -155,7 +147,24 @@ class AdminController{
         }
         else {
             $this->model->authorDelete($idautor); //Pido auntor para borrar
-            $this->view->succesDelete();
+            $this->view->authordeleted();
         }
     }
+
+    public function editAuthor(){
+        //Pido los autores a la base de datos
+        $autores= $this->model->getAuthors();
+
+        //Mando al view los autores
+        $this->view->showEditAuthor($autores);
+    }
+
+    public function modifyAuthor(){
+        //Pido los autores a la base de datos
+        $autores= $this->model->getAuthors();
+
+        //Mando al view los autores
+        $this->view->showEditAuthor($autores);
+    }
+
 }

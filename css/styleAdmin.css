@@ -47,15 +47,23 @@ footer{
     font-size: 22px;
     color: white;
 }
+.titAgreLib, .titAgreAut{
+    text-align: center;
+}
 .formAgregar{
     background-color: teal;
 }
-.btnGuardarNuevoLib, .btnGuardarCambios{
-    text-align: end;
-    margin-top: 5px;
-    background-color: rgb(192, 178, 178);
+.agrNomNuevo{
+    margin-left: 95px;
 }
-.divBorrLib{
+.btnGuardarNuevoLib, .btnGuardarCambios, .btnGuardarNuevo{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-bottom: 10px;
+    border-color: teal;
+    border-style: solid ;
+}
+.divBorrLib, .divBorrAut{
     text-align: center;
     background-color: mediumspringgreen;
 }
