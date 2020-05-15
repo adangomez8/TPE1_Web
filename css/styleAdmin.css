@@ -50,7 +50,7 @@ footer{
 .titAgreLib, .titAgreAut{
     text-align: center;
 }
-.formAgregar{
+.formAgregar, .libAgregado, .autAgregado{
     background-color: teal;
 }
 .agrNomNuevo{

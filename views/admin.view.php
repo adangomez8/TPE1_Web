@@ -26,7 +26,7 @@ class AdminView{
 
     public function formAddBook($id){
         $this->smarty->assign('id', $id);
-        $this->smarty->display('showFormBook.tpl');
+        $this->smarty->display('showFormAddBook.tpl');
     }
 
     public function showEditBooks($libros){
@@ -49,7 +49,7 @@ class AdminView{
     }
     
     public function formAddauthor(){
-        $this->smarty->display('showFormAuthor.tpl');
+        $this->smarty->display('showFormAddAuthor.tpl');
     }
     
     public function showEditAuthor($autores){
@@ -63,7 +63,7 @@ class AdminView{
 
     public function addedAuthor($nombre){
         $this->smarty->assign('autor', $nombre);
-        $this->smarty->display('newAuthor.tpl');
+        $this->smarty->display('addedAuthor.tpl');
     }
 
     public function formEditAuthor($libro){

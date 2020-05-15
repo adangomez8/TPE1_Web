@@ -20,17 +20,17 @@ class AdminController{
     public function showLoginAdmin() {
         $this->view->showFormLoginAdmin();
     }
-
-    public function showOptionAdmin(){
-        //Envío al view
-        $this->view->optionAdmin();
-    }
  
     public function verifyAdmin() {
         $usermail = $_POST['mail'];
         $password = $_POST['password'];
 
         echo "$usermail $password";
+    }
+
+    public function showOptionAdmin(){
+        //Envío al view
+        $this->view->optionAdmin();
     }
 
     public function addBook(){

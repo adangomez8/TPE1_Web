@@ -13,7 +13,7 @@
             {include 'navUser.tpl'}
 
                 <div class= "container text-center divError">
-                    <h2>Lo siento! Esta página no está disponible <i class="far fa-sad-tear"></i></h2>
+                    <h2>¡Error!</h2>
                         <h5>{$msg}</h5>
                         <img src='img/error.jpg'>
                             

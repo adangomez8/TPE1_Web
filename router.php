@@ -91,18 +91,18 @@
             $controller->modifyAuthor($parametros[1]);
             //AGREGAR FUNCION
         break;
-        case 'guardarCambiosAut':
-            $controller = new AdminController();
-            $controller->saveChangesAuthor($parametros[1]);
+        //case 'guardarCambiosAut':
+            //$controller = new AdminController();
+            //$controller->saveChangesAuthor($parametros[1]);
             //AGREGAR FUNCION
-        break;
+        //break;
         case "loginUser": 
-            $controller = new AuthController();
-            $controller->showLogin();
+            $controller = new UserController();
+            $controller->showLoginUser();
         break;
         case "verifyUser": 
-            $controller = new AuthController();
-            $controller->verify();
+            $controller = new UserController();
+            $controller->verifyUser();
         break;
         case 'usuario':
             $controller = new UserController();
@@ -119,7 +119,7 @@
 
         default:  
             $controller = new PublicController();
-            $controller->showError("");
+            $controller->showError("Lo siento! Esta página no está disponible <i class='far fa-sad-tear'></i>");
         break;
 
     }
