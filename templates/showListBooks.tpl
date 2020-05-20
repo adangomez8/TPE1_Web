@@ -18,4 +18,4 @@
     </table>
 </div>
         
-{include 'templates/footer.tpl'}
+{include 'footer.tpl'}

@@ -46,7 +46,7 @@ class UserController{
     }
 
     public function readBook($idLibro){
-        //Maro como leido
+        //Marco como leido
         $this->model->read($idLibro);
 
         //Pido libro al modelo y le busco el autor

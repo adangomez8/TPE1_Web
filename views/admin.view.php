@@ -16,10 +16,6 @@ class AdminView{
         $this->smarty->display('showError.tpl');
     }
 
-    public function showFormLoginAdmin() {
-        $this->smarty->display('formLoginAdmin.tpl');
-    }
-
     public function optionAdmin(){
         $this->smarty->display('admin.tpl');
     }
@@ -80,5 +76,10 @@ class AdminView{
     public function succesEditBook($nombre){
         $this->smarty->assign('libro', $nombre);
         $this->smarty->display('succesEditBook.tpl');
+    }
+
+    public function showAllBooks($libros){
+        $this->smarty->assign('libro', $libros);
+        $this->smarty->display('allBooks.tpl');
     }
 }

@@ -3,7 +3,7 @@
 <form method="POST" action="verifyUser" class="col-md-4 offset-md-4 mt-4">
 
         <div class="form-group">
-            <input type="email" name="mail" class="form-control" placeholder="Ingrese email">
+            <input type="email" name="mail" class="form-control" placeholder="Ingrese email" autocomplete="none">
         </div>
 
         <div class="form-group">

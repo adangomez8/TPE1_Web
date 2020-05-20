@@ -34,10 +34,6 @@
             $controller = new PublicController();
             $controller->infoBooks($parametros[1]);
         break;
-        case "loginAdmin": 
-            $controller = new AdminController();
-            $controller->showLoginAdmin();
-        break;
         case "verifyAdmin": 
             $controller = new AdminController();
             $controller->verifyAdmin();
@@ -45,6 +41,10 @@
         case 'admin':
             $controller = new AdminController();
             $controller->showOptionAdmin();
+        break;
+        case 'vistaPrevia':
+            $controller = new AdminController();
+            $controller->showView();
         break;
         case 'nuevoLibro':
             $controller = new AdminController();

@@ -25,13 +25,8 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-primary" href="loginUser"><i class="fas fa-user"></i> Soy usuario</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-danger" href="admin"><i class="fas fa-users-cog"></i> Administración</a>
+                        <a class="nav-link btn btn-outline-danger" href="loginUser"><i class="fas fa-users-cog"></i>Iniciar sesión</a>
                     </li>
                 </ul>
             </div>
             </nav>
-
-         

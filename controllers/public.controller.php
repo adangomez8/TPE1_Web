@@ -62,7 +62,8 @@ class PublicController{
         $password = $_POST['password'];
 
         $user = $this->model->getUser($usermail);
-       
+
+
         if ($user && password_verify($password, $user->password)) { 
 
             session_start();
@@ -70,9 +71,11 @@ class PublicController{
             $_SESSION['id_user'] = $user->id_usuario;
             $_SESSION['usermail'] = $user->mail;
             
-            header("Location: " . BASE_URL . "usuario");
+            header("Location: " . BASE_URL . "admin");
+        }
 
-        } else if (!$user){
+
+        if (!$user){
             $this->view->showFormLoginUser("El mail ingresado no está registado");
         } else{
             $this->view->showFormLoginUser("contraseña incorrecta");

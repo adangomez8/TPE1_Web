@@ -11,14 +11,22 @@ class AdminController{
     public function __construct() {
         $this->model  = new AdminModel();
         $this->view = new AdminView();
+        $this->checkLoggedUser();
+    }
+
+    private function checkLoggedUser() {
+
+        session_start(); 
+
+        if (!isset($_SESSION['logged'])) {
+            header('Location: ' . BASE_URL . 'loginUser');
+            die();
+        }
+
     }
 
     public function showError($error) {
         $this->view->showError($error); 
-    }
-
-    public function showLoginAdmin() {
-        $this->view->showFormLoginAdmin();
     }
  
     public function verifyAdmin() {
@@ -182,6 +190,17 @@ class AdminController{
             $this->view->showError("Error, complete ambos campos para modificar el autor");
         }
 
+    }
+
+    public function showView(){
+        $libros= $this->model->getAllBooks();
+        $this->view->showAllBooks($libros);
+    }
+
+    public function logoutUser(){
+        session_start();
+        session_destroy();
+        header("Location: " . BASE_URL . 'loginUser');
     }
 
 }

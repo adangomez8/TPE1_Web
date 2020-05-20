@@ -58,9 +58,11 @@ class PublicModel{
     }
 
     public function getUser($usermail) {
-        $sentencia = $this->db->prepare("SELECT usuario.nombre, usuario.apellido, usuario.password FROM usuario WHERE mail = ?");
+        $sentencia = $this->db->prepare("SELECT usuario.nombre, usuario.id_usuario, usuario.password FROM usuario WHERE mail = ?");
         $sentencia->execute([$usermail]);
-        return $sentencia->fetch(PDO::FETCH_OBJ);
+        $usuario= $sentencia->fetch(PDO::FETCH_OBJ);
+
+        return $usuario;
     }
 
 }
