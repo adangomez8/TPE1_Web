@@ -2,6 +2,10 @@
 
 class UserModel{
 
+    public function __construct() {
+        $this->db = $this->createConection();
+    }
+
     Private function createConection(){
         $host = 'localhost';
         $userName = 'root';
@@ -13,9 +17,8 @@ class UserModel{
     }
 
     public function showAuthorsForUser(){
-        //Abro conexión
-        $db = $this->createConection();
-        $sentencia=$db->prepare("SELECT * FROM autores ORDER BY nombre ASC");
+        
+        $sentencia=$this->db->prepare("SELECT * FROM autores ORDER BY nombre ASC");
         $sentencia->execute();
         $autores= $sentencia->fetchAll(PDO::FETCH_OBJ);
         
@@ -23,9 +26,8 @@ class UserModel{
     }
 
     public function booksOfAuthor($idAutor){
-        //Abro conexión
-        $db = $this->createConection();
-        $sentencia = $db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, autores.id_autor AS IdAutor,
+        
+        $sentencia = $this->db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, autores.id_autor AS IdAutor,
         libros.id_autor_fk,  libros.id_libro, libros.leido  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_autor_fk = ? ORDER BY leido, nombre ASC"); // prepara la consulta
         $sentencia->execute([$idAutor]); // ejecuta
         $books = $sentencia->fetchAll(PDO::FETCH_OBJ); // obtiene la respuesta
@@ -34,12 +36,16 @@ class UserModel{
     }
 
     public function read($idLibro){
-         //Abro conexión
-        $db = $this->createConection();
-    
-         // 2. enviamos la consulta
-        $sentencia = $db->prepare("UPDATE libros SET leido = 1 WHERE id_libro = ?");
-        return $sentencia->execute([$idLibro]);    
- 
+        
+        $sentencia = $this->db->prepare("UPDATE libros SET leido = 1 WHERE id_libro = ?");
+        return $sentencia->execute([$idLibro]);
     }
+
+    public function readedBook($idLibro){
+        
+        $sentencia = $this->db->prepare("SELECT libros.id_autor_fk FROM libros WHERE id_libro = ? ORDER BY nombre ASC"); 
+        $sentencia->execute([$idLibro]);
+        return  $sentencia->fetchAll(PDO::FETCH_OBJ); 
+    }
+
 }

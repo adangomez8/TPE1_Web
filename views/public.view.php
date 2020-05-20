@@ -41,4 +41,10 @@ class PublicView{
         $this->smarty->assign('titulo', "Libros");
         $this->smarty->display('showError.tpl');
     }
+
+    public function showFormLoginUser($error = null) {
+        $this->smarty->assign('base_url', BASE_URL);
+        $this->smarty->assign('error', $error);
+        $this->smarty->display('formLoginUser.tpl');
+    }
 }

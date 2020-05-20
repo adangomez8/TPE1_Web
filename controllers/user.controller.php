@@ -11,25 +11,25 @@ class UserController{
     public function __construct() {
         $this->model  = new UserModel();
         $this->view = new UserView();
+        //Barrera de segurisad
+        $this->checkLoggedUser();
     }
 
     public function showError($error) {
         $this->view->showError($error); 
     }
 
-    public function showLoginUser() {
-        $this->view->showFormLoginUser();
-    }
-    
-    public function verifyUser() {
-        $usermail = $_POST['mail'];
-        $password = $_POST['password'];
+    private function checkLoggedUser() {
 
-        echo "$usermail $password";
-       
-    }
+        session_start(); 
 
-    
+        if (!isset($_SESSION['logged'])) {
+            header('Location: ' . BASE_URL . 'loginUser');
+            die();
+        }
+
+    }
+ 
     public function showUserHome(){
         //Pido los autores al MODELO
         $autores = $this->model->showAuthorsForUser();
@@ -46,10 +46,21 @@ class UserController{
     }
 
     public function readBook($idLibro){
-        //Pido el libro que se quiere borrar a la base de datos
-        $idLibro= $this->model->read($idLibro);
+        //Maro como leido
+        $this->model->read($idLibro);
 
+        //Pido libro al modelo y le busco el autor
+        $libro = $this->model->readedBook($idLibro);
+        //var_dump($libro->id_autor_fk);
+        //die();
         //Mando al view los libros
         echo"Se marcó como leido";
-        }
+        //header('Location: ' . BASE_URL . "librosAutorUser" . "/" . $libro->id_autor_fk);
+    }
+
+    public function logoutUser(){
+        session_start();
+        session_destroy();
+        header("Location: " . BASE_URL . 'loginUser');
+    }
 }

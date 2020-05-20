@@ -25,7 +25,7 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-primary" href="usuario"><i class="fas fa-user"></i> Soy usuario</a>
+                        <a class="nav-link btn btn-outline-primary" href="loginUser"><i class="fas fa-user"></i> Soy usuario</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-danger" href="admin"><i class="fas fa-users-cog"></i> Administración</a>

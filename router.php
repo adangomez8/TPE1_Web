@@ -95,11 +95,11 @@
             $controller->changeAuthor($parametros[1]);
         break;
         case "loginUser": 
-            $controller = new UserController();
+            $controller = new PublicController();
             $controller->showLoginUser();
         break;
         case "verifyUser": 
-            $controller = new UserController();
+            $controller = new publicController();
             $controller->verifyUser();
         break;
         case 'usuario':
@@ -113,6 +113,10 @@
         case "leido":
             $controller = new UserController();
             $controller->readBook($parametros[1]);
+        break;
+        case "logoutUser": 
+            $controller = new UserController();
+            $controller->logoutUser();
         break;
 
         default:  

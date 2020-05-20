@@ -9,15 +9,11 @@ class UserView{
         $this->smarty = new Smarty();
         $this->smarty->assign('base_url', BASE_URL);
         $this->smarty->assign('titulo', "Libros");
-    }//navUser
+    }
 
     public function showError($msg) {   
         $this->smarty->assign('msg', $msg);
         $this->smarty->display('showError.tpl');
-    }
-
-    public function showFormLoginUser() {
-        $this->smarty->display('formLoginUser.tpl');
     }
     
     public function showListAuthorForUser($autores){

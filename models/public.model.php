@@ -2,6 +2,10 @@
 
 class PublicModel{
 
+    public function __construct() {
+        $this->db = $this->createConection();
+    }
+
     Private function createConection(){
         $host = 'localhost';
         $userName = 'root';
@@ -13,9 +17,7 @@ class PublicModel{
     }
     
     public function showAuthors(){
-        //Abro conexión
-        $db = $this->createConection();
-        $sentencia=$db->prepare("SELECT * FROM autores ORDER BY nombre ASC");
+        $sentencia=$this->db->prepare("SELECT * FROM autores ORDER BY nombre ASC");
         $sentencia->execute();
         $autores= $sentencia->fetchAll(PDO::FETCH_OBJ);
         
@@ -23,9 +25,7 @@ class PublicModel{
     }
 
     public function showAuthor($nombre){
-        //Abro conexión
-        $db = $this->createConection();
-        $sentencia=$db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_autor_fk = ?");
+        $sentencia=$this->db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_autor_fk = ?");
         $sentencia->execute([$nombre]);
         $autor= $sentencia->fetch(PDO::FETCH_OBJ);
         
@@ -33,9 +33,7 @@ class PublicModel{
     }
 
     public function showBooks(){
-        //Abro conexión
-        $db = $this->createConection();
-        $sentencia=$db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor ORDER BY libros.nombre ASC");      
+        $sentencia=$this->db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.id_libro  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor ORDER BY libros.nombre ASC");      
         $sentencia->execute();
         $libros= $sentencia->fetchAll(PDO::FETCH_OBJ);
         
@@ -43,9 +41,7 @@ class PublicModel{
     }
 
     public function booksOfAuthor($idAutor){
-        //Abro conexión
-        $db = $this->createConection();
-        $sentencia = $db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, autores.id_autor AS IdAutor,
+        $sentencia = $this->db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, autores.id_autor AS IdAutor,
         libros.id_autor_fk,  libros.id_libro, libros.leido  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_autor_fk = ? ORDER BY libros.nombre ASC"); // prepara la consulta
         $sentencia->execute([$idAutor]); // ejecuta
         $books = $sentencia->fetchAll(PDO::FETCH_OBJ); // obtiene la respuesta
@@ -54,12 +50,17 @@ class PublicModel{
     }
 
     public function infoOfBook($idlibro){
-        //Abro conexión
-        $db = $this->createConection();
-        $sentencia = $db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.genero AS Genero, libros.anio AS Anio, libros.imagen AS Foto, libros.id_autor_fk,  libros.id_libro, libros.sinopsis  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_libro = ?"); // prepara la consulta
+        $sentencia = $this->db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.genero AS Genero, libros.anio AS Anio, libros.imagen AS Foto, libros.id_autor_fk,  libros.id_libro, libros.sinopsis  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_libro = ?"); // prepara la consulta
         $sentencia->execute([$idlibro]); // ejecuta
         $details = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
 
         return $details;
     }
+
+    public function getUser($usermail) {
+        $sentencia = $this->db->prepare("SELECT usuario.nombre, usuario.apellido, usuario.password FROM usuario WHERE mail = ?");
+        $sentencia->execute([$usermail]);
+        return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
+
 }
