@@ -106,14 +106,6 @@
             $controller = new UserController();
             $controller->showUserHome();
         break;
-        /* case 'librosAutorUser':
-            $controller = new UserController();
-            $controller->showBooksAuthorUser($parametros[1]); //-----FUINCÓN COMENTADA
-        break;
-        case "leido":
-            $controller = new UserController();
-            $controller->readBook($parametros[1]);//-----FUINCÓN COMENTADA
-        break;*/
         case "logoutUser": 
             $controller = new AdminController();//-----FUINCÓN COMENTADA
             $controller->logoutUser();
