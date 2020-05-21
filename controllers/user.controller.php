@@ -33,4 +33,6 @@ class UserController{
     public function showUserHome(){
 
         $this->view->showError("En reparación. Próximamente podrá hacer uso de esta funcionalidad");
-    } 
+    }
+
+}
