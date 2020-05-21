@@ -21,8 +21,11 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 </ul>
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item datosUsuarioNav">
+                        <label><i class="fas fa-user"></i> {$username} {$usersurname}</label>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-danger" href="logoutUser"><i class="fas fa-sign-out-alt"></i>Finalizar sesión</a>
+                        <a class="nav-link btn btn-secondary" href="logoutUser"><i class="fas fa-sign-out-alt"></i>Finalizar sesión</a>
                     </li>
                 </ul>
             </div>

@@ -70,6 +70,8 @@ class PublicController{
             $_SESSION['logged'] = true;
             $_SESSION['id_user'] = $user->id_usuario;
             $_SESSION['usermail'] = $user->mail;
+            $_SESSION['username'] = $user->nombre;
+            $_SESSION['usersurname'] = $user->apellido;
             
             header("Location: " . BASE_URL . "admin");
         }

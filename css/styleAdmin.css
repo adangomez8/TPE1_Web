@@ -5,6 +5,10 @@ nav{
     background-color: rgb(155, 57, 73);
     margin-bottom: 50px;
 }
+.datosUsuarioNav{
+    margin-top: 7px;
+    margin-right: 7px;
+}
 .tabLisAutores{
     text-align: center;
 }

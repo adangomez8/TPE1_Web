@@ -2,6 +2,7 @@
 
 require_once 'models/admin.model.php';
 require_once 'views/admin.view.php';
+require_once 'helpers/autentication.helper.php';
 
 class AdminController{
 
@@ -11,18 +12,7 @@ class AdminController{
     public function __construct() {
         $this->model  = new AdminModel();
         $this->view = new AdminView();
-        $this->checkLoggedUser();
-    }
-
-    private function checkLoggedUser() {
-
-        session_start(); 
-
-        if (!isset($_SESSION['logged'])) {
-            header('Location: ' . BASE_URL . 'loginUser');
-            die();
-        }
-
+        HelperAutenticacion::checkLoggedUser();
     }
 
     public function showError($error) {
