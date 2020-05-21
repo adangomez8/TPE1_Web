@@ -31,6 +31,11 @@ class UserController{
     }
  
     public function showUserHome(){
+
+        $this->view->showError("En reparación. Próximamente podrá hacer uso de esta funcionalidad");
+    } //----------BORRAR LUEGO DE PRIMER ENTREGA--------------------------//
+
+        /*
         //Pido los autores al MODELO
         $autores = $this->model->showAuthorsForUser();
         //Actualizo la vista
@@ -62,5 +67,9 @@ class UserController{
         session_start();
         session_destroy();
         header("Location: " . BASE_URL . 'loginUser');
-    }
-}
+    } */ //CIERRO EL COMENTARIO 
+
+
+
+    //--------DEJAMOS TODO COMENTADO PARA USARLO EN LA SEGUNDA ENTREGA---------------------//
+} 

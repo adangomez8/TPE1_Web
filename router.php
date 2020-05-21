@@ -99,7 +99,7 @@
             $controller->showLoginUser();
         break;
         case "verifyUser": 
-            $controller = new publicController();
+            $controller = new PublicController();
             $controller->verifyUser();
         break;
         case 'usuario':
@@ -108,14 +108,14 @@
         break;
         case 'librosAutorUser':
             $controller = new UserController();
-            $controller->showBooksAuthorUser($parametros[1]);
+            $controller->showBooksAuthorUser($parametros[1]); //-----FUINCÓN COMENTADA
         break;
         case "leido":
             $controller = new UserController();
-            $controller->readBook($parametros[1]);
+            $controller->readBook($parametros[1]);//-----FUINCÓN COMENTADA
         break;
         case "logoutUser": 
-            $controller = new UserController();
+            $controller = new UserController();//-----FUINCÓN COMENTADA
             $controller->logoutUser();
         break;
 
