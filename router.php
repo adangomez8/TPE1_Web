@@ -110,7 +110,6 @@
             $controller = new AdminController();//-----FUINCÓN COMENTADA
             $controller->logoutUser();
         break;
-
         default:  
             $controller = new PublicController();
             $controller->showError("Lo siento! Esta página no está disponible <i class='far fa-sad-tear'></i>");
