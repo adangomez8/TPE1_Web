@@ -1,3 +1,5 @@
+{include 'navPublic.tpl'}
+
 <div class="container">
     
     <div class = "row">

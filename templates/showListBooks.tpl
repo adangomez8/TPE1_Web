@@ -1,3 +1,5 @@
+{include 'navPublic.tpl'}
+
 <div class="container">';
     <table class = "table table-striped table-dark">
         <div class = "row">
@@ -16,4 +18,4 @@
     </table>
 </div>
         
-{include 'templates/footer.tpl'}
+{include 'footer.tpl'}
