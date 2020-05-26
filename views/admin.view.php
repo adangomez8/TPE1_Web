@@ -44,7 +44,7 @@ class AdminView{
     }
     
     public function formEditBook($libro, $autores){
-        $this->smarty->assign('id', $libro);
+        $this->smarty->assign('info', $libro);
         $this->smarty->assign('autor', $autores);
         $this->smarty->display('formEditBook.tpl');
     }

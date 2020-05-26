@@ -1,28 +1,28 @@
  {include 'navAdmin.tpl'}
 
 <div class= "container formAgregar">
-  <h1>Editar libro {$id->nombre}</h1>
+  <h1>Editar libro {$info->nombre}</h1>
 
-<form action='guardarCambiosLib/{$id->id_libro}' method="POST">
+<form action='guardarCambiosLib/{$info->id_libro}' method="POST">
     <div class="form-group">
       <label for="exampleInputEmail1">Nombre del libro</label>
-      <input type="text" name="nombreLibro" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off">
+      <input type="text" name="nombreLibro" value="{$info->nombre}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off">
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Género</label>
-      <input type="text" name="genero" class="form-control" id="exampleInputPassword1" autocomplete="off">
+      <input type="text" name="genero" value="{$info->genero}" class="form-control" id="exampleInputPassword1" autocomplete="off">
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Sinopsis</label>
-      <input type="text" name="sinopsis" class="form-control" id="exampleInputPassword1" autocomplete="off">
+      <input type="text" name="sinopsis" value="{$info->sinopsis}" class="form-control" id="exampleInputPassword1" autocomplete="off">
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Año</label>
-      <input type="number" name="anio" class="form-control" id="exampleInputPassword1" autocomplete="off">
+      <input type="number" name="anio" value="{$info->anio}" class="form-control" id="exampleInputPassword1" autocomplete="off">
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Imagen</label>
-      <input type="text" name="imagen" class="form-control" id="exampleInputPassword1" autocomplete="off">
+      <input type="text" name="imagen" value="{$info->imagen}" class="form-control" id="exampleInputPassword1" autocomplete="off">
     </div>
       <div class="form-group">
       <label for="exampleFormControlSelect1">Seleccione autor</label>

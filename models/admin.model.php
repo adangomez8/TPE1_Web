@@ -66,7 +66,8 @@ class AdminModel{
     public function getBookForEdit($idlibro){
         //Abro conexión
         $db = $this->createConection();
-        $sentencia = $db->prepare("SELECT libros.nombre, libros.id_libro FROM libros WHERE id_libro = ?");
+        $sentencia = $db->prepare("SELECT libros.nombre, libros.genero, libros.sinopsis, libros.anio, libros.imagen,
+        libros.id_libro FROM libros WHERE id_libro = ?");
         //ejecuto sentencia
         $sentencia->execute([$idlibro]);
         $libro= $sentencia->fetch(PDO::FETCH_OBJ);
