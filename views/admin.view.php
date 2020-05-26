@@ -68,7 +68,7 @@ class AdminView{
     }
 
     public function formEditAuthor($autores){
-        $this->smarty->assign('id', $autores);
+        $this->smarty->assign('autor', $autores);
         $this->smarty->display('formEditAuthor.tpl');
     }
 

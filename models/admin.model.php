@@ -127,7 +127,7 @@ class AdminModel{
         //Abro conexión
         $db = $this->createConection();
 
-        $sentencia= $db->prepare("SELECT autores.nombre, autores.id_autor FROM autores WHERE id_autor=?");
+        $sentencia= $db->prepare("SELECT autores.nombre, autores.foto, autores.id_autor FROM autores WHERE id_autor=?");
         $sentencia->execute([$id_autor]);
         $autor= $sentencia->fetch(PDO::FETCH_OBJ);
 
