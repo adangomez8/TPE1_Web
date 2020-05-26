@@ -42,10 +42,6 @@
             $controller = new AdminController();
             $controller->showOptionAdmin();
         break;
-        case 'vistaPrevia':
-            $controller = new AdminController();
-            $controller->showView();
-        break;
         case 'nuevoLibro':
             $controller = new AdminController();
             $controller->showFormForAggBook();

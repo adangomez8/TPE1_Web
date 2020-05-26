@@ -142,16 +142,4 @@ class AdminModel{
         $sentencia= $db->prepare("UPDATE autores SET nombre=?, foto=? WHERE autores.id_autor=?");
         $sentencia->execute([$nombre, $foto, $id_autor]);
     }
-
-    public function getAllBooks(){
-        //Abro conexión
-        $db= $this->createConection();
-
-        $sentencia= $db->prepare("SELECT autores.nombre AS autor, libros.nombre AS nombre FROM autores JOIN libros 
-        WHERE autores.id_autor=libros.id_autor_fk");
-        $sentencia->execute();
-        $libros= $sentencia->fetchAll(PDO::FETCH_OBJ);
-
-        return $libros;
-    }
 }

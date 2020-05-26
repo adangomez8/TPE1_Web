@@ -182,11 +182,6 @@ class AdminController{
 
     }
 
-    public function showView(){
-        $libros= $this->model->getAllBooks();
-        $this->view->showAllBooks($libros);
-    }
-
     public function logoutUser(){
         session_start();
         session_destroy();

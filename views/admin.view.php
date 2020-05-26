@@ -81,9 +81,4 @@ class AdminView{
         $this->smarty->assign('libro', $nombre);
         $this->smarty->display('succesEditBook.tpl');
     }
-
-    public function showAllBooks($libros){
-        $this->smarty->assign('libro', $libros);
-        $this->smarty->display('allBooks.tpl');
-    }
 }
