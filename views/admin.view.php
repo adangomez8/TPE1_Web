@@ -9,25 +9,10 @@ class AdminView{
         $this->smarty = new Smarty();
         $this->smarty->assign('base_url', BASE_URL);
         $this->smarty->assign('titulo', "Libros");
-        $userName = $this->getUserName();
+        $userName = HelperAutenticacion::getUserName();
         $this->smarty->assign('username', $userName);
-        $userSurname = $this->getUserSurname();
+        $userSurname = HelperAutenticacion::getUserSurname();
         $this->smarty->assign('usersurname', $userSurname);
-    }
-
-    public function getUserName() {
-        session_start();
-        
-        $userName = $_SESSION['username'];
-        
-        return $userName;
-    }
-    
-    public function getUserSurname() {
-
-        $userSurname = $_SESSION['usersurname'];
-        
-        return $userSurname;
     }
 
     public function showError($msg) {
