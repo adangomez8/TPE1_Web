@@ -107,7 +107,7 @@
             $controller->showUserHome();
         break;
         case "logoutUser": 
-            $controller = new AdminController();//-----FUINCÓN COMENTADA
+            $controller = new AdminController();
             $controller->logoutUser();
         break;
         default:  
