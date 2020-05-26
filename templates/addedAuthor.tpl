@@ -6,6 +6,4 @@
     <button><a href="{$base_url}nuevoAutor">Agregar otro autor</a></button>
 
     <button><a href="{$base_url}admin">Volver a zona de administración</a></button>
-
-    <button><a href="{$base_url}home">Volver a inicio</a></button>
 </div>
