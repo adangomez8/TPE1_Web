@@ -1,6 +1,5 @@
 <?php
 
-require_once 'models/user.model.php';
 require_once 'views/user.view.php';
 
 class UserController{
@@ -9,7 +8,6 @@ class UserController{
     private $view;
 
     public function __construct() {
-        $this->model  = new UserModel();
         $this->view = new UserView();
         //Barrera de segurisad
         $this->checkLoggedUser();
