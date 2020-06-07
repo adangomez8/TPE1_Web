@@ -1,15 +1,22 @@
 <?php
 
-require_once 'models/public.model.php';
+require_once 'models/autores.model.php';
+require_once 'models/libros.model.php';
+require_once 'models/usuario.model.php';
 require_once 'views/public.view.php';
+
 
 class PublicController{
 
-    private $model;
+    private $modelAutor;
+    private $modelLibro;
+    private $modelUsuario;
     private $view;
 
     public function __construct() {
-        $this->model  = new PublicModel();
+        $this->modelAutor = new AutoresModel();
+        $this->modelLibro = new LibrosModel();
+        $this->modelUsuario = new UsuarioModel();
         $this->view = new PublicView();
     }
 
@@ -19,7 +26,7 @@ class PublicController{
 
     public function showHome(){
         //Pido los autores al MODELO
-        $autores = $this->model->showAuthors();
+        $autores = $this->modelAutor->getAll();
 
         //Actualizo la vista
         $this->view->showListAuthor($autores);
@@ -27,7 +34,7 @@ class PublicController{
 
     public function showAllBooks(){
         //Pido los libros al MODELO
-        $libros = $this->model->showBooks();
+        $libros = $this->modelLibro->getBooksAndAuthors();
 
         //Actualizo la vista
         $this->view->showListBooks($libros);
@@ -35,7 +42,7 @@ class PublicController{
 
     public function showBooksAuthor($idAutor){
         //Pido los libros del autor al MODELO
-        $books = $this->model->booksOfAuthor($idAutor);
+        $books = $this->modelLibro->getBooksOfAuthor($idAutor);
 
         if (!empty($books)){
             $this->view->showListBooksOfAuthor($books); //Actualizo la vista
@@ -47,7 +54,7 @@ class PublicController{
 
     public function infoBooks($idlibro){
         //Pido un libros al MODELO
-        $details = $this->model->infoOfBook($idlibro);
+        $details = $this->modelLibro->getDetailOfBook($idlibro);
 
         //Actualizo la vista
         $this->view->showInfoOfBook($details);
@@ -61,7 +68,7 @@ class PublicController{
         $usermail = $_POST['mail'];
         $password = $_POST['password'];
 
-        $user = $this->model->getUser($usermail);
+        $user = $this->modelUsuario->getUser($usermail);
 
 
         if ($user && password_verify($password, $user->password)) { 
