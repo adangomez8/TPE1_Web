@@ -27,7 +27,7 @@
       <div class="form-group">
       <label for="exampleFormControlSelect1">Seleccione autor</label>
       <select class="form-control" name="autor" id="exampleFormControlSelect1">
-          <option select>Seleccionar autor</option>
+          <option select></option>
         {foreach $autor item=autores}
           <option value={$autores->id_autor}>{$autores->nombre}</option>
       </div>

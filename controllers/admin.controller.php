@@ -53,7 +53,7 @@ class AdminController{
         //Me aseguro de que todos los campos estén completados para enviar los datos al formulario
         if (!empty($nombre)&& !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($imagen) && !empty($autor)){
         $this->model->newBook($nombre, $genero, $sinopsis, $anio, $imagen, $autor);
-        $this->view->addedBook();
+        $this->view->addedBook("El libro $nombre ha sido subido con éxito");
         }
         else {
         $this->view->showError("Faltan campos por completar");
@@ -83,7 +83,7 @@ class AdminController{
         $libroBorrado= $this->model->deleteBook($idlibro);
 
         //Mando al view los libros
-        $this->view-> bookdeleted($libroBorrado);
+        $this->view-> bookdeleted("El libro ha sido eliminado con éxito");
     }
 
     public function editBooks(){
@@ -105,7 +105,7 @@ class AdminController{
 
         if (!empty($nombre)&& !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($imagen) && !empty($autor)){
             $this->model->updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $imagen, $autor);
-            $this->view->succesEditBook($nombre);
+            $this->view->succesEditBook("El libro $nombre ha sido modificado exitosamente");
         }
         else {
         $this->view->showError("Faltan campos por completar");
@@ -156,7 +156,7 @@ class AdminController{
         }
         else {
             $this->model->authorDelete($idautor); //Pido auntor para borrar
-            $this->view->authordeleted();
+            $this->view->authordeleted("El autor ha sido eliminado con éxito");
         }
     }
 
@@ -175,7 +175,7 @@ class AdminController{
 
         if(!empty($nombre)&& !empty($foto)){
             $this->model->updateAuthor($id_autor, $nombre, $foto);
-            $this->view->shoeSuccesChane($nombre);
+            $this->view->showSuccesChane("EL autor $nombre ha sido modificado exitosamente");
         }
         else{
             $this->view->showError("Error, complete ambos campos para modificar el autor");
