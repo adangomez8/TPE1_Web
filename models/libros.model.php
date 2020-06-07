@@ -40,4 +40,52 @@ class LibrosModel {
         return $details;
     }
 
+    public function getAuthorBook(){
+        //Abro conexión
+        $db= $this->createConection();
+        //Realizo el pedido a la base de datos
+        $sentencia= $db->prepare("SELECT autores.id_autor, libros.nombre FROM autores JOIN libros");
+        $sentencia->execute();
+        $libro= $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+        return $libro;
+    }
+
+    public function newBook($nombre, $genero, $sinopsis, $anio, $imagen, $autor){
+        //Abro conexión
+        $db= $this->createConection();
+
+        //Mando datos a la base de datos
+        $sentencia= $db->prepare("INSERT INTO libros(nombre, genero, sinopsis, anio, imagen, id_autor_fk) VALUE(?, ?, ?, ?, ?, ?)");
+        $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $imagen, $autor]);//Ejecuta
+    }
+
+    public function getBook($idlibro){
+        //Abro conexión
+        $db = $this->createConection();
+        $sentencia = $db->prepare("SELECT libros.nombre, libros.genero, libros.sinopsis, libros.anio, libros.imagen,
+        libros.id_libro FROM libros WHERE id_libro = ?");
+        //ejecuto sentencia
+        $sentencia->execute([$idlibro]);
+        $libro= $sentencia->fetch(PDO::FETCH_OBJ);
+
+        return $libro;
+    }
+
+    public function deleteBook($idlibro){
+        //Abro conexión
+        $db= $this->createConection();
+        //Pido id a la base de datos
+        $sentencia = $db->prepare("DELETE FROM libros WHERE id_libro = ?");
+        //ejecuto sentencia
+        $sentencia->execute([$idlibro]);
+    }
+
+    public function updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $imagen, $autor){
+        //Abro conexión
+        $db = $this->createConection();
+        $sentencia = $db->prepare("UPDATE libros SET nombre=?, genero=?, sinopsis=?, anio =?, imagen=?, id_autor_fk=? 
+        WHERE libros.id_libro=?");
+        $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $imagen, $autor, $id_libro]);
+    }
 }

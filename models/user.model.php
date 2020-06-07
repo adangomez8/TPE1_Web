@@ -1,9 +1,15 @@
 <?php
 
+
+
+//-----------------ESTE MODELO HAY QUE ELIMINARLO-----------------------------//
+
+
+
 class UserModel{
 
     public function __construct() {
-        $this->db = $this->createConection();
+        $this->db = $this->createConection(); 
     }
 
     Private function createConection(){
