@@ -62,9 +62,9 @@ class AdminView{
         $this->smarty->display('authordeleted.tpl');
     }    
 
-    public function addedAuthor($nombre){
-        $this->smarty->assign('autor', $nombre);
-        $this->smarty->display('addedAuthor.tpl');
+    public function addedAuthor($msg){
+        $this->smarty->assign('mensaje', $msg);
+        $this->smarty->display('succes.tpl');
     }
 
     public function formEditAuthor($autores){

@@ -21,11 +21,11 @@
         case 'home':
             $controller = new PublicController();
             $controller->showHome();
-        break;   
+        break;
         case 'librosAutor':
             $controller = new PublicController();
             $controller->showBooksAuthor($parametros[1]);
-        break; 
+        break;
         case 'mostrarLibros':
             $controller = new PublicController();
             $controller->showAllBooks();

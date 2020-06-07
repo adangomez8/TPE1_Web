@@ -125,9 +125,10 @@ class AdminController{
             }
         }
 
+        //Compruebo que no estén los campos vacíos
         if (!empty($nombre)&& !empty($foto)){
             $this->model->createAuthor($nombre, $foto);
-            $this->view->addedAuthor($nombre);
+            $this->view->addedAuthor("El autor $nombre se agregó con éxito");
         }
         else {
             $this->view->showError("Faltan campos por completar para crear nuevo autor");
