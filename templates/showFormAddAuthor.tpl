@@ -12,6 +12,13 @@
     <div class="form-group">
       <input type="text" name="foto" class="form-control" id="exampleInputPassword1" placeholder="Foto del autor" autocomplete="off">
     </div>
+
+  {if $error}
+    <div class="alert alert-warning" role="alert">
+        {$error}
+    </div>
+  {/if}
+    
     <input type="submit" value="Guardar nuevo autor" class="btn btn-secondary btn-lg btn-block btnGuardarNuevoAut">
   </form>
 </div>

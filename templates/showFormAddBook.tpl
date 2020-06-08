@@ -40,6 +40,13 @@
         <div class="form-group">
           <input type="text" name="imagen" class="form-control" id="exampleInputPassword1" placeholder="Imagen del libro">
         </div>
+
+      {if $error}
+        <div class="alert alert-warning" role="alert">
+            {$error}
+        </div>
+      {/if}
+
         <input type="submit" value="Agregar libro" class="btn btn-secondary btn-lg btn-block btnGuardarNuevoLib">
     </form>
 </div>

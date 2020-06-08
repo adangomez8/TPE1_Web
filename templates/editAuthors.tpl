@@ -3,6 +3,11 @@
 <div class="container">
     <table class = "table table-striped table-dark">
         <div class = "row">
+            {if $error}
+                <div class="alert alert-success" role="alert">
+                    {$error}
+                </div>
+            {/if}
             <td class= "titTabla"><h2>Autor</h2></td>
             <td class= "titTabla"><h2>Eliminar</h2></td>
             <td class= "titTabla"><h2>Editar</h2></td>

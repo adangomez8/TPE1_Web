@@ -1,8 +1,15 @@
 {include 'navAdmin.tpl'}
 
-<h1>Modificar autor </h1>
-
 <div class= "container formAgregar">
+  
+  <h1>Modificar autor </h1>
+  
+  {if $error}
+      <div class="alert alert-warning" role="alert">
+          {$error}
+      </div>
+  {/if}
+  
   <h1 class="titAgreAut"><b>AGREGAR AUTOR</b></h1>
 
   <form action="cambioAutor/{$autor->id_autor}" method="POST">

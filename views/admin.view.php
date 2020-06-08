@@ -24,64 +24,45 @@ class AdminView{
         $this->smarty->display('admin.tpl');
     }
 
-    public function formAddBook($id){
+    public function formAddBook($id, $error = null){
         $this->smarty->assign('id', $id);
+        $this->smarty->assign('error', "$error");
         $this->smarty->display('showFormAddBook.tpl');
     }
 
-    public function showEditBooks($libros){
+    public function showEditBooks($libros, $error = null){
         $this->smarty->assign('info', $libros);
+        $this->smarty->assign('error', "$error");
         $this->smarty->display('editBooks.tpl');
 
     }
-
-    public function bookdeleted($msg){
-        $this->smarty->assign('mensaje', $msg);
-        $this->smarty->display('succes.tpl');
-    }
     
-    public function addedBook($msg){
-        $this->smarty->assign('mensaje', $msg);
-        $this->smarty->display('succes.tpl');
-    }
-    
-    public function formEditBook($libro, $autores){
+    public function formEditBook($libro, $autores, $error = null){
         $this->smarty->assign('info', $libro);
         $this->smarty->assign('autor', $autores);
+        $this->smarty->assign('error', "$error");
         $this->smarty->display('formEditBook.tpl');
     }
     
-    public function formAddauthor(){
+    public function formAddauthor($error = null){
+        $this->smarty->assign('error', "$error");
         $this->smarty->display('showFormAddAuthor.tpl');
     }
     
-    public function showEditAuthor($autores){
+    public function showEditAuthor($autores, $error = null){
         $this->smarty->assign('autores', $autores);
+        $this->smarty->assign('error', "$error");
         $this->smarty->display('editAuthors.tpl');
     }
-
-    public function authordeleted($msg){
-        $this->smarty->assign('mensaje', $msg);
-        $this->smarty->display('succes.tpl');
-    }    
 
     public function addedAuthor($msg){
         $this->smarty->assign('mensaje', $msg);
         $this->smarty->display('succes.tpl');
     }
 
-    public function formEditAuthor($autores){
+    public function formEditAuthor($autores, $error = null){
         $this->smarty->assign('autor', $autores);
+        $this->smarty->assign('error', "$error");
         $this->smarty->display('formEditAuthor.tpl');
-    }
-
-    public function showSuccesChane($msg){
-        $this->smarty->assign('mensaje', $msg);
-        $this->smarty->display('succes.tpl');
-    }
-
-    public function succesEditBook($msg){
-        $this->smarty->assign('mensaje', $msg);
-        $this->smarty->display('succes.tpl');
     }
 }

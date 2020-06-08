@@ -3,6 +3,12 @@
 <div class= "container formAgregar">
   <h1>Editar libro {$info->nombre}</h1>
 
+  {if $error}
+      <div class="alert alert-warning" role="alert">
+          {$error}
+      </div>
+  {/if}
+
 <form action='guardarCambiosLib/{$info->id_libro}' method="POST">
     <div class="form-group">
       <label for="exampleInputEmail1">Nombre del libro</label>
@@ -32,5 +38,7 @@
           <option value={$autores->id_autor}>{$autores->nombre}</option>
       </div>
         {/foreach}
+      
+      
     <input type="submit" value="Guardar cambios" class="btn btn-primary btnGuardarCambios">
 </form>

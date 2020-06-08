@@ -48,10 +48,11 @@ class AdminController{
 
 
         //Compruebo que no se suba dos veces el mismo libro
+        $autores= $this->modelAutor->getId();
         $libro= $this->modelLibro->getAuthorBook();
         foreach($libro as $libros){
             if (($nombre == $libros->nombre) && ($autor == $libros->id_autor)){
-                $this->view->showError("Error, el libro ingresado ya existe");
+                $this->view->formAddBook($autores, "El libro ingresado ya existe");
                 die();
             }
         }
@@ -59,10 +60,10 @@ class AdminController{
         //Me aseguro de que todos los campos estén completados para enviar los datos al formulario
         if (!empty($nombre)&& !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($imagen) && !empty($autor)){
         $this->modelLibro->newBook($nombre, $genero, $sinopsis, $anio, $imagen, $autor);
-        $this->view->addedBook("El libro $nombre ha sido subido con éxito");
+        $this->view->formAddBook($autores, "El libro '$nombre' ha sido subido con éxito");
         }
         else {
-        $this->view->showError("Faltan campos por completar");
+        $this->view->formAddBook($autores, "Faltan campos por completar");
         die();
         }
     }
@@ -86,10 +87,11 @@ class AdminController{
 
     public function deleteBook($idlibro){
         //Pido el libro que se quiere borrar a la base de datos
-        $libroBorrado= $this->modelLibro->deleteBook($idlibro);
+        $this->modelLibro->deleteBook($idlibro);
+        $libros = $this->modelLibro->getBooksAndAuthors();
 
         //Mando al view los libros
-        $this->view-> bookdeleted("El libro ha sido eliminado con éxito");
+        $this->view->showEditBooks($libros, "El libro ha sido eliminado con éxito");
     }
 
     public function editBooks(){
@@ -108,13 +110,17 @@ class AdminController{
         $imagen= $_POST['imagen'];
         $autor= $_POST['autor'];
 
+        $autores= $this->modelAutor->getAuthorsAndId();
+        $libros = $this->modelLibro->getBooksAndAuthors();
+        $libro = $this->modelLibro->getBook($id_libro);
+
 
         if (!empty($nombre)&& !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($imagen) && !empty($autor)){
             $this->modelLibro->updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $imagen, $autor);
-            $this->view->succesEditBook("El libro $nombre ha sido modificado exitosamente");
+            $this->view->showEditBooks($libros, "El libro '$nombre' ha sido modificado exitosamente");
         }
         else {
-        $this->view->showError("Faltan campos por completar");
+        $this->view->formEditBook($libro, $autores, "Faltan campos por completar");
         }
     }
 
@@ -126,7 +132,7 @@ class AdminController{
         $autores= $this->modelAutor->getAll();
         foreach ($autores as $autor){
             if ($autor->nombre == $nombre){
-                $this->view->showError("El autor ya existe");
+                $this->view->FormAddauthor("El autor ya existe");
                 die();
             }
         }
@@ -134,10 +140,10 @@ class AdminController{
         //Compruebo que no estén los campos vacíos
         if (!empty($nombre)&& !empty($foto)){
             $this->modelAutor->newAuthor($nombre, $foto);
-            $this->view->addedAuthor("El autor $nombre se agregó con éxito");
+            $this->view->FormAddauthor("El autor $nombre se agregó con éxito");
         }
         else {
-            $this->view->showError("Faltan campos por completar para crear nuevo autor");
+            $this->view->FormAddauthor("Faltan campos por completar para crear nuevo autor");
         }
     }
 
@@ -154,15 +160,17 @@ class AdminController{
     }
 
     public function deleteAuthor($idautor){
-        //Antes de eliminar, compruebo que no haya libros a su nombre
+        
         $libros= $this->modelLibro->getBooksOfAuthor($idautor);
-
+        $autores= $this->modelAutor->getAll();
+        
+        //Antes de eliminar, compruebo que no haya libros a su nombre
         if (!empty($libros)){
-            $this->view->showError("Error, existen libros asociados a este autor");
+            $this->view->showEditAuthor($autores, "No se pudo borrar, existen libros asociados a este autor");
         }
         else {
-            $this->modelAutor->deleteAuthor($idautor); //Pido auntor para borrar
-            $this->view->authordeleted("El autor ha sido eliminado con éxito");
+            $this->modelAutor->deleteAuthor($idautor); //Pido autor para borrar
+            $this->view->showEditAuthor($autores, "El autor ha sido eliminado con éxito");
         }
     }
 
@@ -178,13 +186,16 @@ class AdminController{
         //Tomo datos nuevos del formulario
         $nombre= $_POST['nombre'];
         $foto= $_POST['foto'];
+        
+        $autor= $this->modelAutor->getAuthor($id_autor);
+        $autores= $this->modelAutor->getAll();
 
         if(!empty($nombre)&& !empty($foto)){
             $this->modelAutor->updateAuthor($id_autor, $nombre, $foto);
-            $this->view->showSuccesChane("EL autor $nombre ha sido modificado exitosamente");
+            $this->view->showEditAuthor($autores, "El autor '$nombre' ha sido modificado exitosamente");
         }
         else{
-            $this->view->showError("Error, complete ambos campos para modificar el autor");
+            $this->view->formEditAuthor($autor, "Complete ambos campos para modificar el autor");
         }
 
     }
