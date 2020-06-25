@@ -28,26 +28,14 @@ class PublicApiController{
         $this->view->response($libros, 200);
     }
 
-    public function getBooksOfAuthor($params = []){
-        $idAutor = $params[':ID'];
-        $autor = $this->modelLibro->getBooksOfAuthor($idAutor);
-        if ($autor){
-            $this->view->response($autor, 200);
-        }else{
-            $this->view->response("no existe autor con id {$idAutor}", 404);
-        }
-    }
-
-    public function getDetailsOfBook($params = []){
+    public function getBooksOfAuthor($params){
         $idLibro = $params[':ID'];
         $libro = $this->modelLibro->getDetailOfBook($idLibro);
         if ($libro){
             $this->view->response($libro, 200);
         }else{
-            $this->view->response("no existe libro con id {$idLibro}", 404);
-        }  
+            $this->view->response("no existe autor con id {$idAutor}", 404);
+        }
     }
-
-    
 
 }
