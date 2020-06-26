@@ -9,8 +9,10 @@
         
 <div class= "container fotoLibro">
     <h3 class="titFotLib">{$titFotLib}</h3>
-        {$libro->Foto}
+    {if isset($libro->imagen)}
+        <img scr="{$libro->imagen}"/>
+    {/if}
 </div>
 
-<!--Esto lo puse para cuando podamos subir la foto ya nos quede-->
+
 {include 'templates/footer.tpl'}

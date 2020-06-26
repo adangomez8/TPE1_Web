@@ -9,7 +9,7 @@
       </div>
   {/if}
 
-<form action='guardarCambiosLib/{$info->id_libro}' method="POST">
+<form action='guardarCambiosLib/{$info->id_libro}' method="POST" enctype="multipart/form-data">
     <div class="form-group">
       <label for="exampleInputEmail1">Nombre del libro</label>
       <input type="text" name="nombreLibro" value="{$info->nombre}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off">
@@ -28,7 +28,7 @@
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Imagen</label>
-      <input type="text" name="imagen" value="{$info->imagen}" class="form-control" id="exampleInputPassword1" autocomplete="off">
+      <input type="file" name="imagen" value="{$info->imagen}" class="form-control" id="imageToUpload">
     </div>
       <div class="form-group">
       <label for="exampleFormControlSelect1">Seleccione autor</label>

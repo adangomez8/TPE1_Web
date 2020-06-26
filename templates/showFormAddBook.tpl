@@ -3,7 +3,7 @@
 <div class= "container formAgregar">
     <h1 class="titAgreLib"><b>AGREGAR LIBRO</b></h1>
   
-    <form action='agregarLibro' method="POST">
+    <form action='agregarLibro' method="POST" enctype="multipart/form-data">
       
       <div class="form-group">
         <select class="form-control" name="autor" id="exampleFormControlSelect1">
@@ -37,8 +37,8 @@
           <input type="text" name="sinopsis" class="form-control" id="exampleInputPassword1" placeholder="Sinopsis" style="HEIGHT: 98px" autocomplete="off">
         </div>
         
-        <div class="form-group">
-          <input type="text" name="imagen" class="form-control" id="exampleInputPassword1" placeholder="Imagen del libro">
+        <div>
+          <input type="file" name="imagen" id="imageToUpload" class="form-control" >
         </div>
 
       {if $error}

@@ -33,7 +33,7 @@ class LibrosModel {
     }
 
     public function getDetailOfBook($idlibro){
-        $sentencia = $this->db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.genero AS Genero, libros.anio AS Anio, libros.imagen AS Foto, libros.id_autor_fk,  libros.id_libro, libros.sinopsis  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_libro = ?"); // prepara la consulta
+        $sentencia = $this->db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.genero AS Genero, libros.anio AS Anio, libros.imagen, libros.id_autor_fk,  libros.id_libro, libros.sinopsis  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_libro = ?"); // prepara la consulta
         $sentencia->execute([$idlibro]); // ejecuta
         $details = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
 
@@ -48,9 +48,20 @@ class LibrosModel {
         return $libro;
     }
 
-    public function newBook($nombre, $genero, $sinopsis, $anio, $imagen, $autor){
+    public function newBook($nombre, $genero, $sinopsis, $anio, $imagen = null, $autor){
+        $pathImg= null;
+        if ($imagen){
+            $pathImg= $this->uploadImage($imagen);
+        }
         $sentencia= $this->db->prepare("INSERT INTO libros(nombre, genero, sinopsis, anio, imagen, id_autor_fk) VALUE(?, ?, ?, ?, ?, ?)");
-        $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $imagen, $autor]);//Ejecuta
+        $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $pathImg, $autor]);//Ejecuta
+    }
+
+    //Función de redirección de imagenes
+    private function uploadImage($imagen){
+        $target= 'imagenes/libros/' . uniqid() . '.jpg';
+        move_uploaded_file($imagen, $target);
+        return $target;
     }
 
     public function getBook($idlibro){
@@ -70,8 +81,12 @@ class LibrosModel {
     }
 
     public function updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $imagen, $autor){
+        $pathImg= null;
+        if ($imagen){
+            $pathImg= $this->uploadImage($imagen);
+        }
         $sentencia = $this->db->prepare("UPDATE libros SET nombre=?, genero=?, sinopsis=?, anio =?, imagen=?, id_autor_fk=? 
         WHERE libros.id_libro=?");
-        $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $imagen, $autor, $id_libro]);
+        $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $pathImg, $autor, $id_libro]);
     }
 }
