@@ -33,7 +33,10 @@ class LibrosModel {
     }
 
     public function getDetailOfBook($idlibro){
-        $sentencia = $this->db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, libros.genero AS Genero, libros.anio AS Anio, libros.imagen, libros.id_autor_fk,  libros.id_libro, libros.sinopsis  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor WHERE id_libro = ?"); // prepara la consulta
+        $sentencia = $this->db->prepare("SELECT libros.nombre AS Nombre, autores.nombre AS Autor, 
+        libros.genero AS Genero, libros.anio AS Anio, libros.imagen, libros.id_autor_fk,  
+        libros.id_libro, libros.sinopsis  FROM libros JOIN autores ON libros.id_autor_fk=autores.id_autor 
+        WHERE id_libro = ?"); // prepara la consulta
         $sentencia->execute([$idlibro]); // ejecuta
         $details = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
 

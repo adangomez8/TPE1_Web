@@ -45,6 +45,8 @@ class AdminController{
         $anio= $_POST['anio'];
         $autor= $_POST['autor'];
 
+        //var_dump($imagen);die();
+
 
         //Compruebo que no se suba dos veces el mismo libro
         $autores= $this->modelAutor->getId();
@@ -56,19 +58,15 @@ class AdminController{
             }
         }
 
-        //Compruebo el formato de la imagen
-        if($_FILES['imagen']['file'] == "image/jpg" || $_FILES['imagen']['file'] == "image/jpeg" || 
-        $_FILES['imagen']['file'] == "image/png" || $_FILES['imagen']['file'] == "image/gif"){
-
-            //Me aseguro de que todos los campos estén completados para enviar los datos al formulario
-            if (!empty($nombre)&& !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
+        //Compruebo el formato de la imagen //Me aseguro también que todos los campos estén completados para enviar los datos al formulario
+        if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || 
+        $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif" && !empty($nombre)
+        && !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
             $this->modelLibro->newBook($nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $autor,);
             $this->view->formAddBook($autores, "El libro '$nombre' ha sido subido con éxito");
-            }
-            else {
+        }else {
             $this->view->formAddBook($autores, "Faltan campos por completar");
             die();
-            }
         }
     }
 
@@ -120,15 +118,12 @@ class AdminController{
 
         //Compruebo el formato de la imagen
         if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || 
-        $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif"){
-            //Compruebo que no hayan datos que falten
-            if (!empty($nombre)&& !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
-                $this->modelLibro->updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $autor);
-                $this->view->showEditBooks($libros, "El libro '$nombre' ha sido modificado exitosamente");
-            }
-            else {
+        $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif" && !empty($nombre)
+        && !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
+            $this->modelLibro->updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $autor);
+            $this->view->showEditBooks($libros, "El libro '$nombre' ha sido modificado exitosamente");
+        } else{
             $this->view->formEditBook($libro, $autores, "Faltan campos por completar");
-            }
         }
     }
 

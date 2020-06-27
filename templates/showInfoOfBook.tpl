@@ -9,9 +9,7 @@
         
 <div class= "container fotoLibro">
     <h3 class="titFotLib">{$titFotLib}</h3>
-    {if isset($libro->imagen)}
-        <img scr="{$libro->imagen}"/>
-    {/if}
+    <img src="{$libro->imagen}" class="tapaLibro"/>
 </div>
 
 

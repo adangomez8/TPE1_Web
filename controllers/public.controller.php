@@ -55,6 +55,7 @@ class PublicController{
     public function infoBooks($idlibro){
         //Pido un libros al MODELO
         $details = $this->modelLibro->getDetailOfBook($idlibro);
+        //var_dump($details->imagen);die();
 
         //Actualizo la vista
         $this->view->showInfoOfBook($details);
