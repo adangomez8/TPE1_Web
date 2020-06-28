@@ -94,6 +94,14 @@
             $controller = new PublicController();
             $controller->showLoginUser();
         break;
+        case "registro":
+            $controller = new PublicController();
+            $controller->formRegister();
+        break;
+        case "registerComplete":
+            $controller = new PublicController();
+            $controller->sendRegister();
+        break;
         case "verifyUser": 
             $controller = new PublicController();
             $controller->verifyUser();

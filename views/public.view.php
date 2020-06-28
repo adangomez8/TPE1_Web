@@ -47,4 +47,14 @@ class PublicView{
         $this->smarty->assign('error', $error);
         $this->smarty->display('formLoginUser.tpl');
     }
+
+    public function showFormRegister(){
+        $this->smarty->display('formRegister.tpl');
+    }
+
+    public function succesRegister($nombre, $apellido){
+        $this->smarty->assign('nombre', $nombre);
+        $this->smarty->assign('apellido', $apellido);
+        $this->smarty->display('succesRegister.tpl');
+    }
 }

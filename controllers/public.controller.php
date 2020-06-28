@@ -65,6 +65,36 @@ class PublicController{
         $this->view->showFormLoginUser();
     }
 
+    public function formRegister(){
+        $this->view->showFormRegister();
+    }
+
+    public function sendRegister(){
+        $nombre= $_POST['nombre'];
+        $apellido= $_POST['apellido'];
+        $mail= $_POST['mail'];
+        $contraseña= $_POST['password'];
+
+        
+        //Compruebo que no queden campos sin completar
+        if (!empty($nombre) && !empty($apellido) &&!empty($mail) && !empty($contraseña)){
+            //Compruebo que el mail ingresado no exista en la base de datos
+            $succes= $this->modelUsuario->getUser($mail);
+            if ($succes){
+                $this->view->showError("El mail ingresado ya está registrado");
+            }
+            else{
+            $clave_encriptada = password_hash ($contraseña, PASSWORD_DEFAULT); //Encripto contraseña de usuario
+            $this->modelUsuario->newUser($nombre, $apellido, $mail, $clave_encriptada);
+            $this->view->succesRegister($nombre, $apellido);
+            }
+        }
+        else{
+            $this->view->showError("No completó todos los campos");
+            die();
+        }
+    }
+
     public function verifyUser() {
         $usermail = $_POST['mail'];
         $password = $_POST['password'];
