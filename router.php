@@ -114,6 +114,10 @@
             $controller = new AdminController();
             $controller->removePermissionAdmin($parametros[1]);
         break;
+        case "borrarUsuario": 
+            $controller = new AdminController();
+            $controller->deleteUser($parametros[1]);
+        break;
         case "verifyUser": 
             $controller = new PublicController();
             $controller->verifyUser();

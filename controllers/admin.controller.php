@@ -212,12 +212,18 @@ class AdminController{
     public function givePermissionAdmin($idUser){
         
         $usuarios= $this->modelUsuario->giveAdminUser($idUser);
-        header("Location: " . BASE_URL . 'todosAdmin');
+        header("Location: " . BASE_URL . 'todosUsers');
     }
 
     public function removePermissionAdmin($idUser){
         
         $usuarios= $this->modelUsuario->removeAdminUser($idUser);
-        header("Location: " . BASE_URL . 'todosAdmin');
+        header("Location: " . BASE_URL . 'todosUsers');
+    }
+
+    public function deleteUser($idUser){
+        
+        $usuarios= $this->modelUsuario->deleteUser($idUser);
+        header("Location: " . BASE_URL . 'todosUsers');
     }
 }
