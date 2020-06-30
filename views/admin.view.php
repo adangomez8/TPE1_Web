@@ -15,8 +15,9 @@ class AdminView{
         $this->smarty->assign('usersurname', $userSurname);
     }
 
-    public function showError($msg) {
+    public function showError($msg, $user = null) {
         $this->smarty->assign('msg', $msg);
+        $this->smarty->assign('user', $user);
         $this->smarty->display('showError.tpl');
     }
 

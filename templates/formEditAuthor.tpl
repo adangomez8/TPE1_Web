@@ -24,5 +24,3 @@
     <input type="submit" value="Guardar nuevo autor" class="btn btn-secondary btn-lg btn-block btnGuardarNuevoAut">
   </form>
 </div>
-
-{include 'footer.tpl'}

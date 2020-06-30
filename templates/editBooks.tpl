@@ -24,5 +24,3 @@
         </div>
     </table>
 </div>
-        
-{include 'footer.tpl'}

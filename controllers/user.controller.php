@@ -33,4 +33,10 @@ class UserController{
         $this->view->showError("En reparación. Próximamente podrá hacer uso de esta funcionalidad");
     }
 
+    public function logoutUser(){
+        session_start();
+        session_destroy();
+        header("Location: " . BASE_URL . 'loginUser');
+    }
+
 }

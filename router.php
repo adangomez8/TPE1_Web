@@ -111,7 +111,7 @@
             $controller->showUserHome();
         break;
         case "logoutUser": 
-            $controller = new AdminController();
+            $controller = new UserController();
             $controller->logoutUser();
         break;
         default:  

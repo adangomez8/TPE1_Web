@@ -33,8 +33,8 @@ class AdminController{
     }
 
     public function showOptionAdmin(){
-        //Envío al view
-        $this->view->optionAdmin();
+            //Envío al view
+            $this->view->optionAdmin();
     }
 
     public function addBook(){
@@ -202,11 +202,4 @@ class AdminController{
         }
 
     }
-
-    public function logoutUser(){
-        session_start();
-        session_destroy();
-        header("Location: " . BASE_URL . 'loginUser');
-    }
-
 }

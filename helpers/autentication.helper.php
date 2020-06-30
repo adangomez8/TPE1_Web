@@ -7,8 +7,8 @@ class HelperAutenticacion {
         session_start();
         }
 
-        if (!isset($_SESSION['logged'])) {
-            header('Location: ' . BASE_URL . 'loginUser');
+        if (!isset($_SESSION['logged']) || ($_SESSION['admin']!=1)) {
+            header('Location: ' . BASE_URL);
             die();
         }
     }
