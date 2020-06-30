@@ -3,19 +3,15 @@
 require_once 'models/autores.model.php';
 require_once 'models/libros.model.php';
 require_once 'models/usuario.model.php';
-require_once 'models/comentarios.model.php';
 require_once 'views/admin.view.php';
-require_once 'views/public.view.php';
 require_once 'helpers/autentication.helper.php';
 
 class AdminController{
 
     private $modelAutor;
     private $modelLibro;
-    private $modelComentario;
     private $modelUsuario;
     private $viewUsuario;
-    private $viewPublic;
 
     public function __construct() {
         $this->modelAutor = new AutoresModel();
@@ -23,7 +19,6 @@ class AdminController{
         $this->modelUsuario = new UsuarioModel();
         $this->modelComentario = new ComentariosModel();
         $this->viewUsuario = new AdminView();
-        $this->viewPublic = new PublicView();
         HelperAutenticacion::checkLoggedAdmin();
     }
 

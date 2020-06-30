@@ -1,5 +1,5 @@
 <?php
-
+require_once 'models/comentarios.model.php';
 require_once 'views/user.view.php';
 require_once 'models/comentarios.model.php';
 
@@ -10,6 +10,7 @@ class UserController{
     private $view;
 
     public function __construct() {
+        $this->modelComen = new ComentariosModel();
         $this->view = new UserView();
         $this->modelComentario = new ComentariosModel();
         //Barrera de segurisad
@@ -55,5 +56,4 @@ class UserController{
             header("Location: " . BASE_URL . 'infoLibros/'.$id);
         }
     }
-
 }
