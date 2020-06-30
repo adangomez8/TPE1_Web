@@ -120,7 +120,7 @@
         break;
         case "enviarComentario": 
             $controller = new AdminController();
-            $controller->sendCommentary($parametros[1]);
+            $controller->sendCommentary();
         break;
         case "verifyUser": 
             $controller = new PublicController();
