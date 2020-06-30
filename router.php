@@ -102,6 +102,18 @@
             $controller = new PublicController();
             $controller->sendRegister();
         break;
+        case "todosAdmin": 
+            $controller = new AdminController();
+            $controller->allUser();
+        break;
+        case "darPermisosAdmin": 
+            $controller = new AdminController();
+            $controller->givePermissionAdmin($parametros[1]);
+        break;
+        case "quitarPermisosAdmin": 
+            $controller = new AdminController();
+            $controller->removePermissionAdmin($parametros[1]);
+        break;
         case "verifyUser": 
             $controller = new PublicController();
             $controller->verifyUser();

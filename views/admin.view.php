@@ -66,4 +66,11 @@ class AdminView{
         $this->smarty->assign('error', "$error");
         $this->smarty->display('formEditAuthor.tpl');
     }
+
+    public function showListUser($usuarios){
+        $this->smarty->assign('usuarios', $usuarios);
+        $this->smarty->display('showListUser.tpl');
+    }
+
+    
 }

@@ -62,7 +62,7 @@ class AdminController{
         if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || 
         $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif" && !empty($nombre)
         && !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
-            $this->modelLibro->newBook($nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $autor,);
+            $this->modelLibro->newBook($nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $autor);
             $this->view->formAddBook($autores, "El libro '$nombre' ha sido subido con éxito");
         }else {
             $this->view->formAddBook($autores, "Faltan campos por completar");
@@ -201,5 +201,23 @@ class AdminController{
             $this->view->formEditAuthor($autor, "Complete ambos campos para modificar el autor");
         }
 
+    }
+
+    public function allUser(){
+        $usuarios= $this->modelUsuario->getAllUser();
+        //Mando al view los usuarios
+        $this->view->showListUser($usuarios);
+    }
+
+    public function givePermissionAdmin($idUser){
+        
+        $usuarios= $this->modelUsuario->giveAdminUser($idUser);
+        header("Location: " . BASE_URL . 'todosAdmin');
+    }
+
+    public function removePermissionAdmin($idUser){
+        
+        $usuarios= $this->modelUsuario->removeAdminUser($idUser);
+        header("Location: " . BASE_URL . 'todosAdmin');
     }
 }
