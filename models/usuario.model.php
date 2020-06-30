@@ -54,5 +54,4 @@ class UsuarioModel {
         $sentencia = $this->db->prepare("DELETE FROM usuario WHERE id_usuario = ?");
         $sentencia->execute([$idUser]);
     }
-    
 }

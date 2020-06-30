@@ -83,4 +83,19 @@ footer{
 .btnVolverBorr:hover{
     background-color: rgba(243, 0, 0, 0.74);
 }
-
+#comentarioLib{
+    background-color: rosybrown;
+    margin-right: 0;
+    width: 90%;
+    height: 50px;
+}
+.comentarioLibDiv{
+    margin-top: 15px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.btnComLib{
+    height: 50px;
+    width: 50px;
+    margin-bottom: 5px;
+}

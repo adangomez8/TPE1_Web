@@ -33,10 +33,11 @@ class PublicView{
         $this->smarty->display('showListBookOfAuthor.tpl');
     }
 
-    public function showInfoOfBook($libro, $user = null){
+    public function showInfoOfBook($libro, $user = null, $error = null){
         $this->smarty->assign('titFotLib',"Foto del libro");
         $this->smarty->assign('libro', $libro);
         $this->smarty->assign('user', $user);
+        $this->smarty->assign('error', $error);
         $this->smarty->display('showInfoOfBook.tpl');
     }
 
@@ -59,7 +60,7 @@ class PublicView{
         $this->smarty->display('formRegister.tpl');
     }
 
-    public function succesRegister($nombre, $apellido, $user = nuul){
+    public function succesRegister($nombre, $apellido, $user = null){
         $this->smarty->assign('nombre', $nombre);
         $this->smarty->assign('apellido', $apellido);
         $this->smarty->assign('user', $user);

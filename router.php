@@ -118,6 +118,10 @@
             $controller = new AdminController();
             $controller->deleteUser($parametros[1]);
         break;
+        case "enviarComentario": 
+            $controller = new AdminController();
+            $controller->sendCommentary($parametros[1]);
+        break;
         case "verifyUser": 
             $controller = new PublicController();
             $controller->verifyUser();

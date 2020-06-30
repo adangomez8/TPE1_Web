@@ -3,26 +3,32 @@
 require_once 'models/autores.model.php';
 require_once 'models/libros.model.php';
 require_once 'models/usuario.model.php';
+require_once 'models/comentarios.model.php';
 require_once 'views/admin.view.php';
+require_once 'views/public.view.php';
 require_once 'helpers/autentication.helper.php';
 
 class AdminController{
 
     private $modelAutor;
     private $modelLibro;
+    private $modelComentario;
     private $modelUsuario;
-    private $view;
+    private $viewUsuario;
+    private $viewPublic;
 
     public function __construct() {
         $this->modelAutor = new AutoresModel();
         $this->modelLibro = new LibrosModel();
         $this->modelUsuario = new UsuarioModel();
-        $this->view = new AdminView();
+        $this->modelComentario = new ComentariosModel();
+        $this->viewUsuario = new AdminView();
+        $this->viewPublic = new PublicView();
         HelperAutenticacion::checkLoggedAdmin();
     }
 
     public function showError($error) {
-        $this->view->showError($error); 
+        $this->viewUsuario->showError($error); 
     }
  
     public function verifyAdmin() {
@@ -33,8 +39,8 @@ class AdminController{
     }
 
     public function showOptionAdmin(){
-            //Envío al view
-            $this->view->optionAdmin();
+            //Envío al viewUsuario
+            $this->viewUsuario->optionAdmin();
     }
 
     public function addBook(){
@@ -53,7 +59,7 @@ class AdminController{
         $libro= $this->modelLibro->getAuthorBook();
         foreach($libro as $libros){
             if (($nombre == $libros->nombre) && ($autor == $libros->id_autor)){
-                $this->view->formAddBook($autores, "El libro ingresado ya existe");
+                $this->viewUsuario->formAddBook($autores, "El libro ingresado ya existe");
                 die();
             }
         }
@@ -63,9 +69,9 @@ class AdminController{
         $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif" && !empty($nombre)
         && !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
             $this->modelLibro->newBook($nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $autor);
-            $this->view->formAddBook($autores, "El libro '$nombre' ha sido subido con éxito");
+            $this->viewUsuario->formAddBook($autores, "El libro '$nombre' ha sido subido con éxito");
         }else {
-            $this->view->formAddBook($autores, "Faltan campos por completar");
+            $this->viewUsuario->formAddBook($autores, "Faltan campos por completar");
             die();
         }
     }
@@ -74,8 +80,8 @@ class AdminController{
         //Pido a la base de datos los id de los autores
         $id= $this->modelAutor->getId();
 
-        //mando el id al view para crear el fomrulario
-        $this->view->formAddBook($id);
+        //mando el id al viewUsuario para crear el fomrulario
+        $this->viewUsuario->formAddBook($id);
     }
 
     public function modifyBook($idlibro){
@@ -84,7 +90,7 @@ class AdminController{
         $libro = $this->modelLibro->getBook($idlibro);
 
         //Actualizo la vista
-        $this->view->formEditBook($libro, $autores);
+        $this->viewUsuario->formEditBook($libro, $autores);
     }
 
     public function deleteBook($idlibro){
@@ -92,16 +98,16 @@ class AdminController{
         $this->modelLibro->deleteBook($idlibro);
         $libros = $this->modelLibro->getBooksAndAuthors();
 
-        //Mando al view los libros
-        $this->view->showEditBooks($libros, "El libro ha sido eliminado con éxito");
+        //Mando al viewUsuario los libros
+        $this->viewUsuario->showEditBooks($libros, "El libro ha sido eliminado con éxito");
     }
 
     public function editBooks(){
         //Pido los libros de nuevo a la base de datos
         $libros= $this->modelLibro->getBooksAndAuthors();
 
-        //Mando al view los libros
-        $this->view->showEditBooks($libros);
+        //Mando al viewUsuario los libros
+        $this->viewUsuario->showEditBooks($libros);
     }
 
     public function saveChangesBook($id_libro){
@@ -121,9 +127,9 @@ class AdminController{
         $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif" && !empty($nombre)
         && !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
             $this->modelLibro->updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $autor);
-            $this->view->showEditBooks($libros, "El libro '$nombre' ha sido modificado exitosamente");
+            $this->viewUsuario->showEditBooks($libros, "El libro '$nombre' ha sido modificado exitosamente");
         } else{
-            $this->view->formEditBook($libro, $autores, "Faltan campos por completar");
+            $this->viewUsuario->formEditBook($libro, $autores, "Faltan campos por completar");
         }
     }
 
@@ -135,7 +141,7 @@ class AdminController{
         $autores= $this->modelAutor->getAll();
         foreach ($autores as $autor){
             if ($autor->nombre == $nombre){
-                $this->view->FormAddauthor("El autor ya existe");
+                $this->viewUsuario->FormAddauthor("El autor ya existe");
                 die();
             }
         }
@@ -143,23 +149,23 @@ class AdminController{
         //Compruebo que no estén los campos vacíos
         if (!empty($nombre)&& !empty($foto)){
             $this->modelAutor->newAuthor($nombre, $foto);
-            $this->view->FormAddauthor("El autor $nombre se agregó con éxito");
+            $this->viewUsuario->FormAddauthor("El autor $nombre se agregó con éxito");
         }
         else {
-            $this->view->FormAddauthor("Faltan campos por completar para crear nuevo autor");
+            $this->viewUsuario->FormAddauthor("Faltan campos por completar para crear nuevo autor");
         }
     }
 
     public function showFormForAggAuthor(){
-        $this->view->FormAddauthor();
+        $this->viewUsuario->FormAddauthor();
     }
 
     public function modifyAuthor($id_autor){
         //Pido los autores a la base de datos
         $autores= $this->modelAutor->getAuthor($id_autor);
 
-        //Mando al view los autores
-        $this->view->formEditAuthor($autores);
+        //Mando al viewUsuario los autores
+        $this->viewUsuario->formEditAuthor($autores);
     }
 
     public function deleteAuthor($idautor){
@@ -169,11 +175,11 @@ class AdminController{
         
         //Antes de eliminar, compruebo que no haya libros a su nombre
         if (!empty($libros)){
-            $this->view->showEditAuthor($autores, "No se pudo borrar, existen libros asociados a este autor");
+            $this->viewUsuario->showEditAuthor($autores, "No se pudo borrar, existen libros asociados a este autor");
         }
         else {
             $this->modelAutor->deleteAuthor($idautor); //Pido autor para borrar
-            $this->view->showEditAuthor($autores, "El autor ha sido eliminado con éxito");
+            $this->viewUsuario->showEditAuthor($autores, "El autor ha sido eliminado con éxito");
         }
     }
 
@@ -181,8 +187,8 @@ class AdminController{
         //Pido los autores a la base de datos
         $autores= $this->modelAutor->getAll();
 
-        //Mando al view los autores
-        $this->view->showEditAuthor($autores);
+        //Mando al viewUsuario los autores
+        $this->viewUsuario->showEditAuthor($autores);
     }
 
     public function changeAuthor($id_autor){
@@ -195,18 +201,18 @@ class AdminController{
 
         if(!empty($nombre)&& !empty($foto)){
             $this->modelAutor->updateAuthor($id_autor, $nombre, $foto);
-            $this->view->showEditAuthor($autores, "El autor '$nombre' ha sido modificado exitosamente");
+            $this->viewUsuario->showEditAuthor($autores, "El autor '$nombre' ha sido modificado exitosamente");
         }
         else{
-            $this->view->formEditAuthor($autor, "Complete ambos campos para modificar el autor");
+            $this->viewUsuario->formEditAuthor($autor, "Complete ambos campos para modificar el autor");
         }
 
     }
 
     public function allUser(){
         $usuarios= $this->modelUsuario->getAllUser();
-        //Mando al view los usuarios
-        $this->view->showListUser($usuarios);
+        //Mando al viewUsuario los usuarios
+        $this->viewUsuario->showListUser($usuarios);
     }
 
     public function givePermissionAdmin($idUser){
@@ -225,5 +231,23 @@ class AdminController{
         
         $usuarios= $this->modelUsuario->deleteUser($idUser);
         header("Location: " . BASE_URL . 'todosUsers');
+    }
+
+    public function sendCommentary(){
+        $comentario= $_POST['comentario'];
+        $puntuacion= $_POST['puntuacion'];
+        $idLibro= $_POST['libro'];
+
+        
+        if (!empty($comentario)){
+            $this->modelComentario->newCommentary($comentario, $puntuacion, $idLibro);
+           
+            header("Location: " . BASE_URL . 'infoLibro/{$id}');
+        }
+        else{
+            header("Location: " . BASE_URL . 'infoLibro/{$id}');
+        }
+        
+        
     }
 }
