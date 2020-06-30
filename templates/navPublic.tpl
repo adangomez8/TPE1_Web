@@ -42,7 +42,7 @@
                     {/if}
                     {if !$user}
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-danger" href="admin"><i class="fas fa-users-cog"></i>Ingresar</a>
+                        <a class="nav-link btn btn-outline-danger" href="loginUser"><i class="fas fa-users-cog"></i>Ingresar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-danger" href="registro"><i class="fas fa-users-cog"></i>Registrarse</a>

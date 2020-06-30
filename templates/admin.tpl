@@ -6,7 +6,7 @@
     <h1>Zona de administración</h1>
   </div>
   <div class= "col-md-6">
-    <a href="todosAdmin">Ver todos los administradores</a>
+    <a href="todosUsers">Ver todos los usuarios</a>
   </div>
 </div>
   <h3> Seleccione la acción que desea realizar </h3>

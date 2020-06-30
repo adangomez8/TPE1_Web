@@ -102,7 +102,7 @@
             $controller = new PublicController();
             $controller->sendRegister();
         break;
-        case "todosAdmin": 
+        case "todosUsers": 
             $controller = new AdminController();
             $controller->allUser();
         break;

@@ -13,10 +13,10 @@
                         <td class="usuarios">{$usuario->mail}</td>
                         {if !$usuario->admin}
                             
-                        <td> <a href="darPermisosAdmin/{$usuario->id_usuario}">Habilitar permisos</i></a></td>-->
+                        <td> <a href="darPermisosAdmin/{$usuario->id_usuario}">Habilitar permisos</i></a></td>
                         
                         {else}
-                            <td> <a href="quitarPermisosAdmin/{$usuario->id_usuario}">Quitar permisos</i></a></td>-->
+                            <td> <a href="quitarPermisosAdmin/{$usuario->id_usuario}">Quitar permisos</i></a></td>
                         {/if}
                     </tr>
                 {/foreach}
