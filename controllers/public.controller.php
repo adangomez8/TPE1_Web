@@ -67,7 +67,12 @@ class PublicController{
     
     public function showLoginUser() {
         $user= $this->user();
+        if (!$user){
         $this->view->showFormLoginUser($user);
+        }
+        else{
+            header("Location: " . BASE_URL . "home");
+        }
     }
 
     public function formRegister(){
