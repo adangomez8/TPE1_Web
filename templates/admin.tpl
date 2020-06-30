@@ -1,11 +1,18 @@
 {include 'navAdmin.tpl'}
 
 <div class= "container admin">
-  <h1>Zona de administración</h1>
-
+<div class="row">
+  <div class= "col-md-6">
+    <h1>Zona de administración</h1>
+  </div>
+  <div class= "col-md-6">
+    <a href="todosAdmin">Ver todos los administradores</a>
+  </div>
+</div>
   <h3> Seleccione la acción que desea realizar </h3>
 
   <div class= "row">
+
 
         <div class= "col-md-6">
             <p class= "paragrbook">Añadir un nuevo libro</p>

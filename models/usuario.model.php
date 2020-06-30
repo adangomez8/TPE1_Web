@@ -27,4 +27,27 @@ class UsuarioModel {
         $sentencia = $this->db->prepare("INSERT INTO usuario(nombre, apellido, mail, password, admin) VALUE (?,?,?,?,?)");
         $sentencia->execute([$nombre, $apellido, $mail, $clave_encriptada, 0]);
     }
+
+    public function getAllUser(){
+        $sentencia=$this->db->prepare("SELECT usuario.nombre, usuario.apellido, usuario.id_usuario, usuario.mail, usuario.admin FROM usuario ORDER BY apellido ASC");
+        $sentencia->execute();
+        $usuarios= $sentencia->fetchAll(PDO::FETCH_OBJ);
+        
+        return $usuarios;
+    }
+
+    public function giveAdminUser($idUser) {
+        $sentencia = $this->db->prepare("UPDATE usuario SET admin = 1 WHERE id_usuario = ?"); 
+        $usuario = $sentencia->execute([$idUser]);  
+
+        return $usuario;
+     }
+
+     public function removeAdminUser($idUser) {
+        $sentencia = $this->db->prepare("UPDATE usuario SET admin = 0 WHERE id_usuario = ?"); 
+        $usuario = $sentencia->execute([$idUser]);  
+
+        return $usuario;
+     }
+    
 }

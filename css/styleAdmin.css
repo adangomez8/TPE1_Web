@@ -9,13 +9,13 @@ nav{
     margin-top: 7px;
     margin-right: 7px;
 }
-.tabLisAutores{
+.tabLisAutores, .tabLisUsuarios{
     text-align: center;
 }
 .titTabla{
     background-color: rgba(116, 35, 35, 0.329);
 }
-.autores{
+.autores, .usuarios{
     color: rgb(194, 194, 44);
     text-transform: uppercase;
     text-align: center;
