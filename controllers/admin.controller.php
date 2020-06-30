@@ -3,19 +3,15 @@
 require_once 'models/autores.model.php';
 require_once 'models/libros.model.php';
 require_once 'models/usuario.model.php';
-require_once 'models/comentarios.model.php';
 require_once 'views/admin.view.php';
-require_once 'views/public.view.php';
 require_once 'helpers/autentication.helper.php';
 
 class AdminController{
 
     private $modelAutor;
     private $modelLibro;
-    private $modelComentario;
     private $modelUsuario;
     private $viewUsuario;
-    private $viewPublic;
 
     public function __construct() {
         $this->modelAutor = new AutoresModel();
@@ -23,7 +19,6 @@ class AdminController{
         $this->modelUsuario = new UsuarioModel();
         $this->modelComentario = new ComentariosModel();
         $this->viewUsuario = new AdminView();
-        $this->viewPublic = new PublicView();
         HelperAutenticacion::checkLoggedAdmin();
     }
 
@@ -233,21 +228,4 @@ class AdminController{
         header("Location: " . BASE_URL . 'todosUsers');
     }
 
-    public function sendCommentary($param){
-        $id = $param[0];
-        $comentario= $_POST['comentario'];
-        $puntuacion= $_POST['puntuacion'];
-        $idLibro= $_POST['libro'];
-        
-        if (!empty($comentario)){
-            $this->modelComentario->newCommentary($comentario, $puntuacion, $idLibro);
-           
-            header("Location: " . BASE_URL . 'infoLibros/'.$id);
-        }
-        else{
-            header("Location: " . BASE_URL . 'infoLibros/'.$id);
-        }
-        
-        
-    }
 }

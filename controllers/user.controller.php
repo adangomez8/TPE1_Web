@@ -1,13 +1,14 @@
 <?php
-
+require_once 'models/comentarios.model.php';
 require_once 'views/user.view.php';
 
 class UserController{
 
-    private $model;
+    private $modelComen;
     private $view;
 
     public function __construct() {
+        $this->modelComen = new ComentariosModel();
         $this->view = new UserView();
         //Barrera de segurisad
         $this->checkLoggedUser();
@@ -39,4 +40,19 @@ class UserController{
         header("Location: " . BASE_URL . 'loginUser');
     }
 
+    public function sendCommentary($param){
+        $id = $param[0];
+        $comentario= $_POST['comentario'];
+        $puntuacion= $_POST['puntuacion'];
+        $idLibro= $_POST['libro'];
+        
+        if (!empty($comentario)){
+            $this->modelComen->newCommentary($comentario, $puntuacion, $idLibro);
+           
+            header("Location: " . BASE_URL . 'infoLibros/'.$id);
+        }
+        else{
+            header("Location: " . BASE_URL . 'infoLibros/'.$id);
+        }
+    }
 }
