@@ -16,7 +16,7 @@ class UsuarioModel {
     }
 
     public function getUser($usermail) {
-        $sentencia = $this->db->prepare("SELECT usuario.nombre, usuario.apellido, usuario.id_usuario, usuario.password FROM usuario WHERE mail = ?");
+        $sentencia = $this->db->prepare("SELECT usuario.nombre, usuario.apellido, usuario.id_usuario, usuario.mail, usuario.password, usuario.admin FROM usuario WHERE mail = ?");
         $sentencia->execute([$usermail]);
         $usuario= $sentencia->fetch(PDO::FETCH_OBJ);
 

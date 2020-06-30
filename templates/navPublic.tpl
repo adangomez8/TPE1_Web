@@ -24,12 +24,30 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
+                    {if $user && $user['admin']=="1"}
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-danger" href="admin"><i class="fas fa-users-cog"></i>Administración</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link btn btn-secondary" href="logoutUser"><i class="fas fa-sign-out-alt"></i>Finalizar sesión</a>
+                    </li>
+                    {/if}
+                    {if $user &&  $user['admin']=="0"}
+                    <li class="nav-item datosUsuarioNav">
+                        <label><i class="fas fa-user"></i> {$user['username']} {$user['usersurname']}</label>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-secondary" href="logoutUser"><i class="fas fa-sign-out-alt"></i>Finalizar sesión</a>
+                    </li>
+                    {/if}
+                    {if !$user}
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-danger" href="admin"><i class="fas fa-users-cog"></i>Ingresar</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link btn btn-outline-danger" href="registro"><i class="fas fa-users-cog"></i>Registrarse</a>
                     </li>
+                    {/if}
                 </ul>
             </div>
             </nav>

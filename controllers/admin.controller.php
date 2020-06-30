@@ -18,7 +18,7 @@ class AdminController{
         $this->modelLibro = new LibrosModel();
         $this->modelUsuario = new UsuarioModel();
         $this->view = new AdminView();
-        HelperAutenticacion::checkLoggedUser();
+        HelperAutenticacion::checkLoggedAdmin();
     }
 
     public function showError($error) {

@@ -4,6 +4,7 @@ require_once 'models/autores.model.php';
 require_once 'models/libros.model.php';
 require_once 'models/usuario.model.php';
 require_once 'views/public.view.php';
+require_once 'helpers/autentication.helper.php';
 
 
 class PublicController{
@@ -25,51 +26,57 @@ class PublicController{
     }
 
     public function showHome(){
+        $user= $this->user();
         //Pido los autores al MODELO
         $autores = $this->modelAutor->getAll();
 
         //Actualizo la vista
-        $this->view->showListAuthor($autores);
+        $this->view->showListAuthor($autores, $user);
     }
 
     public function showAllBooks(){
+        $user= $this->user();
         //Pido los libros al MODELO
         $libros = $this->modelLibro->getBooksAndAuthors();
 
         //Actualizo la vista
-        $this->view->showListBooks($libros);
+        $this->view->showListBooks($libros, $user);
     }
 
     public function showBooksAuthor($idAutor){
+        $user= $this->user();
         //Pido los libros del autor al MODELO
         $books = $this->modelLibro->getBooksOfAuthor($idAutor);
 
         if (!empty($books)){
-            $this->view->showListBooksOfAuthor($books); //Actualizo la vista
+            $this->view->showListBooksOfAuthor($books, $user); //Actualizo la vista
         }
         else {
-            $this->view->showError("Aún no hay libros de este autor para mostrar");
+            $this->view->showError("Aún no hay libros de este autor para mostrar", $user);
         }
     }
 
     public function infoBooks($idlibro){
+        $user= $this->user();
         //Pido un libros al MODELO
         $details = $this->modelLibro->getDetailOfBook($idlibro);
-        //var_dump($details->imagen);die();
 
         //Actualizo la vista
-        $this->view->showInfoOfBook($details);
+        $this->view->showInfoOfBook($details, $user);
     }
     
     public function showLoginUser() {
-        $this->view->showFormLoginUser();
+        $user= $this->user();
+        $this->view->showFormLoginUser($user);
     }
 
     public function formRegister(){
-        $this->view->showFormRegister();
+        $user= $this->user();
+        $this->view->showFormRegister($user);
     }
 
     public function sendRegister(){
+        $user= $this->user();
         $nombre= $_POST['nombre'];
         $apellido= $_POST['apellido'];
         $mail= $_POST['mail'];
@@ -81,16 +88,16 @@ class PublicController{
             //Compruebo que el mail ingresado no exista en la base de datos
             $succes= $this->modelUsuario->getUser($mail);
             if ($succes){
-                $this->view->showError("El mail ingresado ya está registrado");
+                $this->view->showError("El mail ingresado ya está registrado", $user);
             }
             else{
             $clave_encriptada = password_hash ($contraseña, PASSWORD_DEFAULT); //Encripto contraseña de usuario
             $this->modelUsuario->newUser($nombre, $apellido, $mail, $clave_encriptada);
-            $this->view->succesRegister($nombre, $apellido);
+            $this->view->succesRegister($nombre, $apellido, $user);
             }
         }
         else{
-            $this->view->showError("No completó todos los campos");
+            $this->view->showError("No completó todos los campos", $user);
             die();
         }
     }
@@ -110,8 +117,9 @@ class PublicController{
             $_SESSION['usermail'] = $user->mail;
             $_SESSION['username'] = $user->nombre;
             $_SESSION['usersurname'] = $user->apellido;
+            $_SESSION['admin']= $user->admin;
             
-            header("Location: " . BASE_URL . "admin");
+            header("Location: " . BASE_URL . "home");
         }
 
 
@@ -120,5 +128,12 @@ class PublicController{
         } else{
             $this->view->showFormLoginUser("contraseña incorrecta");
         }
+    }
+
+    private function user(){
+        if (session_start()){
+            $user= $_SESSION;
+        }
+        return $user;
     }
 }

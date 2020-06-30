@@ -2,7 +2,7 @@
 
 class HelperAutenticacion {
 
-    static public function checkLoggedUser() {
+    static public function checkLoggedAdmin() {
         if(session_status() != PHP_SESSION_ACTIVE){
         session_start();
         }
