@@ -232,22 +232,4 @@ class AdminController{
         $usuarios= $this->modelUsuario->deleteUser($idUser);
         header("Location: " . BASE_URL . 'todosUsers');
     }
-
-    public function sendCommentary($param){
-        $id = $param[0];
-        $comentario= $_POST['comentario'];
-        $puntuacion= $_POST['puntuacion'];
-        $idLibro= $_POST['libro'];
-        
-        if (!empty($comentario)){
-            $this->modelComentario->newCommentary($comentario, $puntuacion, $idLibro);
-           
-            header("Location: " . BASE_URL . 'infoLibros/'.$id);
-        }
-        else{
-            header("Location: " . BASE_URL . 'infoLibros/'.$id);
-        }
-        
-        
-    }
 }

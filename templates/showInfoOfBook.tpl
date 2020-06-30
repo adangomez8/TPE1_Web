@@ -16,9 +16,6 @@
             </div>
             <div class="comentarioLibDiv">
                 <form action="enviarComentario/{$libro->id_libro}" method="POST">
-                <select name="libro" id="">
-                    <option value="{$libro->id_libro}" >{$libro->Nombre}</option>   
-                </select>
                     <div>
                         <select name="puntuacion" id="">
                             <option value="" selected>Puntuar Libro</option>
