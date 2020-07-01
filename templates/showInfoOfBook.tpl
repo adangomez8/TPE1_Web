@@ -30,22 +30,11 @@
                     <div class="btn btn-dark btnEnviarComLib"><input type="submit" value="Enviar Comentario" class="btn btn-dark comentario"> <i class="fas fa-paper-plane btn btn-dark"></i></div>
                 </form>
             </div>
-            <div>
-                {if $error}
-                    <div class="alert alert-warning" role="alert">
-                        {$error}
-                    </div>
-                {/if}
-            </div>
+            
         </div>
         <div class="col-md-6">
-
-           <ul class="list-group" id="listaLibs">
-           <button id="mostrarLibs"><li class="list-group-item disabled" aria-disabled="true">Otros libros de {$libro->Autor}</li></button>
-           </ul>
+            {include 'vue/asideBooks.vue'}
         </div>
-    
-    </div>
 </div>
 
 <script src="js/libros.js"></script>

@@ -20,4 +20,17 @@ class ComentariosModel {
         $sentencia->execute([$comentario, $puntuacion, $libro]);
     }
 
+    public function getCommentarys() {
+        $sentencia = $this->db->prepare("SELECT comentarios.texto, comentarios.puntuacion, comentarios.id_comentario, comentarios.id_libro_fk FROM comentarios ORDER BY comentarios.id_libro_fk ASC");
+        $sentencia->execute([]);
+        $comentarios= $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+        return $comentarios;
+    }
+
+    public function deleteCommentary($idCommentario){
+        $sentencia = $this->db->prepare("DELETE FROM comentarios WHERE id_comentario = ?");
+        $sentencia->execute([$idCommentario]);
+    }
+
 }

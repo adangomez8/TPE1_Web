@@ -71,6 +71,4 @@ class AdminView{
         $this->smarty->assign('usuarios', $usuarios);
         $this->smarty->display('showListUser.tpl');
     }
-
-    
 }

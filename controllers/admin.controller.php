@@ -11,12 +11,14 @@ class AdminController{
     private $modelAutor;
     private $modelLibro;
     private $modelUsuario;
+    private $modelComentarios;
     private $viewUsuario;
 
     public function __construct() {
         $this->modelAutor = new AutoresModel();
         $this->modelLibro = new LibrosModel();
         $this->modelUsuario = new UsuarioModel();
+        $this->modelComentarios = new ComentariosModel();
         $this->modelComentario = new ComentariosModel();
         $this->viewUsuario = new AdminView();
         HelperAutenticacion::checkLoggedAdmin();
@@ -226,5 +228,16 @@ class AdminController{
         
         $usuarios= $this->modelUsuario->deleteUser($idUser);
         header("Location: " . BASE_URL . 'todosUsers');
+    }
+
+    public function allCommentarys(){
+        
+        $comentarios= $this->modelComentarios->getCommentarys();
+    }
+
+    public function deleteCommentary($idComentario){
+        
+        $this->modelComentarios->deleteCommentary($idComentario);
+        header("Location: " . BASE_URL . 'verComentarios');
     }
 }
