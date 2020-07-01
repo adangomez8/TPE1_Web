@@ -238,6 +238,6 @@ class AdminController{
     public function deleteCommentary($idComentario){
         
         $this->modelComentarios->deleteCommentary($idComentario);
-        header("Location: " . BASE_URL . 'verComentarios');
+        header("Location: " . BASE_URL . 'admin');
     }
 }

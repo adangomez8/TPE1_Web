@@ -16,5 +16,6 @@ function mostrarLibros(){
         .then(response => response.json())
         .then(books=>{ 
             app.libros = books;
+            console.log(books);
         }); 
 }
