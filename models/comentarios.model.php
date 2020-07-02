@@ -21,10 +21,10 @@ class ComentariosModel {
     }
 
     public function getCommentarys() {
-        $sentencia = $this->db->prepare("SELECT comentarios.id_comentario, 
-        comentarios.texto, comentarios.puntuacion, comentarios.id_libro_fk, 
-        comentarios.id_usuario_fk, libros.id_libro, libros.nombre 
-        FROM comentarios JOIN libros ON comentarios.id_libro_fk=libros.id_libro ORDER BY libros.nombre ASC");
+        $sentencia = $this->db->prepare("SELECT comentarios.id_comentario, comentarios.texto, comentarios.puntuacion, 
+        comentarios.id_libro_fk, comentarios.id_usuario_fk, libros.id_libro, libros.nombre, usuario.nombre, usuario.apellido 
+        FROM comentarios JOIN libros JOIN usuario ON comentarios.id_libro_fk=libros.id_libro && comentarios.id_usuario_fk=usuario.id_usuario 
+        ORDER BY libros.nombre ASC");
         $sentencia->execute([]);
         $comentarios= $sentencia->fetchAll(PDO::FETCH_OBJ);
 
