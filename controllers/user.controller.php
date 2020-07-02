@@ -47,9 +47,10 @@ class UserController{
         $id = $param;
         $comentario= $_POST['comentario'];
         $puntuacion= $_POST['puntuacion'];
+        $usuario= $_POST['usuario'];
         
         if (!empty($comentario)){
-            $this->modelComentario->newCommentary($comentario, $puntuacion, $id);
+            $this->modelComentario->newCommentary($comentario, $puntuacion, $usuario, $id);
             header("Location: " . BASE_URL . 'infoLibros/'.$id);
         }
         else{

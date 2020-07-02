@@ -232,7 +232,7 @@ class AdminController{
 
     public function allCommentarys(){
         
-        $comentarios= $this->modelComentarios->getCommentarys();
+        $this->modelComentarios->getCommentarys();
     }
 
     public function deleteCommentary($idComentario){

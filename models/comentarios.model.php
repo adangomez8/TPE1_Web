@@ -15,13 +15,13 @@ class ComentariosModel {
         return $pdo;
     }
 
-    public function newCommentary($comentario, $puntuacion, $libro){
-        $sentencia = $this->db->prepare("INSERT INTO comentarios(texto, puntuacion, id_libro_fk) VALUE (?,?,?)");
-        $sentencia->execute([$comentario, $puntuacion, $libro]);
+    public function newCommentary($comentario, $puntuacion, $usuario, $libro){
+        $sentencia = $this->db->prepare("INSERT INTO comentarios(texto, puntuacion, usuario, id_libro_fk) VALUE (?,?,?,?)");
+        $sentencia->execute([$comentario, $puntuacion, $usuario, $libro]);
     }
 
     public function getCommentarys() {
-        $sentencia = $this->db->prepare("SELECT comentarios.texto, comentarios.puntuacion, comentarios.id_comentario, comentarios.id_libro_fk FROM comentarios ORDER BY comentarios.id_libro_fk ASC");
+        $sentencia = $this->db->prepare("SELECT comentarios.texto, comentarios.puntuacion, comentarios.id_comentario, comentarios.usuario, comentarios.id_libro_fk, libros.id_libro, libros.nombre FROM comentarios JOIN libros ON comentarios.id_libro_fk=libros.id_libro ORDER BY libros.nombre ASC");
         $sentencia->execute([]);
         $comentarios= $sentencia->fetchAll(PDO::FETCH_OBJ);
 
