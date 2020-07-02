@@ -12,7 +12,11 @@
         <div class="col-md-6">
             <div>
                 <h3 class="titFotLib">{$titFotLib}</h3>
+                {if $libro->imagen}
                 <img src="{$libro->imagen}" class="tapaLibro" style="HEIGHT: 400px"/>
+                {else}
+                <p> Aún no hay imagen para mostrar </p>
+                {/if}
             </div>
             {if $user && $user['admin']=="0"}
             <div class="comentarioLibDiv">
@@ -37,6 +41,13 @@
         <div class="col-md-6">
             {include 'vue/asideBooks.vue'}
         </div>
+
+        {if $user && $user['admin']=="1"}
+            <form action='nuevaImagen/{$libro->id_libro}' method="POST" enctype="multipart/form-data">
+                <input type="file" name="imagen" id="imageToUpload" class="form-control" >
+                <input type="submit" id="imageToUpload" class="form-control" value="Subir imagen">
+            </form>
+        {/if}
 </div>
 
 <script src="js/libros.js"></script>

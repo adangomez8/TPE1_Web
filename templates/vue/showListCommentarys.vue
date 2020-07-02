@@ -8,8 +8,8 @@
             <div class = "row">
                 <td class= "titTabla"><h2>Apellido</h2></td>
                 <td class= "titTabla"><h2>Nombre</h2></td>
-                <td class= "titTabla"><h2>comentario</h2></td>
-                <td class= "titTabla"><h2>puntuación</h2></td>
+                <td class= "titTabla"><h2>Comentario</h2></td>
+                <td class= "titTabla"><h2>Puntuación</h2></td>
                 <td class= "titTabla"><h2>Borrar comentario</h2></td>
 
                 <tr v-for="comentario in comentarios">

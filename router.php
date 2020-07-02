@@ -66,6 +66,10 @@
             $controller = new AdminController();
             $controller->saveChangesBook($parametros[1]);
         break;
+        case 'nuevaImagen':
+            $controller= new AdminController();
+            $controller->upImage($parametros[1]);
+        break;
         case 'nuevoAutor':
             $controller = new AdminController();
             $controller->addAuthor();

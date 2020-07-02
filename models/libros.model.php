@@ -61,10 +61,19 @@ class LibrosModel {
     }
 
     //Función de redirección de imagenes
-    private function uploadImage($imagen){
-        $target= 'imagenes/libros/' . uniqid() . '.jpg';
+    private function uploadImage($imagen, $name){
+        $target= 'imagenes/libros/' . uniqid("", true) . "." . strtolower(pathinfo($name, PATHINFO_EXTENSION));
         move_uploaded_file($imagen, $target);
         return $target;
+    }
+
+    public function newImagen($imagen, $name, $id){
+        $pathImg= null;
+        if ($imagen){
+            $pathImg= $this->uploadImage($imagen, $name);
+        }
+        $sentencia= $this->db->prepare("UPDATE libros SET imagen=? WHERE libros.id_libro = ?");
+        $sentencia->execute([$pathImg, $id]);
     }
 
     public function getBook($idlibro){

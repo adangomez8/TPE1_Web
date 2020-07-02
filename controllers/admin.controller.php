@@ -40,6 +40,24 @@ class AdminController{
             $this->viewUsuario->optionAdmin();
     }
 
+    public function upImage($id){
+        //Compruebo que no haya imagen en el libro
+        $libro= $this->modelLibro->getBook($id);
+        //var_dump($libro->imagen);die();
+        if (!$libro->imagen){
+            //Compruebo formato de la imagen
+            if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || 
+            $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif"){
+                $this->modelLibro->newImagen($_FILES['imagen']['tmp_name'], $_FILES['imagen']['name'], $id);
+                header("Location: " . BASE_URL . 'infoLibros/' . $id);
+            }
+        }
+        else {
+            $this->viewUsuario->showError("Ya existe una imagen en este libro");
+            die();
+        }
+    }
+
     public function addBook(){
         //Tomo datos del formulario
         $nombre= $_POST['nombreLibro'];
@@ -47,8 +65,6 @@ class AdminController{
         $sinopsis=$_POST['sinopsis'];
         $anio= $_POST['anio'];
         $autor= $_POST['autor'];
-
-        //var_dump($imagen);die();
 
 
         //Compruebo que no se suba dos veces el mismo libro
@@ -63,8 +79,8 @@ class AdminController{
 
         //Compruebo el formato de la imagen //Me aseguro también que todos los campos estén completados para enviar los datos al formulario
         if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || 
-        $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif" && !empty($nombre)
-        && !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
+        $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif" || $_FILES['imagen']['type'] == null
+        && !empty($nombre) && !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
             $this->modelLibro->newBook($nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $autor);
             $this->viewUsuario->formAddBook($autores, "El libro '$nombre' ha sido subido con éxito");
         }else {
