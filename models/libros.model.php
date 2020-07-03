@@ -77,8 +77,9 @@ class LibrosModel {
     }
 
     public function deleteImg($id){
-        $sentencia= $this->db->prepare("DELETE libros.imagen FROM libros WHERE id_libro= ?");
-        $sentencia->execute([$id]);
+        $imagen= null;
+        $sentencia= $this->db->prepare("UPDATE libros SET imagen=? WHERE id_libro= ?");
+        $sentencia->execute([$imagen, $id]);
     }
 
     public function getBook($idlibro){
