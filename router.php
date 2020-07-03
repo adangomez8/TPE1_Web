@@ -70,6 +70,10 @@
             $controller= new AdminController();
             $controller->upImage($parametros[1]);
         break;
+        case 'eliminarImagen':
+            $controller= new AdminController();
+            $controller->deleteImage($parametros[1]);
+        break;
         case 'nuevoAutor':
             $controller = new AdminController();
             $controller->addAuthor();

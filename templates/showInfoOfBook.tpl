@@ -47,6 +47,10 @@
                 <input type="file" name="imagen" id="imageToUpload" class="form-control" >
                 <input type="submit" id="imageToUpload" class="form-control" value="Subir imagen">
             </form>
+            <form action='eliminarImagen/{$libro->id_libro}' method="POST">
+                <input type="hidden" value="{$libro->imagen}" name="delete_file">
+                <input type="submit" value="Eliminar imagen">
+            </form>
         {/if}
 </div>
 

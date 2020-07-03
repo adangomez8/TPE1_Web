@@ -58,6 +58,19 @@ class AdminController{
         }
     }
 
+    public function deleteImage($id){
+        $imagen= $_POST['delete_file'];
+        if($imagen){
+            unlink($imagen);
+            $this->modelLibro->deleteImg($id);
+            header("Location: " . BASE_URL . 'infoLibros/' . $id);
+        }
+        else {
+            $this->view->showError("No existe imagen para borrar");
+            die();
+        }
+    } 
+
     public function addBook(){
         //Tomo datos del formulario
         $nombre= $_POST['nombreLibro'];
