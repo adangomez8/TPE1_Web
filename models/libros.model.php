@@ -51,10 +51,10 @@ class LibrosModel {
         return $libro;
     }
 
-    public function newBook($nombre, $genero, $sinopsis, $anio, $imagen = null, $autor){
+    public function newBook($nombre, $genero, $sinopsis, $anio, $imagen = null, $name, $autor){
         $pathImg= null;
         if ($imagen){
-            $pathImg= $this->uploadImage($imagen);
+            $pathImg= $this->uploadImage($imagen, $name);
         }
         $sentencia= $this->db->prepare("INSERT INTO libros(nombre, genero, sinopsis, anio, imagen, id_autor_fk) VALUE(?, ?, ?, ?, ?, ?)");
         $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $pathImg, $autor]);//Ejecuta
@@ -92,10 +92,10 @@ class LibrosModel {
         $sentencia->execute([$idlibro]);
     }
 
-    public function updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $imagen, $autor){
+    public function updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $imagen = null, $name, $autor){
         $pathImg= null;
         if ($imagen){
-            $pathImg= $this->uploadImage($imagen);
+            $pathImg= $this->uploadImage($imagen, $name);
         }
         $sentencia = $this->db->prepare("UPDATE libros SET nombre=?, genero=?, sinopsis=?, anio =?, imagen=?, id_autor_fk=? 
         WHERE libros.id_libro=?");

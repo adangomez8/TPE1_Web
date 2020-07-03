@@ -81,7 +81,7 @@ class AdminController{
         if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || 
         $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif" || $_FILES['imagen']['type'] == null
         && !empty($nombre) && !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
-            $this->modelLibro->newBook($nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $autor);
+            $this->modelLibro->newBook($nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $_FILES['imagen']['name'], $autor);
             $this->viewUsuario->formAddBook($autores, "El libro '$nombre' ha sido subido con éxito");
         }else {
             $this->viewUsuario->formAddBook($autores, "Faltan campos por completar");
@@ -139,7 +139,7 @@ class AdminController{
         if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || 
         $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif" && !empty($nombre)
         && !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
-            $this->modelLibro->updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $autor);
+            $this->modelLibro->updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $_FILES['imagen']['name'], $autor);
             $this->viewUsuario->showEditBooks($libros, "El libro '$nombre' ha sido modificado exitosamente");
         } else{
             $this->viewUsuario->formEditBook($libro, $autores, "Faltan campos por completar");
