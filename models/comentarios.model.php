@@ -36,4 +36,12 @@ class ComentariosModel {
         $sentencia->execute([$idCommentario]);
     }
 
+    public function getById($id){
+        $sentencia= $this->db->prepare("SELECT comentarios.texto FROM comentarios WHERE id_usuario_fk = ?");
+        $sentencia->execute([$id]);
+        $comentarios= $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+        return $comentarios;
+    }
+
 }

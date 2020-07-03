@@ -254,9 +254,16 @@ class AdminController{
     }
 
     public function deleteUser($idUser){
-        
-        $usuarios= $this->modelUsuario->deleteUser($idUser);
-        header("Location: " . BASE_URL . 'todosUsers');
+        //Compruebo que no haya comentarios realizados por ese admin
+        $comentarios = $this->modelComentarios->getById($idUser);
+
+        if ($comentarios){
+            $this->viewUsuario->showError("No se puede eliminar el usuario porque hay comentarios realizados por el mismo");
+        }
+        else{
+            $this->modelUsuario->deleteUser($idUser);
+            header("Location: " . BASE_URL . 'todosUsers');
+        }
     }
 
     public function allCommentarys(){
