@@ -15,9 +15,11 @@ class ComentariosModel {
         return $pdo;
     }
 
-    public function newCommentary($comentario, $puntuacion, $libro, $usuario){
+    public function newCommentary($texto, $puntaje, $idLibro, $idUser){
         $sentencia = $this->db->prepare("INSERT INTO comentarios(texto, puntuacion, id_libro_fk, id_usuario_fk) VALUE (?, ?, ?, ?)");
-        $sentencia->execute([$comentario, $puntuacion, $libro, $usuario]);
+        $comentario= $sentencia->execute([$texto, $puntaje, $idLibro, $idUser]);
+
+        return $comentario;
     }
 
     public function getCommentarys() {
@@ -31,9 +33,9 @@ class ComentariosModel {
         return $comentarios;
     }
 
-    public function deleteCommentary($idCommentario){
+    public function deleteCommentary($idComent){
         $sentencia = $this->db->prepare("DELETE FROM comentarios WHERE id_comentario = ?");
-        $sentencia->execute([$idCommentario]);
+        $sentencia->execute([$idComent]);
     }
 
     public function getById($id){

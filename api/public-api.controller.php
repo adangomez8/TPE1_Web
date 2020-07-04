@@ -14,12 +14,14 @@ class PublicApiController{
     private $modelLibro;
     private $modelComentarios;
     private $view;
+    private $data;
 
     public function __construct() {
         $this->modelAutor =  new AutoresModel();
         $this->modelLibro =  new LibrosModel();
         $this->modelComentarios =  new ComentariosModel();
         $this->view = new APIView();
+        $this->data= file_get_contents("php://input");
     }
 
     public function getAllAuthors($params = []) {
@@ -45,6 +47,31 @@ class PublicApiController{
     public function getAllCommentarys($params = []){
         $comentarios = $this->modelComentarios->getCommentarys();
         $this->view->response($comentarios, 200);
-    }  
+    }
+
+    public function getdata(){
+        return json_decode($this->data);
+        }
+
+    public function postComment($params){
+        //Devuelve el JSON enviado por POST
+        $body= $this->getData();
+
+
+        $texto= $body->texto;
+        $puntaje= $body->puntaje;
+        $idUser= $body->idUser;
+        $idLibro= $params[':ID'];
+
+        $resultado= $this->modelComentarios->newCommentary($texto, $puntaje, $idLibro, $idUser);
+        header("Location: " . BASE_URL . 'infoLibros/' . $idLibro);
+        
+        if ($resultado){
+            $this->view->response("Se agrego el comentario", 200);
+        }
+        else{
+            $this->view->response("No se puedo agregar el comentario", 500);
+        }
+    }
 
 }

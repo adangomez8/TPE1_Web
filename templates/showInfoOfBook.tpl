@@ -18,11 +18,11 @@
                 <p> Aún no hay imagen para mostrar </p>
                 {/if}
             </div>
-            {if $user && $user['admin']=="0"}
+            {if $user}
             <div class="comentarioLibDiv">
-                <form action="enviarComentario/{$libro->id_libro}" method="POST">
+                <form id="formComent" method="POST">
                     <div>
-                        <select name="puntuacion" id="">
+                        <select name="puntuacion" id="puntuacion">
                             <option value="" selected>Puntuar Libro</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -31,9 +31,10 @@
                             <option value="5">5</option>
                         </select>
                     </div>
-                    <input type="hidden" value="{$user['id_user']}" name="usuario">
+                    <input type="hidden" value="{$user['id_user']}" name="usuario" id="idUser">
+                    <input type="hidden" value="{$libro->id_libro}" name="usuario" id="idLibro">
                     <input type="text" name="comentario" id="comentarioLib" placeholder="Agregar comentario sobre el libro '{$libro->Nombre}'" autocomplete="off">
-                    <div class="btn btn-dark btnEnviarComLib"><input type="submit" value="Enviar Comentario" class="btn btn-dark comentario"> <i class="fas fa-paper-plane btn btn-dark"></i></div>
+                    <input type="submit" value="Enviar Comentario" class="btn btn-dark comentario"> 
                 </form>
             </div>
             {/if}
@@ -55,4 +56,5 @@
 </div>
 
 <script src="js/libros.js"></script>
+<script src="js/comentarios.js"></script>
 {include 'templates/footer.tpl'}

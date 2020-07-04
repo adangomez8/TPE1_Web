@@ -17,8 +17,8 @@
                     <td >{{ comentario.nombre }}</td>
                     <td>{{ comentario.texto }}</td>
                     <td>{{ comentario.puntuacion }}</td>
-                    <td> <a class="btn btn-outline-success" :href="'borrarComentario/'+comentario.id_comentario"><i class="fas fa-trash-alt"></i></a></td>
-                </tr>
+                    <td> <a class="btn btn-outline-success" :href="'borrarComentario/'+comentario.id_comentario"><i class="fas fa-trash-alt"></i></a></td> 
+                </tr> <!--v-onclick-->
             </div>
         </table>
 

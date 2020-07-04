@@ -1,22 +1,41 @@
-"use strict"
+"use strict"; 
 
-let app = new Vue({
-    el: "#add-comments",
-    data: {
-        comentarios: [],
-        verCom: false
+let formulario  = document.querySelector('#formComent');
+formulario.addEventListener('submit', addComment);
+
+function addComment(){
+    event.preventDefault();
+
+
+    let text= document.querySelector('#comentarioLib').value;
+    let puntaje= document.querySelector('#puntuacion').value;
+    let idUser= document.querySelector('#idUser').value;
+    let idLibro= document.querySelector('#idLibro').value;
+    let url= 'http://localhost/web2/TPE1_Web/api/libro/' + idLibro + '/coment';
+
+
+    //Se crea el objeto
+    let comentario= {
+            "texto": text,
+            "puntaje": puntaje,
+            "idUser": idUser,
+            "idLibro": idLibro,
+    };
+    console.log(comentario);
+
+    if (text == "" || puntaje == ""){
+        alert("Faltan campos por completar");
+        return false;
     }
-});
-
-
-let btnComen = document.querySelector("#mostrarComen");
-btnComen.addEventListener('click', mostrarComentarios);
-
-function mostrarComentarios(){
-    fetch('api/comentarios')
-        .then(response => response.json())
-        .then(commentarys=>{ 
-            app.comentarios = commentarys;
-            app.verCom = true;
-        }); 
+    else {
+        fetch(url, { 
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(comentario)
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error =>console.log(error));
+    }
 }
