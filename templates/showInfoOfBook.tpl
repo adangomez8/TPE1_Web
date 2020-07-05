@@ -11,6 +11,7 @@
     <div class="row" style="HEIGHT: 100%">
         <div class="col-md-6">
             <div>
+
                 <h3 class="titFotLib">{$titFotLib}</h3>
                 {if $libro->imagen}
                 <img src="{$libro->imagen}" class="tapaLibro" style="HEIGHT: 400px"/>
@@ -18,9 +19,14 @@
                 <p> Aún no hay imagen para mostrar </p>
                 {/if}
             </div>
-            {if $user}
+
+
             <div class="comentarioLibDiv">
                 <form id="formComent" method="POST">
+                    <input type="hidden" value="{$user['id_user']}" name="usuario" id="idUser">
+                    <input type="hidden" value="{$libro->id_libro}" name="usuario" id="idLibro">
+                    <input type="hidden" value="{$user['admin']}" name="usuario" id="administrador">
+                    {if $user}
                     <div>
                         <select name="puntuacion" id="puntuacion">
                             <option value="" selected>Puntuar Libro</option>
@@ -31,14 +37,13 @@
                             <option value="5">5</option>
                         </select>
                     </div>
-                    <input type="hidden" value="{$user['id_user']}" name="usuario" id="idUser">
-                    <input type="hidden" value="{$user['admin']}" name="usuario" id="administrador">
-                    <input type="hidden" value="{$libro->id_libro}" name="usuario" id="idLibro">
+
                     <input type="text" name="comentario" id="comentarioLib" placeholder="Agregar comentario sobre el libro '{$libro->Nombre}'" autocomplete="off">
                     <input type="submit" value="Enviar Comentario" class="btn btn-dark comentario"> 
+                    {/if}
                 </form>
             </div>
-            {/if}
+
         </div>
 
         {if $user && $user['admin']=="1"}
