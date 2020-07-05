@@ -107,4 +107,10 @@ class LibrosModel {
         WHERE libros.id_libro=?");
         $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $pathImg, $autor, $id_libro]);
     }
+
+    public function updateNotImage($id_libro, $nombre, $genero, $sinopsis, $anio, $autor){
+        $sentencia = $this->db->prepare("UPDATE libros SET nombre=?, genero=?, sinopsis=?, anio =?, id_autor_fk=? 
+        WHERE libros.id_libro=?");
+        $sentencia->execute([$nombre, $genero, $sinopsis, $anio, $autor, $id_libro]);
+    }
 }

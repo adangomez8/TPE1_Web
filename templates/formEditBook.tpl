@@ -28,7 +28,7 @@
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Imagen</label>
-      <input type="file" name="imagen" value="{$info->imagen}" class="form-control" id="imageToUpload">
+      <input type="file" name="imagen" class="form-control" id="imageToUpload">
     </div>
       <div class="form-group">
       <label for="exampleFormControlSelect1">Seleccione autor</label>

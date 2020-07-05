@@ -61,7 +61,7 @@ class AdminController{
     public function deleteImage($id){
         $imagen= $_POST['delete_file'];
         if($imagen){
-            unlink($imagen);
+            unlink($imagen); //Elimina la imagen de la carpeta
             $this->modelLibro->deleteImg($id);
             header("Location: " . BASE_URL . 'infoLibros/' . $id);
         }
@@ -142,20 +142,22 @@ class AdminController{
         $sinopsis=$_POST['sinopsis'];
         $anio= $_POST['anio'];
         $autor= $_POST['autor'];
+        $imagen= $_FILES['imagen']['error'];
 
         $autores= $this->modelAutor->getAuthorsAndId();
         $libros = $this->modelLibro->getBooksAndAuthors();
         $libro = $this->modelLibro->getBook($id_libro);
 
-
-        //Compruebo el formato de la imagen
-        if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || 
+        //Si no edita imagen
+        if ($imagen == 4){
+            $this->modelLibro->updateNotImage($id_libro, $nombre, $genero, $sinopsis, $anio, $autor);
+            $this->viewUsuario->showEditBooks($libros, "El libro '$nombre' ha sido modificado exitosamente");
+        }
+        else if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || 
         $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif" && !empty($nombre)
         && !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
             $this->modelLibro->updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $_FILES['imagen']['name'], $autor);
             $this->viewUsuario->showEditBooks($libros, "El libro '$nombre' ha sido modificado exitosamente");
-        } else{
-            $this->viewUsuario->formEditBook($libro, $autores, "Faltan campos por completar");
         }
     }
 
