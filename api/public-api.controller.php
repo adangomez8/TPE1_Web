@@ -46,7 +46,7 @@ class PublicApiController{
 
     public function getComents($params){
         $comentarios = $this->modelComentarios->getCommentarys();
-        if ($comentarios){
+        if (!empty($comentarios)){
             $this->view->response($comentarios, 200);
         }else{
             $this->view->response("No existen comentarios para este libro", 404);
@@ -56,7 +56,11 @@ class PublicApiController{
     public function getComentsOfBook($params){
         $idLibro= $params[':ID'];
         $comentarios = $this->modelComentarios->getComentsBook($idLibro);
-        $this->view->response($comentarios, 200);
+        if (!empty($comentarios)){
+            $this->view->response($comentarios, 200);
+        }else{
+            $this->view->response("No existen comentarios para este libro", 404);
+        }
     }
 
     public function getdata(){
