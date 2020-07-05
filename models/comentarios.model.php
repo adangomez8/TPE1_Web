@@ -25,12 +25,18 @@ class ComentariosModel {
     public function getCommentarys() {
         $sentencia = $this->db->prepare("SELECT comentarios.id_comentario, comentarios.texto, comentarios.puntuacion, 
         comentarios.id_libro_fk, comentarios.id_usuario_fk, libros.id_libro, libros.nombre, usuario.nombre, usuario.apellido 
-        FROM comentarios JOIN libros JOIN usuario ON comentarios.id_libro_fk=libros.id_libro && comentarios.id_usuario_fk=usuario.id_usuario 
-        ORDER BY libros.nombre ASC");
-        $sentencia->execute([]);
+        FROM comentarios JOIN libros JOIN usuario ON comentarios.id_usuario_fk=usuario.id_usuario && comentarios.id_libro_fk=libros.id_libro");
+        $sentencia->execute();
         $comentarios= $sentencia->fetchAll(PDO::FETCH_OBJ);
 
         return $comentarios;
+    } 
+
+    public function getComentsBook($id){
+        $sentencia = $this->db->prepare("SELECT * FROM comentarios WHERE comentarios.id_libro_fk= ?");
+        $sentencia->execute([$id]);
+        $comentario = $sentencia->fetchAll(PDO::FETCH_OBJ); 
+        return $comentario;
     }
 
     public function deleteCommentary($idComent){

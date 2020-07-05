@@ -1,5 +1,33 @@
 "use strict"; 
 
+let id= document.querySelector("#administrador").value;
+
+let app = new Vue({
+    el: "#take-comments",
+    data: {
+        comentarios: [],
+        user: id
+    }
+});
+
+showComents(); //MUESTRA COMENTARIOS
+
+
+//-------------------------------------------------FUNCIÓN TRAER COMENTARIOS----------------------------------
+
+function showComents(){
+    let idLibro= document.querySelector("#idLibro").value;
+    fetch('api/libro/' + idLibro +'/coment')
+    .then(response => response.json())
+    .then(coments => {
+        app.comentarios = coments;
+})
+.catch(error =>console.log(error));
+}
+
+
+//-------------------------------------------------FUNCIÓN SUBIR COMENTARIO------------------------------------
+
 let formulario  = document.querySelector('#formComent');
 formulario.addEventListener('submit', addComment);
 
@@ -38,4 +66,5 @@ function addComment(){
         })
         .catch(error =>console.log(error));
     }
+    location.reload();
 }

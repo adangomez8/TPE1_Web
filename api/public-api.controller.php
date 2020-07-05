@@ -44,8 +44,14 @@ class PublicApiController{
         }
     }
 
-    public function getAllCommentarys($params = []){
+    public function getComents($params){
         $comentarios = $this->modelComentarios->getCommentarys();
+        $this->view->response($comentarios, 200);
+    }
+
+    public function getComentsOfBook($params){
+        $idLibro= $params[':ID'];
+        $comentarios = $this->modelComentarios->getComentsBook($idLibro);
         $this->view->response($comentarios, 200);
     }
 
@@ -65,7 +71,7 @@ class PublicApiController{
 
         $resultado= $this->modelComentarios->newCommentary($texto, $puntaje, $idLibro, $idUser);
         header("Location: " . BASE_URL . 'infoLibros/' . $idLibro);
-        
+
         if ($resultado){
             $this->view->response("Se agrego el comentario", 200);
         }

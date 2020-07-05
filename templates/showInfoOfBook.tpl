@@ -32,15 +32,13 @@
                         </select>
                     </div>
                     <input type="hidden" value="{$user['id_user']}" name="usuario" id="idUser">
+                    <input type="hidden" value="{$user['admin']}" name="usuario" id="administrador">
                     <input type="hidden" value="{$libro->id_libro}" name="usuario" id="idLibro">
                     <input type="text" name="comentario" id="comentarioLib" placeholder="Agregar comentario sobre el libro '{$libro->Nombre}'" autocomplete="off">
                     <input type="submit" value="Enviar Comentario" class="btn btn-dark comentario"> 
                 </form>
             </div>
             {/if}
-        </div>
-        <div class="col-md-6">
-            {include 'vue/asideBooks.vue'}
         </div>
 
         {if $user && $user['admin']=="1"}
@@ -55,6 +53,10 @@
         {/if}
 </div>
 
-<script src="js/libros.js"></script>
-<script src="js/comentarios.js"></script>
+    <div>
+        {include 'vue/comentsOfBook.vue'}
+    </div>
+
+<script src="js/nuevoComentarios.js"></script>
+
 {include 'templates/footer.tpl'}
