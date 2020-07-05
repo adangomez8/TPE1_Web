@@ -1,6 +1,7 @@
 {literal}
 <section id="take-comments">
     <div>
+        <h2> Promedio= {{ promedio }} </h2>
         <table class = "table table-striped table-dark">
         <div class = "row">
             <td class= "titTabla"><h2>Comentario</h2></td>

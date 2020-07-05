@@ -6,7 +6,8 @@ let app = new Vue({
     el: "#take-comments",
     data: {
         comentarios: [],
-        user: id,
+        promedio: 0,
+        user: id
     },
     methods: {
         deleteComentario: function(id){
@@ -26,6 +27,19 @@ function showComents(){
     .then(response => response.json())
     .then(coments => {
         app.comentarios = coments;
+
+//--------------------------FUNCIÓN PROMEDIO----------------------------------------------
+        let suma=0;
+        let contador=0;
+        for (let comentario of coments){
+            suma= suma + parseInt(comentario.puntuacion);
+            contador ++;
+        }
+        app.promedio= (suma/contador);
+        if (isNaN(app.promedio)){
+            app.promedio=0;
+        }
+
 })
 .catch(error =>console.log(error));
 }
