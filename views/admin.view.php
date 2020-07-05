@@ -13,6 +13,8 @@ class AdminView{
         $this->smarty->assign('username', $userName);
         $userSurname = HelperAutenticacion::getUserSurname();
         $this->smarty->assign('usersurname', $userSurname);
+        $idUser= HelperAutenticacion::getIdUser();
+        $this->smarty->assign('idUser', $idUser);
     }
 
     public function showError($msg, $user = null) {

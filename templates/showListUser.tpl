@@ -8,6 +8,7 @@
             <td class= "titTabla"><h2>Borrar usuario</h2></td>
 
                 {foreach $usuarios item=usuario}
+                    {if $usuario->id_usuario != $idUser}
                     <tr>
                         <td class="usuarios"><b>{$usuario->apellido}</b></td>
                         <td class="usuarios"><b>{$usuario->nombre}</b></td>
@@ -21,6 +22,7 @@
                         {/if}
                         <td> <a class="btn btn-outline-danger" href="borrarUsuario/{$usuario->id_usuario}"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>
+                    {/if}
                 {/foreach}
         </table>
     </div>

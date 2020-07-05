@@ -33,4 +33,14 @@ class HelperAutenticacion {
         
         return $userSurname;
     }
+
+    static public function getIdUser() {
+        if(session_status() != PHP_SESSION_ACTIVE){
+            session_start();
+        }
+
+        if (isset($_SESSION['logged'])){
+        return $_SESSION['id_user'];
+        }
+    }
 }
