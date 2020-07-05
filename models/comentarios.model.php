@@ -45,11 +45,16 @@ class ComentariosModel {
     }
 
     public function getById($id){
-        $sentencia= $this->db->prepare("SELECT comentarios.texto FROM comentarios WHERE id_usuario_fk = ?");
+        $sentencia= $this->db->prepare("SELECT * FROM comentarios WHERE id_comentario = ?");
         $sentencia->execute([$id]);
-        $comentarios= $sentencia->fetchAll(PDO::FETCH_OBJ);
+        $comentarios= $sentencia->fetch(PDO::FETCH_OBJ);
 
         return $comentarios;
+    }
+
+    public function delete($id){
+        $sentencia = $this->db->prepare("DELETE FROM comentarios WHERE id_comentario = ?");
+        $sentencia->execute([$id]);
     }
 
 }

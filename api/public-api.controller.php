@@ -46,7 +46,11 @@ class PublicApiController{
 
     public function getComents($params){
         $comentarios = $this->modelComentarios->getCommentarys();
-        $this->view->response($comentarios, 200);
+        if ($comentarios){
+            $this->view->response($comentarios, 200);
+        }else{
+            $this->view->response("No existen comentarios para este libro", 404);
+        }
     }
 
     public function getComentsOfBook($params){
@@ -77,6 +81,19 @@ class PublicApiController{
         }
         else{
             $this->view->response("No se puedo agregar el comentario", 500);
+        }
+    }
+
+    public function deleteComent($params){
+        $id = $params[':ID'];
+        $comentario = $this->modelComentarios->getById($id);
+
+        if ($comentario) {
+            $this->modelComentarios->delete($id);
+            $this->view->response("El comentario con id {$id} se eliminó correctamente", 200);
+        }
+        else{
+            $this->view->response("No existe comentario para eliminar con id {$id}", 404);
         }
     }
 

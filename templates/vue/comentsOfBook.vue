@@ -10,8 +10,8 @@
             <tr v-for="comentario in comentarios">
             <td>{{ comentario.texto }}</td>
             <td>{{ comentario.puntuacion }}</td>
-            <td> <a v-if="user == 1" class="btn btn-outline-success" :href="'borrarComentario/'+comentario.id_comentario"><i class="fas fa-trash-alt"></i></a></td> 
-            </tr> <!--v-onclick-->
+            <td> <a v-if="user == 1" v-on:click="deleteComentario(comentario.id_comentario)" class="btn btn-outline-success"><i class="fas fa-trash-alt"></i></a></td> 
+            </tr> 
             </div>
         </table>
 

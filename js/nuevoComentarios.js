@@ -6,7 +6,12 @@ let app = new Vue({
     el: "#take-comments",
     data: {
         comentarios: [],
-        user: id
+        user: id,
+    },
+    methods: {
+        deleteComentario: function(id){
+            deleteComent(id);
+        }
     }
 });
 
@@ -66,5 +71,20 @@ function addComment(){
         })
         .catch(error =>console.log(error));
     }
+    location.reload();
+}
+
+
+//-------------------------------------FUNCIÓN ELIMINAR COMENTARIO--------------------------
+
+function deleteComent(id){
+    fetch('api/comentario/' + id, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'}
+    })
+    .then(response => {
+        console.log(response);
+    })
+    .catch(error => console.log(error));
     location.reload();
 }

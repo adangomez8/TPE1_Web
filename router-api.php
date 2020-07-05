@@ -18,6 +18,7 @@ $router->addRoute('libro/:ID', 'GET', 'PublicApiController', 'getBooksOfAuthor')
 $router->addRoute('libro/:ID/coment', 'GET', 'PublicApiController', 'getComentsOfBook');
 $router->addRoute('comentario', 'GET', 'PublicApiController', 'getComents');  
 $router->addRoute('libro/:ID/coment', 'POST', 'PublicApiController', 'postComment');
+$router->addRoute('comentario/:ID', 'DELETE', 'PublicApiController', 'deleteComent');
 
 //USUARIOS NO ADMINISTRADORES
 
