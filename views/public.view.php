@@ -34,6 +34,7 @@ class PublicView{
     }
 
     public function showInfoOfBook($libro, $user = null, $error = null){
+        $this->smarty->assign('titulo', 'Libros - '.$libro->Nombre);
         $this->smarty->assign('titFotLib',"Foto del libro");
         $this->smarty->assign('libro', $libro);
         $this->smarty->assign('user', $user);
