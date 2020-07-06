@@ -29,7 +29,7 @@
                         <input type="hidden" value="{$user['id_user']}" name="usuario" id="idUser">
                         <input type="hidden" value="{$libro->id_libro}" name="usuario" id="idLibro">
                         <input type="hidden" value="{$user['admin']}" name="usuario" id="administrador">
-            {if $user && $user['admin']=="0"}
+            {if $user}
                 <div>
                             <select name="puntuacion" id="puntuacion">
                                 <option value="" selected>Puntuar Libro</option>
