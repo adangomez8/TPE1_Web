@@ -15,33 +15,35 @@
                 <h3 class="titFotLib">{$titFotLib}</h3>
                 {if $libro->imagen}
                 <img src="{$libro->imagen}" class="tapaLibro" style="HEIGHT: 400px"/>
+                {if $user && $user['admin']=="1"}
                 <a href="eliminarImagen/{$libro->id_libro}" class="btn btn-primary">Eliminar imagen </a>
+                {/if}
                 {else}
                 <p> Aún no hay imagen para mostrar </p>
                 {/if}
             </div>
 
+        
+                <div class="comentarioLibDiv">
+                    <form id="formComent" method="POST">
+                        <input type="hidden" value="{$user['id_user']}" name="usuario" id="idUser">
+                        <input type="hidden" value="{$libro->id_libro}" name="usuario" id="idLibro">
+                        <input type="hidden" value="{$user['admin']}" name="usuario" id="administrador">
+            {if $user && $user['admin']=="0"}
+                <div>
+                            <select name="puntuacion" id="puntuacion">
+                                <option value="" selected>Puntuar Libro</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
 
-            <div class="comentarioLibDiv">
-                <form id="formComent" method="POST">
-                    <input type="hidden" value="{$user['id_user']}" name="usuario" id="idUser">
-                    <input type="hidden" value="{$libro->id_libro}" name="usuario" id="idLibro">
-                    <input type="hidden" value="{$user['admin']}" name="usuario" id="administrador">
-                    {if $user}
-                    <div>
-                        <select name="puntuacion" id="puntuacion">
-                            <option value="" selected>Puntuar Libro</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
-
-                    <input type="text" name="comentario" id="comentarioLib" placeholder="Agregar comentario sobre el libro '{$libro->Nombre}'" autocomplete="off">
-                    <input type="submit" value="Enviar Comentario" class="btn btn-dark comentario"> 
-                    {/if}
+                        <input type="text" name="comentario" id="comentarioLib" placeholder="Agregar comentario sobre el libro '{$libro->Nombre}'" autocomplete="off">
+                        <input type="submit" value="Enviar Comentario" class="btn btn-dark comentario"> 
+            {/if}
                 </form>
             </div>
 
