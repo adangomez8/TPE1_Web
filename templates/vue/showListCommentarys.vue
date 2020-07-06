@@ -6,18 +6,20 @@
         <button id="mostrarComen"><li class="list-group-item disabled" aria-disabled="true">Ver comentarios de libros</li></button>
         <table v-if="verCom" class = "table table-striped table-dark">
             <div class = "row">
+                <td class= "titTabla"><h2>Libro comentado</h2></td>
                 <td class= "titTabla"><h2>Apellido</h2></td>
                 <td class= "titTabla"><h2>Nombre</h2></td>
                 <td class= "titTabla"><h2>Comentario</h2></td>
                 <td class= "titTabla"><h2>Puntuación</h2></td>
-                <td class= "titTabla"><h2>Borrar comentario</h2></td>
+                <td class= "titTabla"><h2><i class="fas fa-trash-alt"></i></h2></td>
 
                 <tr v-for="comentario in comentarios">
+                    <td >{{ comentario.nombreLibro }}</td>
                     <td >{{ comentario.apellido }}</td>
                     <td >{{ comentario.nombre }}</td>
                     <td>{{ comentario.texto }}</td>
                     <td>{{ comentario.puntuacion }}</td>
-                    <td> <a class="btn btn-outline-success" :href="'borrarComentario/'+comentario.id_comentario"><i class="fas fa-trash-alt"></i></a></td> 
+                    <td> <a class="btn btn-outline-danger" :href="'borrarComentario/'+comentario.id_comentario"><i class="fas fa-trash-alt"></i></a></td> 
                 </tr> <!--v-onclick-->
             </div>
         </table>
