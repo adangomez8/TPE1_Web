@@ -49,7 +49,7 @@ class PublicApiController{
         if (!empty($comentarios)){
             $this->view->response($comentarios, 200);
         }else{
-            $this->view->response("No existen comentarios para este libro", 404);
+            $this->view->response("No existen comentarios para este libro", 204);
         }
     }
 
@@ -59,7 +59,7 @@ class PublicApiController{
         if (!empty($comentarios)){
             $this->view->response($comentarios, 200);
         }else{
-            $this->view->response("No existen comentarios para este libro", 404);
+            $this->view->response($comentarios, 204);
         }
     }
 
