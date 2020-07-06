@@ -15,6 +15,7 @@
                 <h3 class="titFotLib">{$titFotLib}</h3>
                 {if $libro->imagen}
                 <img src="{$libro->imagen}" class="tapaLibro" style="HEIGHT: 400px"/>
+                <a href="eliminarImagen/{$libro->id_libro}" class="btn btn-primary">Eliminar imagen </a>
                 {else}
                 <p> Aún no hay imagen para mostrar </p>
                 {/if}
@@ -50,10 +51,6 @@
             <form action='nuevaImagen/{$libro->id_libro}' method="POST" enctype="multipart/form-data">
                 <input type="file" name="imagen" id="imageToUpload" class="form-control" >
                 <input type="submit" id="imageToUpload" class="form-control" value="Subir imagen">
-            </form>
-            <form action='eliminarImagen/{$libro->id_libro}' method="POST">
-                <input type="hidden" value="{$libro->imagen}" name="delete_file">
-                <input type="submit" value="Eliminar imagen">
             </form>
         {/if}
 </div>
