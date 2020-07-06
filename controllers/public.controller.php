@@ -97,8 +97,10 @@ class PublicController{
             }
             else{
             $clave_encriptada = password_hash ($contraseña, PASSWORD_DEFAULT); //Encripto contraseña de usuario
-            $this->modelUsuario->newUser($nombre, $apellido, $mail, $clave_encriptada);
-            $this->view->succesRegister($nombre, $apellido, $user);
+            $succes= $this->modelUsuario->newUser($nombre, $apellido, $mail, $clave_encriptada);
+                if ($succes){
+                    $this->verifyUser();
+                }
             }
         }
         else{

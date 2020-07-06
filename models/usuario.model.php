@@ -25,7 +25,7 @@ class UsuarioModel {
 
     public function newUser($nombre, $apellido, $mail, $clave_encriptada){
         $sentencia = $this->db->prepare("INSERT INTO usuario(nombre, apellido, mail, password, admin) VALUE (?,?,?,?,?)");
-        $sentencia->execute([$nombre, $apellido, $mail, $clave_encriptada, 0]);
+        return $sentencia->execute([$nombre, $apellido, $mail, $clave_encriptada, 0]);
     }
 
     public function getAllUser(){
