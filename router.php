@@ -126,18 +126,6 @@
             $controller = new AdminController();
             $controller->deleteUser($parametros[1]);
         break;
-        case "enviarComentario": 
-            $controller = new UserController();
-            $controller->sendCommentary($parametros[1]);
-        break;
-        case "verComentarios": 
-            $controller = new AdminController();
-            $controller->allCommentarys();
-        break;
-        case "borrarComentario": 
-            $controller = new AdminController();
-            $controller->deleteCommentary($parametros[1]);
-        break;
         case "verifyUser": 
             $controller = new PublicController();
             $controller->verifyUser();

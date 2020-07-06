@@ -261,15 +261,4 @@ class AdminController{
             header("Location: " . BASE_URL . 'todosUsers');
         }
     }
-
-    public function allCommentarys(){
-        
-        $this->modelComentarios->getCommentarys();
-    }
-
-    public function deleteCommentary($idComentario){
-        
-        $this->modelComentarios->deleteCommentary($idComentario);
-        header("Location: " . BASE_URL . 'admin');
-    }
 }

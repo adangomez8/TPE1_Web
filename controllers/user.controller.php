@@ -42,19 +42,4 @@ class UserController{
         session_destroy();
         header("Location: " . BASE_URL . 'loginUser');
     }
-
-    public function sendCommentary($param){
-        $id = $param;
-        $comentario= $_POST['comentario'];
-        $puntuacion= $_POST['puntuacion'];
-        $usuario= $_POST['usuario'];
-        
-        if (!empty($comentario)){
-            $this->modelComentario->newCommentary($comentario, $puntuacion, $id, $usuario);
-            header("Location: " . BASE_URL . 'infoLibros/'.$id);
-        }
-        else{
-            header("Location: " . BASE_URL . 'infoLibros/'.$id);
-        }
-    }
 }
