@@ -58,7 +58,7 @@ function addComment(){
     let puntaje= document.querySelector('#puntuacion').value;
     let idUser= document.querySelector('#idUser').value;
     let idLibro= document.querySelector('#idLibro').value;
-    let url= 'http://localhost/web2/TPE1_Web/api/libro/' + idLibro + '/coment';
+    let url= 'api/libro/' + idLibro + '/coment';
 
 
     //Se crea el objeto
@@ -83,9 +83,13 @@ function addComment(){
         .then(response => {
             console.log(response);
         })
+        .then(function (){
+            document.querySelector("#comentarioLib").value=" ";
+            document.querySelector("#puntuacion").value=" ";
+            showComents();
+        })
         .catch(error =>console.log(error));
     }
-    location.reload();
 }
 
 
