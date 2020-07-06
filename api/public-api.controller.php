@@ -44,7 +44,7 @@ class PublicApiController{
         }
     }
 
-    public function getComents($params){
+    public function getComents(){
         $comentarios = $this->modelComentarios->getCommentarys();
         if (!empty($comentarios)){
             $this->view->response($comentarios, 200);
