@@ -14,7 +14,6 @@
     // toma la acción que viene del usuario y parsea los parámetros
     $accion = $_GET['action']; 
     $parametros = explode('/', $accion);
-    //var_dump($parametros); die; // like console.log();
 
     // decide que camino tomar según TABLA DE RUTEO
     switch ($parametros[0]) {

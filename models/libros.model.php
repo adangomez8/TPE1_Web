@@ -84,7 +84,7 @@ class LibrosModel {
 
     public function getBook($idlibro){
         $sentencia = $this->db->prepare("SELECT libros.nombre, libros.genero, libros.sinopsis, libros.anio, libros.imagen,
-        libros.id_libro FROM libros WHERE id_libro = ?");
+        libros.id_libro, autores.nombre AS autor, autores.id_autor FROM libros JOIN autores WHERE id_libro = ?");
         //ejecuto sentencia
         $sentencia->execute([$idlibro]);
         $libro= $sentencia->fetch(PDO::FETCH_OBJ);

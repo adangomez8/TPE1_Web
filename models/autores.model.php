@@ -27,14 +27,6 @@ class AutoresModel {
         $sentencia = $this->db->prepare("SELECT autores.nombre, autores.id_autor FROM autores");
         //ejecuto sentencia
         $sentencia->execute();
-        $id= $sentencia->fetchAll(PDO::FETCH_OBJ);
-
-        return $id;
-    }
-
-    public function getAuthorsAndId(){
-        $sentencia= $this->db->prepare("SELECT autores.nombre, autores.id_autor FROM autores");
-        $sentencia->execute(); //Ejecuto
         $autores= $sentencia->fetchAll(PDO::FETCH_OBJ);
 
         return $autores;

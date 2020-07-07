@@ -110,7 +110,7 @@ class AdminController{
     //MANDA A FORMULARIO PARA EDITAR LIBRO
     public function modifyBook($idlibro){
         //Pido el libro para editar al MODELO
-        $autores= $this->modelAutor->getAuthorsAndId();
+        $autores= $this->modelAutor->getId();
         $libro = $this->modelLibro->getBook($idlibro);
 
         //Actualizo la vista
@@ -148,15 +148,19 @@ class AdminController{
         $libros = $this->modelLibro->getBooksAndAuthors();
 
         //Si no edita imagen
-        if ($imagen == 4){
+        if ($imagen == 4 && !empty($nombre) && !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
             $this->modelLibro->updateNotImage($id_libro, $nombre, $genero, $sinopsis, $anio, $autor);
-            $this->viewUsuario->showEditBooks($libros, "El libro '$nombre' ha sido modificado exitosamente");
+            header("Location: " . BASE_URL . 'editLibros');
         }
         else if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || 
         $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif" && !empty($nombre)
         && !empty($genero) && !empty($sinopsis) && !empty($anio) && !empty($autor)){
             $this->modelLibro->updateBook($id_libro, $nombre, $genero, $sinopsis, $anio, $_FILES['imagen']['tmp_name'], $_FILES['imagen']['name'], $autor);
-            $this->viewUsuario->showEditBooks($libros, "El libro '$nombre' ha sido modificado exitosamente");
+            header("Location: " . BASE_URL . 'editLibros');
+        }
+        else{
+            $this->viewUsuario->showError("Faltan campos por completar");
+            die();
         }
     }
 
