@@ -38,16 +38,12 @@ class UsuarioModel {
 
     public function giveAdminUser($idUser) {
         $sentencia = $this->db->prepare("UPDATE usuario SET admin = 1 WHERE id_usuario = ?"); 
-        $usuario = $sentencia->execute([$idUser]);  
-
-        return $usuario;
+        $sentencia->execute([$idUser]);
      }
 
      public function removeAdminUser($idUser) {
         $sentencia = $this->db->prepare("UPDATE usuario SET admin = 0 WHERE id_usuario = ?"); 
-        $usuario = $sentencia->execute([$idUser]);  
-
-        return $usuario;
+        $sentencia->execute([$idUser]);
      }
 
     public function deleteUser($idUser){

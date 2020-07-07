@@ -36,14 +36,15 @@ class AdminController{
     }
 
     public function showOptionAdmin(){
-            //Envío al viewUsuario
-            $this->viewUsuario->optionAdmin();
+        //Envío al viewUsuario
+        $this->viewUsuario->optionAdmin();
     }
 
+    //SUBIR IMAGEN A LIBRO
     public function upImage($id){
         //Compruebo que no haya imagen en el libro
         $libro= $this->modelLibro->getBook($id);
-        //var_dump($libro->imagen);die();
+
         if (!$libro->imagen){
             //Compruebo formato de la imagen
             if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || 
@@ -58,6 +59,7 @@ class AdminController{
         }
     }
 
+    //ELIMINAR IMAGEN DE LIBRO
     public function deleteImage($id){
         $libro= $this->modelLibro->getBook($id);
         $this->modelLibro->deleteImg($id);
@@ -65,6 +67,7 @@ class AdminController{
         header("Location: " . BASE_URL . 'infoLibros/' . $id);
     } 
 
+    //SUBIR UN NUEVO LIBRO
     public function addBook(){
         //Tomo datos del formulario
         $nombre= $_POST['nombreLibro'];
@@ -104,6 +107,7 @@ class AdminController{
         $this->viewUsuario->formAddBook($id);
     }
 
+    //MANDA A FORMULARIO PARA EDITAR LIBRO
     public function modifyBook($idlibro){
         //Pido el libro para editar al MODELO
         $autores= $this->modelAutor->getAuthorsAndId();
@@ -113,6 +117,7 @@ class AdminController{
         $this->viewUsuario->formEditBook($libro, $autores);
     }
 
+    //FUNCIÓN ELIMINAR LIBRO
     public function deleteBook($idlibro){
         //Pido el libro que se quiere borrar a la base de datos
         $this->modelLibro->deleteBook($idlibro);
@@ -122,6 +127,7 @@ class AdminController{
         $this->viewUsuario->showEditBooks($libros, "El libro ha sido eliminado con éxito");
     }
 
+    //MUESTRA TABLA PARA EDITAR-ELIMIAR LIBRO
     public function editBooks(){
         //Pido los libros de nuevo a la base de datos
         $libros= $this->modelLibro->getBooksAndAuthors();
@@ -130,17 +136,16 @@ class AdminController{
         $this->viewUsuario->showEditBooks($libros);
     }
 
+    //FUNCIÓN DE EDITAR LIBRO
     public function saveChangesBook($id_libro){
         $nombre= $_POST['nombreLibro'];
         $genero= $_POST['genero'];
         $sinopsis=$_POST['sinopsis'];
         $anio= $_POST['anio'];
         $autor= $_POST['autor'];
-        $imagen= $_FILES['imagen']['error'];
+        $imagen= $_FILES['imagen']['error']; //EL ERROR NOS DEVUELVE UN 4 SI EL ADMINISTRADOR NO ELIGIÓ EDITAR LA IMAGEN
 
-        $autores= $this->modelAutor->getAuthorsAndId();
         $libros = $this->modelLibro->getBooksAndAuthors();
-        $libro = $this->modelLibro->getBook($id_libro);
 
         //Si no edita imagen
         if ($imagen == 4){
@@ -155,6 +160,7 @@ class AdminController{
         }
     }
 
+    //FUNCIÓN PARA AGREGAR UN NUEVO AUTOR
     public function addAuthor(){
         $nombre= $_POST['nombre'];
         $foto= $_POST['foto'];
@@ -190,6 +196,7 @@ class AdminController{
         $this->viewUsuario->formEditAuthor($autores);
     }
 
+    //FUNCIÓN PARA ELIMINAR UN AUTOR
     public function deleteAuthor($idautor){
         
         $libros= $this->modelLibro->getBooksOfAuthor($idautor);
@@ -213,6 +220,7 @@ class AdminController{
         $this->viewUsuario->showEditAuthor($autores);
     }
 
+    //FUNCIÓN PARA EDITAR AUTOR
     public function changeAuthor($id_autor){
         //Tomo datos nuevos del formulario
         $nombre= $_POST['nombre'];
@@ -231,26 +239,29 @@ class AdminController{
 
     }
 
+    //MUESTRA EN UNA TABLA TODOS LOS USUARIOS
     public function allUser(){
         $usuarios= $this->modelUsuario->getAllUser();
         //Mando al viewUsuario los usuarios
         $this->viewUsuario->showListUser($usuarios);
     }
 
+    //FUNCIÓN DE DAR PERMISOS 
     public function givePermissionAdmin($idUser){
         
-        $usuarios= $this->modelUsuario->giveAdminUser($idUser);
+        $this->modelUsuario->giveAdminUser($idUser);
         header("Location: " . BASE_URL . 'todosUsers');
     }
 
+    //FUNCIÓN DE QUITAR PERMISOS
     public function removePermissionAdmin($idUser){
-        
-        $usuarios= $this->modelUsuario->removeAdminUser($idUser);
+        $this->modelUsuario->removeAdminUser($idUser);
         header("Location: " . BASE_URL . 'todosUsers');
     }
 
+    //FUNCIÓN DE ELIMINAR USUARIO
     public function deleteUser($idUser){
-        //Compruebo que no haya comentarios realizados por ese admin
+        //Compruebo que no haya comentarios realizados por ese usuario
         $comentarios = $this->modelComentarios->getById($idUser);
 
         if ($comentarios){

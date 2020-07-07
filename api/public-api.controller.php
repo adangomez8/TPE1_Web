@@ -21,17 +21,25 @@ class PublicApiController{
         $this->modelLibro =  new LibrosModel();
         $this->modelComentarios =  new ComentariosModel();
         $this->view = new APIView();
-        $this->data= file_get_contents("php://input");
+        $this->data= file_get_contents("php://input"); //Devuelve a string
     }
 
     public function getAllAuthors($params = []) {
         $autores = $this->modelAutor->getAll();
-        $this->view->response($autores, 200);
+        if ($autores){
+            $this->view->response($autores, 200);
+        }else{
+            $this->view->response($autores, 204);
+        }
     }
 
     public function getAllBooks($params = []){
         $libros = $this->modelLibro->getBooksAndAuthors();
-        $this->view->response($libros, 200);
+        if ($libros){
+            $this->view->response($libros, 200);
+        }else{
+            $this->view->response($libros, 204);
+        }
     }
 
     public function getBooksOfAuthor($params){
@@ -55,11 +63,11 @@ class PublicApiController{
     }
 
     public function getdata(){
-        return json_decode($this->data);
+        return json_decode($this->data); //Convierte el string en JSON
         }
 
     public function postComment($params){
-        //Devuelve el JSON enviado por POST
+
         $body= $this->getData();
 
 
