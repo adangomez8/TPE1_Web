@@ -22,16 +22,6 @@ class ComentariosModel {
         return $comentario;
     }
 
-    public function getCommentarys() {
-        $sentencia = $this->db->prepare("SELECT comentarios.id_comentario, comentarios.texto, comentarios.puntuacion, 
-        comentarios.id_libro_fk, comentarios.id_usuario_fk, libros.id_libro, libros.nombre AS nombreLibro, usuario.nombre, usuario.apellido 
-        FROM comentarios JOIN libros JOIN usuario ON comentarios.id_usuario_fk=usuario.id_usuario && comentarios.id_libro_fk=libros.id_libro");
-        $sentencia->execute();
-        $comentarios= $sentencia->fetchAll(PDO::FETCH_OBJ);
-
-        return $comentarios;
-    } 
-
     public function getComentsBook($id){
         $sentencia = $this->db->prepare("SELECT comentarios.id_comentario, comentarios.texto, comentarios.puntuacion, 
         comentarios.id_libro_fk, comentarios.id_usuario_fk, usuario.nombre, usuario.apellido 
@@ -40,11 +30,6 @@ class ComentariosModel {
         $sentencia->execute([$id]);
         $comentario = $sentencia->fetchAll(PDO::FETCH_OBJ); 
         return $comentario;
-    }
-
-    public function deleteCommentary($idComent){
-        $sentencia = $this->db->prepare("DELETE FROM comentarios WHERE id_comentario = ?");
-        $sentencia->execute([$idComent]);
     }
 
     public function getById($id){

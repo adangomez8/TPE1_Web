@@ -8,19 +8,18 @@ $router = new Router();
 // creo la tabla de ruteo
 
 //AUTORES
-$router->addRoute('autores', 'GET', 'PublicApiController', 'getAllAuthors');
+$router->addRoute('autores', 'GET', 'PublicApiController', 'getAllAuthors');  //Prueba
 
 //LIBROS
-$router->addRoute('libros', 'GET', 'PublicApiController', 'getAllBooks');
-$router->addRoute('libro/:ID', 'GET', 'PublicApiController', 'getBooksOfAuthor');
+$router->addRoute('libros', 'GET', 'PublicApiController', 'getAllBooks'); //Prueba
+$router->addRoute('libro/:ID', 'GET', 'PublicApiController', 'getBooksOfAuthor'); //Prueba
 
 //COMENTARIOS
 $router->addRoute('libro/:ID/coment', 'GET', 'PublicApiController', 'getComentsOfBook');
-$router->addRoute('comentario', 'GET', 'PublicApiController', 'getComents');  
 $router->addRoute('libro/:ID/coment', 'POST', 'PublicApiController', 'postComment');
 $router->addRoute('comentario/:ID', 'DELETE', 'PublicApiController', 'deleteComent');
 
-//USUARIOS NO ADMINISTRADORES
+
 
 //rutea
 $router->route($_REQUEST['resource'], $_SERVER['REQUEST_METHOD']);

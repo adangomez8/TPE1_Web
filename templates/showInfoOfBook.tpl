@@ -61,6 +61,6 @@
         {include 'vue/comentsOfBook.vue'}
     </div>
 
-<script src="js/nuevoComentarios.js"></script>
+<script src="js/comentarios.js"></script>
 
 {include 'templates/footer.tpl'}

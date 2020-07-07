@@ -44,15 +44,6 @@ class PublicApiController{
         }
     }
 
-    public function getComents(){
-        $comentarios = $this->modelComentarios->getCommentarys();
-        if (!empty($comentarios)){
-            $this->view->response($comentarios, 200);
-        }else{
-            $this->view->response("No existen comentarios para este libro", 204);
-        }
-    }
-
     public function getComentsOfBook($params){
         $idLibro= $params[':ID'];
         $comentarios = $this->modelComentarios->getComentsBook($idLibro);

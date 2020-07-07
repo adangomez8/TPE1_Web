@@ -44,10 +44,3 @@
   <div>
     <a href="todosUsers">Ver todos los usuarios</a>
   </div>
-
-  <div>
-    {include 'vue/showListCommentarys.vue'}
-</div>
-
-<script src="js/mostrarComentarios.js"></script>
-</div>
