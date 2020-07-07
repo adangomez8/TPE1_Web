@@ -33,7 +33,7 @@ class ComentariosModel {
     }
 
     public function getById($id){
-        $sentencia= $this->db->prepare("SELECT * FROM comentarios WHERE id_comentario = ?");
+        $sentencia= $this->db->prepare("SELECT * FROM comentarios WHERE id_usuario_fk = ?");
         $sentencia->execute([$id]);
         $comentarios= $sentencia->fetch(PDO::FETCH_OBJ);
 

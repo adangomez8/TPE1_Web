@@ -267,7 +267,6 @@ class AdminController{
     public function deleteUser($idUser){
         //Compruebo que no haya comentarios realizados por ese usuario
         $comentarios = $this->modelComentarios->getById($idUser);
-
         if ($comentarios){
             $this->viewUsuario->showError("No se puede eliminar el usuario porque hay comentarios realizados por el mismo");
         }
