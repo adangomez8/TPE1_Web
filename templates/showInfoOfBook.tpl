@@ -49,7 +49,7 @@
 
         </div>
 
-        {if $user && $user['admin']=="1"}
+        {if $user && $user['admin']=="1" && !$libro->imagen}
             <form action='nuevaImagen/{$libro->id_libro}' method="POST" enctype="multipart/form-data">
                 <input type="file" name="imagen" id="imageToUpload" class="form-control" >
                 <input type="submit" id="imageToUpload" class="form-control" value="Subir imagen">
